@@ -1,2 +1,177 @@
-# German-A1
-Complete German A1 course in 30 days for Bangla speakers – vocabulary, grammar, dialogues, exercises, weekly tests and audio for every German word. English + বাংলা.
+# 🇩🇪 Deutsch A1 in 30 Tagen – জার্মান শিখি
+
+**A complete German A1 course in 30 days for Bangla speakers.**
+Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every German word – in English and বাংলা.
+
+**বাংলাভাষীদের জন্য ৩০ দিনে সম্পূর্ণ জার্মান A1 কোর্স।**
+শব্দ, ব্যাকরণ, সংলাপ, অনুশীলন, সাপ্তাহিক পরীক্ষা আর প্রতিটি জার্মান শব্দে অডিও – ইংরেজি ও বাংলায়।
+
+🔗 **Live website:** `https://YOUR-USERNAME.github.io/deutsch-a1/`
+<!-- Replace YOUR-USERNAME with your GitHub username after enabling GitHub Pages -->
+
+---
+
+## ✨ Features
+
+- **30 daily lessons** covering the full A1 (CEFR) syllabus – 4 weeks + exam week
+- **663 words** with article colours, plural forms and English + Bangla meanings
+- **Audio everywhere** – tap any underlined German word, sentence or dialogue to hear it
+- **Play whole dialogues** line by line, with different voices for each speaker
+- **Interactive exercises** – multiple choice, fill-in-the-gap, translation and writing tasks with instant checking
+- **Weekly tests** (Days 7, 14, 21, 28) and a **final test** (Day 30)
+- **Exam training** for Goethe-Zertifikat A1 / telc Deutsch A1 (Day 29)
+- **Flashcards** for every day and for all words
+- **All words** page with search and filters (by week, day and article)
+- **Grammar secrets** page with short cuts for articles, plurals, cases and the perfect tense
+- **Syllabus page (Kursplan)** with all 30 days and a grammar map
+- **Language switch:** English / বাংলা / both
+- **Progress tracking** – completed days and best scores are saved in your browser
+- **Umlaut keyboard** (ä ö ü ß) for typing answers on any phone
+- **Mobile friendly** – works on phone, tablet and computer
+- **One single file** – no installation, no server, works offline
+
+## 📚 Course plan
+
+Article colours: **der** = blue · **die** = red · **das** = green · **plural** = orange
+
+### Woche 1 – Basics
+| Day | Topic (Deutsch) | Topic (English) |
+|---|---|---|
+| 1 | Hallo! Das Alphabet, die Aussprache und die Begrüßung | Hello! The alphabet, pronunciation and greetings |
+| 2 | Ich heiße … – sich vorstellen | My name is … – introducing yourself |
+| 3 | Zahlen, Alter und Telefonnummer – Verben im Präsens | Numbers, age and phone number – verbs in the present tense |
+| 4 | Länder, Sprachen und Nationalitäten – Verben mit Vokalwechsel | Countries, languages and nationalities – stem-changing verbs |
+| 5 | Meine Familie – haben und Possessivartikel | My family – the verb haben and possessive articles |
+| 6 | Der, die, das – Artikel, Plural und Negation | Der, die, das – articles, plurals and negation |
+| 7 | **Wiederholung und Test – Woche 1** | **Review and test – week 1** |
+
+### Woche 2 – Everyday life
+| Day | Topic (Deutsch) | Topic (English) |
+|---|---|---|
+| 8 | Essen und Trinken – der Akkusativ und möchten | Food and drink – the accusative and möchten |
+| 9 | Im Supermarkt – Preise, Mengen und doch | At the supermarket – prices, quantities and ‘doch’ |
+| 10 | Wie spät ist es? – Uhrzeit, Tagesablauf und trennbare Verben | What time is it? – telling the time, daily routine and separable verbs |
+| 11 | Termine – Wochentage, Monate, Datum und Ordinalzahlen | Appointments – days, months, dates and ordinal numbers |
+| 12 | Freizeit und Hobbys – können, gern, lieber, am liebsten | Free time and hobbies – können, gern, lieber, am liebsten |
+| 13 | Ich muss, ich will, ich darf – die Modalverben | I must, I want, I may – modal verbs |
+| 14 | **Wiederholung und Test – Woche 2** | **Review and test – week 2** |
+
+### Woche 3 – Living in Germany
+| Day | Topic (Deutsch) | Topic (English) |
+|---|---|---|
+| 15 | Meine Wohnung – Zimmer, Möbel und Adjektive | My flat – rooms, furniture and adjectives |
+| 16 | In der Stadt – Orte, der Weg und der Imperativ | In town – places, directions and the imperative |
+| 17 | Mit dem Bus zur Arbeit – der Dativ | By bus to work – the dative case |
+| 18 | Wo liegt das Buch? – Wechselpräpositionen | Where is the book? – two-way prepositions |
+| 19 | Beim Arzt – der Körper, Schmerzen und Pronomen im Dativ | At the doctor's – the body, pain and dative pronouns |
+| 20 | Was ziehe ich an? – Kleidung, Farben und Wetter | What shall I wear? – clothes, colours and weather |
+| 21 | **Wiederholung und Test – Woche 3** | **Review and test – week 3** |
+
+### Woche 4 – Past, work and travel
+| Day | Topic (Deutsch) | Topic (English) |
+|---|---|---|
+| 22 | Was hast du gestern gemacht? – das Perfekt mit haben | What did you do yesterday? – the perfect tense with haben |
+| 23 | Ich bin nach Berlin gefahren – Perfekt mit sein, war und hatte | I went to Berlin – the perfect with sein, war and hatte |
+| 24 | Was sind Sie von Beruf? – Arbeit, Berufe und Konnektoren | What do you do? – work, jobs and connectors |
+| 25 | Auf Reisen – Fahrkarte, Hotel und höfliche Bitten | Travelling – tickets, hotels and polite requests |
+| 26 | Herzlichen Glückwunsch! – Feste, Einladungen und Verben mit Dativ | Congratulations! – celebrations, invitations and verbs with the dative |
+| 27 | Formulare und E-Mails – richtig schreiben | Forms and e-mails – writing correctly |
+| 28 | **Wiederholung und Test – Woche 4** | **Review and test – week 4** |
+
+### Prüfung – Exam week
+| Day | Topic (Deutsch) | Topic (English) |
+|---|---|---|
+| 29 | Fit für die Prüfung – Goethe-Zertifikat A1 und telc Deutsch A1 | Ready for the exam – Goethe-Zertifikat A1 and telc Deutsch A1 |
+| 30 | **Abschlusstest – du hast es geschafft!** | **Final test – you've made it!** |
+
+Every lesson contains: **goals · vocabulary · grammar tables · dialogues / reading texts · tips · exercises · Q&A speaking practice · homework**.
+
+## 🚀 How to use
+
+### Online
+Open the live link in **Chrome, Edge or Safari**. Start with Day 1 and do one lesson per day.
+
+### Offline / on your computer
+1. Download `index.html`
+2. Double-click it – it opens in your browser
+3. That's it – no installation needed
+
+### Host it yourself (GitHub Pages)
+1. Upload `index.html` to a public repository
+2. Go to **Settings → Pages**
+3. Choose **Deploy from a branch**, branch `main`, folder `/ (root)` and click **Save**
+4. After 1–2 minutes your site is live at `https://YOUR-USERNAME.github.io/REPOSITORY-NAME/`
+
+## 🔊 Audio
+
+The audio uses the **Web Speech API** – the text-to-speech engine that is built into your phone or computer. No internet audio files are needed, but your device must have a **German voice**.
+
+| Device | How to get a German voice |
+|---|---|
+| **Android** | Install / update *Speech Services by Google* from the Play Store → Settings → Text-to-speech → Google → Install voice data → **Deutsch (Deutschland)** |
+| **iPhone / iPad** | Settings → Accessibility → Spoken Content → Voices → **German** → download a voice (e.g. Anna). Turn off silent mode. |
+| **Windows** | Settings → Time & language → Speech → Add voices → **Deutsch**. Microsoft Edge already has good German voices. |
+| **Mac** | System Settings → Accessibility → Spoken Content → System voice → Manage voices → **German** |
+
+**No sound?**
+- Open the site in **Chrome or Safari** – not inside another app's built-in browser
+- Turn up the **media volume**
+- Tap ⚙️ (top right) → **Test** – the line under the button shows which German voice is used
+- You can change the voice and the speed (0.75× is great for beginners) in ⚙️
+
+## 🗂 Project structure
+
+Everything is inside **one file**: `index.html`
+
+```
+index.html
+├── <style>    Design: colours, layout, mobile view
+├── <script>   Course content: DAYS.push({ … }) – one block per day (Days 1–30)
+└── <script>   App logic: audio engine, router, exercises, flashcards, word list, syllabus
+```
+
+Pages (hash routes): `#home` · `#plan` · `#day-1` … `#day-30` · `#words` · `#secrets`
+
+## ✏️ Edit or add content
+
+Each day is one `DAYS.push({ … })` block. Search for `n:8` to find Day 8, for example.
+
+```js
+DAYS.push({n:31, w:5, s:"Short title",
+  de:"German title", en:"English title", bn:"বাংলা শিরোনাম",
+  goals:[["English goal","বাংলা লক্ষ্য"]],
+  vocab:[["der Tisch","Tische","table","টেবিল"]],          // word, plural, English, Bangla
+  gram:[{h:"Heading", en:"English text", bn:"বাংলা লেখা",
+         tb:{h:["Col 1","Col 2"], r:[["a","b"]]},           // table
+         ex:[["Deutsch","English","বাংলা"]]}],               // examples
+  dlg:[{h:"Dialog title", l:[["Speaker","Deutsch","English","বাংলা"]]}],
+  tip:[["English tip","বাংলা টিপস"]],
+  ex:[
+    {k:"mc",   h:["Task","কাজ"], q:[["Question ___",["a","b","c"],0]]},   // index of correct option
+    {k:"fill", h:["Task","কাজ"], q:[["Ich ___ Rahim.","bin"]]},            // use | for alternatives
+    {k:"tr",   h:["Task","কাজ"], q:[["English","বাংলা","Deutsch"]]},
+    {k:"wr",   h:["Task","কাজ"], q:[["Task","কাজ","Model DE","Model EN","Model BN"]]}
+  ],
+  qa:[["Frage","Question","প্রশ্ন","Antwort","Answer","উত্তর"]],
+  hw:["English homework","বাংলা বাড়ির কাজ"]
+});
+```
+
+- `w` is the week number (5 = exam week)
+- `review:true` marks a test day
+- Vocabulary plural: `""` = not a noun, `"-"` = no plural, `"Pl."` = plural only
+
+## 🛠 Built with
+
+- HTML, CSS and vanilla JavaScript – no frameworks, no build step
+- Web Speech API for audio
+- Google Fonts: Inter, Fraunces, Hind Siliguri
+- `localStorage` for progress (stays in your own browser only)
+
+## 🤝 Contributing
+
+Found a mistake in German or Bangla? Open an issue or a pull request – corrections are very welcome!
+
+---
+
+**Viel Erfolg beim Deutschlernen! · জার্মান শেখায় শুভকামনা!** 🇩🇪🇧🇩
