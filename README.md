@@ -6,8 +6,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 **বাংলাভাষীদের জন্য ৩০ দিনে সম্পূর্ণ জার্মান A1 কোর্স।**
 শব্দ, ব্যাকরণ, সংলাপ, অনুশীলন, সাপ্তাহিক পরীক্ষা আর প্রতিটি জার্মান শব্দে অডিও – ইংরেজি ও বাংলায়।
 
-🔗 **Live website:** `https://YOUR-USERNAME.github.io/deutsch-a1/`
-<!-- Replace YOUR-USERNAME with your GitHub username after enabling GitHub Pages -->
+🔗 **Live website:** **[mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/)**
 
 ---
 
@@ -89,7 +88,7 @@ Every lesson contains: **goals · vocabulary · grammar tables · dialogues / re
 ## 🚀 How to use
 
 ### Online
-Open the live link in **Chrome, Edge or Safari**. Start with Day 1 and do one lesson per day.
+Open **[mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/)** in **Chrome, Edge or Safari**. Start with Day 1 and do one lesson per day.
 
 ### Offline / on your computer
 1. Download `index.html`
