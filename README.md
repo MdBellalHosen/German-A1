@@ -8,9 +8,13 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 
 🔗 **Live website:** **[mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/)** – open it on your phone or computer, nothing to install.
 
+⚡ **Vercel live link (same website, also hosts the AI function):** **[german-a1-eight.vercel.app](https://german-a1-eight.vercel.app/)**
+
 | Live pages | Link |
 |---|---|
 | 🏠 Course (start here) | [mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/) |
+| ⚡ Course on Vercel (live) | [german-a1-eight.vercel.app](https://german-a1-eight.vercel.app/) |
+| 🧩 Easy guide on Vercel | [german-a1-eight.vercel.app/#easy](https://german-a1-eight.vercel.app/#easy) |
 | 🌐 Translator (DE · EN · বাংলা) | [#translate](https://mdbellalhosen.github.io/German-A1/#translate) |
 | 📖 A1 Dictionary A–Z | [#dictionary](https://mdbellalhosen.github.io/German-A1/#dictionary) |
 | 📚 All words | [#words](https://mdbellalhosen.github.io/German-A1/#words) |
