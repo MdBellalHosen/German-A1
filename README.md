@@ -14,6 +14,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 | 🌐 Translator (DE · EN · বাংলা) | [#translate](https://mdbellalhosen.github.io/German-A1/#translate) |
 | 📖 A1 Dictionary A–Z | [#dictionary](https://mdbellalhosen.github.io/German-A1/#dictionary) |
 | 📚 All words | [#words](https://mdbellalhosen.github.io/German-A1/#words) |
+| 🧩 Easy guide & games | [#easy](https://mdbellalhosen.github.io/German-A1/#easy) |
 | 🔑 Grammar secrets | [#secrets](https://mdbellalhosen.github.io/German-A1/#secrets) |
 
 ---
