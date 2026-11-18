@@ -151,7 +151,14 @@ export async function handle(request: Request): Promise<Response> {
       },
     );
     if (res.status === 429) return json({ error: 'busy' }, 429, ch);
-    if (!res.ok) return json({ error: 'upstream_' + res.status }, 502, ch);
+    if (!res.ok) {
+      let detail = '';
+      try {
+        const e = (await res.json()) as { error?: { message?: string } };
+        detail = String(e.error?.message ?? '').split(key).join('***').slice(0, 200);
+      } catch { /* ignore */ }
+      return json({ error: 'upstream_' + res.status, detail }, 502, ch);
+    }
     const data = (await res.json()) as {
       candidates?: { content?: { parts?: { text?: string }[] } }[];
     };
