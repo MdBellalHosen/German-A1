@@ -1,0 +1,14 @@
+{
+  "name": "german-a1",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Deutsch A1 in 30 Tagen – static site (index.html) plus a small free AI proxy (api/chat.ts)",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
