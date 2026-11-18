@@ -10,23 +10,23 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 
 ⚡ **Vercel live link (same website, also hosts the AI function):** **[german-a1-eight.vercel.app](https://german-a1-eight.vercel.app/)**
 
-| Live pages | Link |
-|---|---|
-| 🏠 Course (start here) | [mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/) |
-| ⚡ Course on Vercel (live) | [german-a1-eight.vercel.app](https://german-a1-eight.vercel.app/) |
-| 🧩 Easy guide on Vercel | [german-a1-eight.vercel.app/#easy](https://german-a1-eight.vercel.app/#easy) |
-| 🌐 Translator (DE · EN · বাংলা) | [#translate](https://mdbellalhosen.github.io/German-A1/#translate) |
-| 📖 A1 Dictionary A–Z | [#dictionary](https://mdbellalhosen.github.io/German-A1/#dictionary) |
-| 📚 All words | [#words](https://mdbellalhosen.github.io/German-A1/#words) |
-| 🔁 Word review (spaced repetition) | [#review](https://mdbellalhosen.github.io/German-A1/#review) · [Vercel](https://german-a1-eight.vercel.app/#review) |
-| 🎧 Listening practice | [#listen](https://mdbellalhosen.github.io/German-A1/#listen) · [Vercel](https://german-a1-eight.vercel.app/#listen) |
-| 🎓 Exam simulator | [#exam](https://mdbellalhosen.github.io/German-A1/#exam) · [Vercel](https://german-a1-eight.vercel.app/#exam) |
-| 📘 Course book chapters 1–12 | [#book](https://mdbellalhosen.github.io/German-A1/#book) · [Vercel](https://german-a1-eight.vercel.app/#book) |
-| 🎓 Mock exam | [#bookfinal](https://mdbellalhosen.github.io/German-A1/#bookfinal) · [Vercel](https://german-a1-eight.vercel.app/#bookfinal) |
-| 🗂 Practice by topic | [#topics](https://mdbellalhosen.github.io/German-A1/#topics) · [Vercel](https://german-a1-eight.vercel.app/#topics) |
-| 🧩 Easy guide & games | [#easy](https://mdbellalhosen.github.io/German-A1/#easy) |
-| ✨ Premium AI API (Vercel) | [german-a1-eight.vercel.app/api/chat](https://german-a1-eight.vercel.app/api/chat) – shows `"configured": true` when the Gemini key is set |
-| 🔑 Grammar secrets | [#secrets](https://mdbellalhosen.github.io/German-A1/#secrets) |
+| Page | GitHub Pages | Vercel |
+|---|---|---|
+| 🏠 Course (start here) | [open](https://mdbellalhosen.github.io/German-A1/) | [open](https://german-a1-eight.vercel.app/) |
+| 📘 Course book, chapters 1–12 (Netzwerk A1) | [open](https://mdbellalhosen.github.io/German-A1/#book) | [open](https://german-a1-eight.vercel.app/#book) |
+| 📝 Book tests 1–4 | [open](https://mdbellalhosen.github.io/German-A1/#booktest-1) | [open](https://german-a1-eight.vercel.app/#booktest-1) |
+| 🎓 Final mock exam (20 questions) | [open](https://mdbellalhosen.github.io/German-A1/#bookfinal) | [open](https://german-a1-eight.vercel.app/#bookfinal) |
+| 🔁 Word review (spaced repetition) | [open](https://mdbellalhosen.github.io/German-A1/#review) | [open](https://german-a1-eight.vercel.app/#review) |
+| 🎧 Listening practice (Hörverstehen) | [open](https://mdbellalhosen.github.io/German-A1/#listen) | [open](https://german-a1-eight.vercel.app/#listen) |
+| 🎓 Exam simulator (40 min) | [open](https://mdbellalhosen.github.io/German-A1/#exam) | [open](https://german-a1-eight.vercel.app/#exam) |
+| 🗂 Practice by topic | [open](https://mdbellalhosen.github.io/German-A1/#topics) | [open](https://german-a1-eight.vercel.app/#topics) |
+| 🧩 Easy guide & games | [open](https://mdbellalhosen.github.io/German-A1/#easy) | [open](https://german-a1-eight.vercel.app/#easy) |
+| 🌐 Translator (DE · EN · বাংলা) | [open](https://mdbellalhosen.github.io/German-A1/#translate) | [open](https://german-a1-eight.vercel.app/#translate) |
+| 📖 A1 Dictionary A–Z | [open](https://mdbellalhosen.github.io/German-A1/#dictionary) | [open](https://german-a1-eight.vercel.app/#dictionary) |
+| 📚 All words | [open](https://mdbellalhosen.github.io/German-A1/#words) | [open](https://german-a1-eight.vercel.app/#words) |
+| 🔑 Grammar secrets | [open](https://mdbellalhosen.github.io/German-A1/#secrets) | [open](https://german-a1-eight.vercel.app/#secrets) |
+| 📅 Course plan (Kursplan) | [open](https://mdbellalhosen.github.io/German-A1/#plan) | [open](https://german-a1-eight.vercel.app/#plan) |
+| ✨ Premium AI API | – | [https://german-a1-eight.vercel.app/api/chat](https://german-a1-eight.vercel.app/api/chat) (shows `"configured": true` when the Gemini key is set) |
 
 ---
 
@@ -46,7 +46,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 - **Language switch:** English / বাংলা / both
 - **Progress tracking** – completed days and best scores are saved in your browser
 - **Umlaut keyboard** (ä ö ü ß) for typing answers on any phone
-- **Mobile friendly** – works on phone, tablet and computer
+- **Fully responsive** – layout checked at phone (360 px), tablet (768 px) and desktop (1280 px) widths, with no sideways scrolling; large tap targets, print-friendly pages
 - **🌐 Translator** – German → Bangla, German → English, English → German, Bangla → German (also English ↔ Bangla). For every word you get the **article (der / die / das)**, gender, plural and **example sentences**
 - **📖 A1 Dictionary A–Z** – all course words and phrases in alphabetical order with article, plural, Bangla and English meaning (German → Bangla / German → English / both), search in any language, filter by der / die / das, example sentences on tap
 - **🔁 Wiederholung** – `#review`: spaced-repetition word cards (course book + topic words, with articles and plural); known words return later, forgotten ones soon; daily streak.
