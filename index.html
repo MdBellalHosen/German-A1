@@ -348,6 +348,8 @@ input[type=range]{width:100%;accent-color:var(--red)}
 .bub small{color:var(--mute)}
 .bub .cb-bn{font-family:"Hind Siliguri",Inter,sans-serif;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
 .bub .wr{margin:6px 0;padding:7px 9px;background:var(--soft);border:1px solid var(--line);border-radius:10px}
+.bub .tb{margin:8px 0 0;padding:8px 10px;background:var(--soft);border:1px solid var(--line);border-radius:10px}.bub .tb .ocrtxt{margin:2px 0 4px}
+.bub .aib{display:inline-block;margin-bottom:4px;color:var(--mute)}.bub .aimd p{margin:0 0 6px}.bub .aimd ul{margin:4px 0 6px 18px}
 .dots{display:inline-flex;gap:4px;align-items:center;height:18px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:dots 1s infinite ease-in-out}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dots{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
@@ -446,12 +448,12 @@ input[type=range]{width:100%;accent-color:var(--red)}
  <div class="chhead"><div><b>Hilfe-Chat</b><small>Ask · Fragen · প্রশ্ন · 📷 🖼 🎙</small></div><button type="button" data-act="chatclear" title="New chat · নতুন চ্যাট" aria-label="New chat">↺</button><button type="button" data-act="chat" aria-label="Close">✕</button></div>
  <div id="chBody" class="chbody" aria-live="polite"></div>
  <div id="chChips" class="chchips"></div>
- <div id="chUml" class="chuml"><button type="button">ä</button><button type="button">ö</button><button type="button">ü</button><button type="button">ß</button><button type="button" class="vl" id="chVl" data-act="chvl" title="Voice language · ভয়েসের ভাষা">🎙 বাংলা</button></div>
+ <div id="chUml" class="chuml"><button type="button">ä</button><button type="button">ö</button><button type="button">ü</button><button type="button">ß</button><button type="button" class="vl" id="chVl" data-act="chvl" title="Voice language · ভয়েসের ভাষা">🎙 বাংলা</button><button type="button" class="vl" id="chMode" data-act="chmode" title="Auto / Translate mode · অনুবাদ মোড">🌐 Auto</button></div>
  <form id="chForm" class="chform" autocomplete="off">
   <button type="button" class="chtool" data-act="chcam" aria-label="Camera · ক্যামেরা" title="Camera · ক্যামেরা"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L8 6.5H5a2 2 0 0 0-2 2V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
   <button type="button" class="chtool" data-act="chphoto" aria-label="Photos · ছবি" title="Photos · ছবি"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="m21 15-4.5-4.5L6 21"/></svg></button>
   <button type="button" class="chtool" id="chMic" data-act="chmic" aria-label="Voice · ভয়েস" title="Voice · ভয়েস"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></button>
-  <input id="chIn" class="cin" type="text" maxlength="400" placeholder="Frage stellen … Ask … প্রশ্ন লিখুন …" aria-label="Message">
+  <input id="chIn" class="cin" type="text" maxlength="4000" placeholder="Frage / Text … Ask / paste text … প্রশ্ন / লেখা …" aria-label="Message">
   <button type="submit" class="btn primary" aria-label="Send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
  </form>
  <input type="file" id="chFile" accept="image/*" multiple hidden>
@@ -3645,6 +3647,7 @@ function setLang(l){
   if(['en','bn','both'].indexOf(l)<0)l='both';
   document.body.classList.remove('l-en','l-bn','l-both');document.body.classList.add('l-'+l);
   store.set('lang',l);
+  try{if(CH.ready)chatChips(CH.lc);}catch(e){}
   $$('[data-act="lang"]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
 }
 
@@ -4031,6 +4034,7 @@ function act(a,el,ev){
     case'chcam':if(window.matchMedia&&matchMedia('(pointer:coarse)').matches)$('#chCamIn').click();else camOpen();break;
     case'chmic':micToggle();break;
     case'chvl':vlNext();break;
+    case'chmode':chModeToggle();break;
     case'camsnap':camSnap();break;
     case'camclose':camClose();break;
     case'ocrtotr':{TR.from='de';TR.to='bn';TR.pending=el.dataset.t;store.set('trFrom','de');store.set('trTo','bn');if(window.innerWidth<=700)toggleChat(false);if(location.hash==='#translate')showTranslate();else location.hash='#translate';break;}
@@ -4526,7 +4530,7 @@ function dictEx(el){
 }
 
 /* ---- help chat ---- */
-const CH={open:false,ready:false};
+const CH={open:false,ready:false,hist:[],lc:null,mode:store.get('chMode','auto'),aiUntil:0};
 const lnk=(h,t)=>`<a href="${h}" data-close="1">${t}</a>`;
 const WKT={1:['Basics','মৌলিক বিষয়'],2:['Everyday life','দৈনন্দিন জীবন'],3:['Living in Germany','জার্মানিতে জীবন'],4:['Past, work and travel','অতীত, কাজ ও ভ্রমণ'],5:['Exam week','পরীক্ষার সপ্তাহ']};
 const LIVE_URL='https://mdbellalhosen.github.io/German-A1/';
@@ -4711,6 +4715,11 @@ async function botReply(q){
   const wc=t.split(/\s+/).length;
   let m;
   const tp=parseTr(q);if(tp&&tp.to&&tp.text)return chatTranslate(tp,lang);
+  const det=detectLangLocal(q).l;
+  if(CH.mode==='tr'||(wc>=3&&det==='de'&&!ART_Q.test(q))){
+    if(aiOn()){try{return await aiReply(q);}catch(e){}}
+    return trAll(q,lang);
+  }
   if((m=/(?:\b(?:day|tag|din|dina)\b\s*#?\s*(\d{1,2})\b|(\d{1,2})\s*(?:ম|তম|র|ই|লা)?\s*(?:দিন|din\b|tag\b|day\b)|দিন\s*(\d{1,2}))/i.exec(t))){
     const n=+(m[1]||m[2]||m[3]);const a=dayAns(n,lang);if(a)return{h:a,c:[2,5]};
     return{h:A(lang,`The course has days 1 to ${DAYS.length}.`,`কোর্সে ১ থেকে ${bnNum(DAYS.length)} নম্বর দিন আছে।`),c:[2]};
@@ -4739,15 +4748,122 @@ async function botReply(q){
   }
   const k2=kb||kbHit();
   if(k2)return{h:A(lang,k2.en(),k2.bn()),c:k2.c};
-  const days=topicFind(q);
+  if(aiOn()){try{return await aiReply(q);}catch(e){}}
+  const days=/lesson|\bday\b|\btag\b|week|grammar|topic|test|exam|পাঠ|দিন|ব্যাকরণ|বিষয়|সপ্তাহ|পরীক্ষা/i.test(q)?topicFind(q):[];
   if(days.length)return{h:A(lang,`These lessons match your question:<ul>${days.map(d=>`<li>${lnk('#day-'+d.n,'Tag '+d.n)} – ${esc(d.en)}</li>`).join('')}</ul>`,`এই পাঠগুলো তোমার প্রশ্নের সঙ্গে মেলে:<ul>${days.map(d=>`<li>${lnk('#day-'+d.n,'Tag '+d.n)} – ${esc(d.bn)}</li>`).join('')}</ul>`),c:[2]};
+  if(/[A-Za-zÄÖÜäöüß\u0980-\u09FF]/.test(q)){const tr=await trAll(q,lang);if(tr)return tr;}
   return{h:A(lang,`I could not find an answer to that. I can explain the course (plan, tests, audio, features), look up a word with its article and example sentences, or translate – try one of these:`,`এর উত্তর খুঁজে পাইনি। আমি কোর্স (প্ল্যান, পরীক্ষা, অডিও, ফিচার) বুঝিয়ে দিতে পারি, শব্দের আর্টিকেল ও উদাহরণ বাক্য খুঁজে দিতে পারি এবং অনুবাদ করতে পারি – এগুলো চেষ্টা করো:`),c:null};
+}
+/* ---- A-to-Z translation in the chat: any word or paragraph, language detected automatically ---- */
+const DE_W=new Set('ich du er wir ihr ist bin bist sind seid war waren und oder nicht kein keine der die das den dem des ein eine einen einem einer wie wo wer wann warum wohin woher haben habe hast hat habt mein meine meinen dein deine guten danke bitte hallo heiße heisse komme kommst kommt aus nach mit zu zum zur für auf ja nein gut schön müde sehr auch aber möchte möchten können kann kannst muss musst will willst wird noch nur schon heute morgen jetzt hier dort gehe gehst geht gehen wohne wohnst wohnt arbeite arbeitest arbeitet trinke esse isst im vom bei von über unter zwischen uns euch mir mich dir dich ihm ihn ihnen kaufe kaufen brauche brauchst brauchen lerne lernen spreche sprichst sprechen verstehe wieder immer alle alles etwas viel viele wenig gern gerne bitte entschuldigung tschüss'.split(' '));
+const EN_W=new Set('the a an is are am was were be been i you he she it we they my your his her our their this that these those and or not no do does did have has had will would can could should what where when who why how to of on at for with from by as but if very also just please thank thanks hello yes good morning name want need like go going come live work eat drink today tomorrow now here there me us him them one two three about because after before again all any some more most other than then too up down out over'.split(' '));
+function detectLangLocal(t){
+  t=String(t||'');
+  if(BN_RE.test(t))return{l:'bn',sure:true};
+  const w=t.toLowerCase().match(/[a-zäöüß]+/g)||[];
+  let de=/[äöüß]/i.test(t)?2:0,en=0;
+  w.forEach(x=>{if(DE_W.has(x))de++;if(EN_W.has(x))en++;});
+  if(de>en)return{l:'de',sure:de>=2||w.length<=2};
+  if(en>de)return{l:'en',sure:en>=2||w.length<=2};
+  if(w.length===1){
+    const X=buildLex(),k=nrm(t);
+    if(X.m.en[k]||X.m.en[k.replace(/^(to|the|a|an)\s+/,'')])return{l:'en',sure:true};
+    if(X.wd[k]||entryFor(t))return{l:'de',sure:true};
+  }
+  return{l:'en',sure:false};
+}
+const detectLang=t=>detectLangLocal(t).l;
+async function netDetect(text){
+  try{
+    const r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=bn&dt=t&q='+encodeURIComponent(String(text).slice(0,300)));
+    if(!r.ok)return'';const j=await r.json();const c=String((j&&j[2])||'').toLowerCase().slice(0,2);
+    return c==='de'||c==='en'||c==='bn'?c:'';
+  }catch(e){return'';}
+}
+async function detectLangFull(t){
+  const d=detectLangLocal(t);
+  if(d.sure||navigator.onLine===false)return d.l;
+  return (await netDetect(t))||d.l;
+}
+const trBlock=(lg,text,withSay)=>`<div class="tb"><div class="wc-h">${TLN[lg][0]}${lg==='de'?'':' · '+TLN[lg][1]}</div><div class="ocrtxt" lang="${lg}">${esc(text)}</div><div class="trbtns">${withSay?sayBtn(text.slice(0,2500)):''}<button type="button" class="btn xs" data-act="trcopy" data-t="${esc(text)}">${L('Copy','কপি')}</button></div></div>`;
+async function trAll(text,lang,from){
+  text=String(text).trim();
+  from=from||await detectLangFull(text);
+  const to=['de','en','bn'].filter(x=>x!==from);
+  const rs=await Promise.all(to.map(t=>trCore(text,from,t)));
+  const ok=rs.map((r,i)=>({r:r,t:to[i]})).filter(x=>!x.r.err&&x.r.text);
+  if(!ok.length){
+    const off=rs.some(r=>r.err==='offline');
+    return{h:A(lang,off?'You are offline. Only words and sentences from the course can be translated without internet.':'The online translator could not be reached right now. Please try again in a moment.',off?'তুমি অফলাইনে। ইন্টারনেট ছাড়া শুধু কোর্সের শব্দ ও বাক্য অনুবাদ হয়।':'অনলাইন অনুবাদক এখন পাওয়া যাচ্ছে না। একটু পরে আবার চেষ্টা করো।'),c:[3]};
+  }
+  let h=`<small>${TLN[from][0]} → ${to.map(x=>TLN[x][0]).join(' + ')} · ${L('detected automatically','নিজে থেকে ভাষা চেনা হয়েছে')}</small>`;
+  if(from==='de')h+=`<div class="trbtns">${sayBtn(text.slice(0,2500))}<span class="hint">${L('Listen to the German','জার্মানটা শোনো')}</span></div>`;
+  ok.forEach(x=>{h+=trBlock(x.t,x.r.text,x.t==='de');});
+  const ent=ok.map(x=>x.r.entries[0]).find(Boolean),inf=ok.map(x=>x.r.info).find(Boolean);
+  if(ent)h+=wordCard(ent,{n:4});else if(inf)h+=infoCard(inf,{n:4});
+  else if(from==='de'||to.indexOf('de')>=0){const hp=wordHelp(from==='de'?text:(ok.find(x=>x.t==='de')||{r:{text:''}}).r.text);if(hp.length>1)h+=`<div class="trhelp"><div class="wc-h">${L('Words with article','আর্টিকেলসহ শব্দ')}</div>${hp.map(x=>`<span class="chipw">${say(wordHtml(x.de,x.pl),x.de)} <span class="en">${esc(x.en)}</span><span class="bn">${esc(x.bn)}</span></span>`).join('')}</div>`;}
+  h+=`<br><small>${lnk('#translate','Open full translator →')}</small>`;
+  return{h:h,c:[3,4]};
+}
+
+/* ---- free "premium" AI (Google Gemini through api/chat.ts) – optional, the chat works without it ---- */
+const AI_ENDPOINT='';  /* e.g. 'https://german-a1.vercel.app/api/chat' – see README "Premium AI" */
+const aiUrl=()=>window.AI_ENDPOINT||AI_ENDPOINT;
+const aiOn=()=>!!aiUrl()&&navigator.onLine!==false&&Date.now()>CH.aiUntil;
+const ABOUT='Site: "Deutsch A1 in 30 Tagen" – free German A1 course for Bangla speakers, live at '+LIVE_URL+'. 30 daily lessons in 5 weeks (1 Basics, 2 Everyday life, 3 Living in Germany, 4 Past/work/travel, 5 Exam week). Each lesson: goals, vocabulary with article colours (der blue, die red, das green), grammar, dialogues with audio (browser text-to-speech), exercises, daily test. Pages: #translate (translator DE/EN/BN with article and example sentences), #dictionary (A1 dictionary A-Z), #words, #secrets (tips). Language switch: English / বাংলা / both. Progress is saved in the browser. Chat tools: photo/camera of a German book page, voice input.';
+async function aiAsk(msgs,imgs){
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),32000);
+  try{
+    const r=await fetch(aiUrl(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs,images:imgs||[],context:ABOUT}),signal:ctl.signal});
+    if(r.status===429)CH.aiUntil=Date.now()+60000;
+    else if(r.status===503||r.status===403)CH.aiUntil=Date.now()+600000;
+    if(!r.ok)throw new Error('ai'+r.status);
+    const j=await r.json();if(!j||!j.text)throw new Error('empty');
+    return String(j.text);
+  }finally{clearTimeout(tm);}
+}
+function mdLite(src){
+  const out=[];let list=false;
+  String(src).replace(/\r/g,'').split('\n').forEach(raw=>{
+    const m=/^\s*[-*•]\s+(.*)$/.exec(raw);
+    const body=m?m[1]:raw;
+    let h=esc(body).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(?!\s)(.+?)\*/g,'<i>$1</i>');
+    const g=/^\W*(?:Deutsch|German)\W*:\s*(.+)$/i.exec(body);
+    if(g)h+=' '+sayBtn(g[1].replace(/[*_]/g,'').trim().slice(0,2500));
+    if(m){if(!list){out.push('<ul>');list=true;}out.push('<li>'+h+'</li>');}
+    else{if(list){out.push('</ul>');list=false;}if(body.trim())out.push('<p>'+h+'</p>');}
+  });
+  if(list)out.push('</ul>');
+  return '<div class="aimd">'+out.join('')+'</div>';
+}
+const aiBadge=()=>`<small class="aib">✨ ${L('AI answer','AI উত্তর')}</small><br>`;
+async function aiReply(q){
+  const t=await aiAsk(CH.hist.slice(-10).concat([]),[]);
+  CH.hist.push({role:'assistant',text:t});
+  return{h:aiBadge()+mdLite(t),c:[3,4]};
+}
+function jpegB64(canvas){
+  let c=canvas,q=0.82,b=c.toDataURL('image/jpeg',q).split(',')[1];
+  for(let i=0;i<4&&b.length>1900000;i++){
+    const n=document.createElement('canvas');n.width=Math.round(c.width*0.75);n.height=Math.round(c.height*0.75);
+    n.getContext('2d').drawImage(c,0,0,n.width,n.height);c=n;b=c.toDataURL('image/jpeg',q).split(',')[1];
+  }
+  return b;
+}
+function chModeLabel(){
+  const b=$('#chMode');if(b){b.textContent=CH.mode==='tr'?'🔤 Übersetzen':'🌐 Auto';b.classList.toggle('on',CH.mode==='tr');}
+  chPh();
+}
+function chModeToggle(){
+  CH.mode=CH.mode==='tr'?'auto':'tr';store.set('chMode',CH.mode);chModeLabel();
+  toast(CH.mode==='tr'?L('Translate mode: everything you type is translated.','অনুবাদ মোড: যা লিখবে সবই অনুবাদ হবে।'):L('Auto mode: questions are answered, texts are translated.','অটো মোড: প্রশ্নের উত্তর, লেখার অনুবাদ।'),2600);
 }
 function chatAdd(who,html){
   const b=$('#chBody');const row=document.createElement('div');row.className='msg '+who;
   const bub=document.createElement('div');bub.className='bub';bub.innerHTML=html;row.appendChild(bub);b.appendChild(row);b.scrollTop=b.scrollHeight;return bub;
 }
 function chatChips(ids){
+  CH.lc=ids;
   const bn=store.get('lang','both')==='bn';
   $('#chChips').innerHTML=chips(ids).map(c=>`<button type="button" data-act="chatq" data-q="${esc(bn?c[1]:c[0])}">${esc(bn?c[1]:c[0])}</button>`).join('');
   $('#chChips').scrollLeft=0;
@@ -4755,21 +4871,22 @@ function chatChips(ids){
 function chatSend(q){
   q=String(q||'').trim();if(!q)return;
   chatAdd('me',esc(q));
+  CH.hist.push({role:'user',text:q});
   const bub=chatAdd('bot','<span class="dots"><i></i><i></i><i></i></span>');
   Promise.resolve(botReply(q)).then(r=>{
-    setTimeout(()=>{bub.innerHTML=r.h;fillExBoxes(bub);chatChips(r.c);$('#chBody').scrollTop=$('#chBody').scrollHeight;},250);
+    setTimeout(()=>{bub.innerHTML=r.h;if(!/class="aib"/.test(r.h))CH.hist.push({role:'assistant',text:strip(r.h).slice(0,1500)});fillExBoxes(bub);chatChips(r.c);$('#chBody').scrollTop=$('#chBody').scrollHeight;},250);
   }).catch(()=>{bub.innerHTML=L('Sorry, something went wrong.','দুঃখিত, কিছু একটা সমস্যা হয়েছে।');});
 }
 function chatReset(){
-  $('#chBody').innerHTML='';
-  chatAdd('bot',`<b>Hallo! 👋</b><br>${L('Ask me anything about this site – lessons, tests, audio, features. I can also look up a word (with article and example sentences) or translate: try “translate ich bin müde to bangla”. Send a <b>photo of a German book page</b> (📷 / 🖼) and I translate it into Bangla – or speak with 🎙.','এই সাইট নিয়ে যেকোনো প্রশ্ন করো – পাঠ, পরীক্ষা, অডিও, ফিচার। আমি শব্দের আর্টিকেল ও উদাহরণ বাক্য খুঁজে দিতে পারি, অনুবাদও করতে পারি: লিখে দেখো “translate ich bin müde to bangla”। জার্মান বইয়ের <b>পাতার ছবি</b> (📷 / 🖼) পাঠালে আমি বাংলায় অনুবাদ করে দেব – অথবা 🎙 চেপে বলো।')}`);
+  $('#chBody').innerHTML='';CH.hist=[];
+  chatAdd('bot',`<b>Hallo! 👋</b><br>${L('Ask me anything about this site – lessons, tests, audio, features. <b>Paste any German, English or Bangla word or paragraph</b> and I translate it into the other two languages automatically (with article and example sentences for words). Send a <b>photo of a German book page</b> (📷 / 🖼) and I translate it into Bangla – or speak with 🎙.','এই সাইট নিয়ে যেকোনো প্রশ্ন করো – পাঠ, পরীক্ষা, অডিও, ফিচার। <b>জার্মান, ইংরেজি বা বাংলা যেকোনো শব্দ বা অনুচ্ছেদ লিখলেই</b> আমি নিজে থেকে বাকি দুই ভাষায় অনুবাদ করে দেব (শব্দের আর্টিকেল ও উদাহরণ বাক্যসহ)। জার্মান বইয়ের <b>পাতার ছবি</b> (📷 / 🖼) পাঠালে আমি বাংলায় অনুবাদ করে দেব – অথবা 🎙 চেপে বলো।')}`);
   chatChips(null);
 }
 function toggleChat(force){
   const box=$('#chat');CH.open=force!=null?force:!CH.open;
   box.hidden=!CH.open;document.body.classList.toggle('chat-open',CH.open);if(!CH.open){camClose();if(CH.rec){try{CH.rec.stop();}catch(e){}}}
   $('#chatFab').setAttribute('aria-expanded',String(CH.open));
-  if(CH.open){vlLabel();if(!CH.ready){CH.ready=true;chatReset();}if(window.matchMedia&&matchMedia('(pointer:fine)').matches)setTimeout(()=>$('#chIn').focus(),50);}
+  if(CH.open){vlLabel();chModeLabel();if(!CH.ready){CH.ready=true;chatReset();}if(window.matchMedia&&matchMedia('(pointer:fine)').matches)setTimeout(()=>$('#chIn').focus(),50);}
 }
 
 /* ---- photos: read German text in pictures (OCR in the browser) and translate ---- */
@@ -4813,6 +4930,15 @@ async function ocrOne(file,bub,i,total){
   try{
     set(wait(tag+L('Preparing photo …','ছবি প্রস্তুত হচ্ছে …')));
     try{prep=await prepImage(file);}catch(e){set(`⚠ ${L('This picture could not be opened. Please use a JPG or PNG photo.','ছবিটি খোলা গেল না। অনুগ্রহ করে JPG বা PNG ছবি দাও।')}`);return;}
+    if(aiOn()){
+      try{
+        set(wait(tag+L('AI is reading and translating the photo …','AI ছবি পড়ছে ও অনুবাদ করছে …')));
+        const b=jpegB64(prep.canvas);
+        const txt=await aiAsk([{role:'user',text:'PHOTO of a German book page. Transcribe the German text exactly, then translate it into Bangla and English.'}],[{mime:'image/jpeg',data:b}]);
+        set(`<img class="ocrth" alt="" src="${prep.thumb}">`+aiBadge()+mdLite(txt));
+        return;
+      }catch(e){set(wait(tag+L('AI is busy – using the offline reader …','AI ব্যস্ত – অফলাইন রিডার ব্যবহার হচ্ছে …')));}
+    }
     set(wait(tag+(OCR.worker?L('Reading text …','লেখা পড়া হচ্ছে …'):L('Loading the text reader (first time only, about 15 MB) …','টেক্সট রিডার লোড হচ্ছে (শুধু প্রথমবার, প্রায় ১৫ MB) …'))));
     let w;
     try{w=await ocrWorker();}catch(e){set(`⚠ ${L('The text reader could not be loaded. Please check your internet connection and try again.','টেক্সট রিডার লোড হয়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করো।')}`);return;}
@@ -4868,7 +4994,7 @@ function camSnap(){
 const SRC=window.SpeechRecognition||window.webkitSpeechRecognition;
 const VL=[['bn-BD','বাংলা'],['en-US','English'],['de-DE','Deutsch']];
 CH.vl=store.get('vlang','bn-BD');
-const chPh=()=>{const i=$('#chIn');if(i)i.placeholder='Frage stellen … Ask … প্রশ্ন লিখুন …';};
+const chPh=()=>{const i=$('#chIn');if(i)i.placeholder=CH.mode==='tr'?'Text → Übersetzung · লেখা দাও, অনুবাদ পাবে …':'Frage / Text … Ask / paste text … প্রশ্ন / লেখা …';};
 function vlLabel(){const v=VL.find(x=>x[0]===CH.vl)||VL[0];const b=$('#chVl');if(b)b.textContent='🎙 '+v[1];}
 function vlNext(){const i=VL.findIndex(x=>x[0]===CH.vl);CH.vl=VL[(i+1)%VL.length][0];store.set('vlang',CH.vl);vlLabel();}
 function micToggle(){

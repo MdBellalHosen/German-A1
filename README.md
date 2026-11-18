@@ -37,7 +37,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 - **Mobile friendly** – works on phone, tablet and computer
 - **🌐 Translator** – German → Bangla, German → English, English → German, Bangla → German (also English ↔ Bangla). For every word you get the **article (der / die / das)**, gender, plural and **example sentences**
 - **📖 A1 Dictionary A–Z** – all course words and phrases in alphabetical order with article, plural, Bangla and English meaning (German → Bangla / German → English / both), search in any language, filter by der / die / das, example sentences on tap
-- **💬 Help chat** – ask anything about the website (plan, days, tests, audio, features, how to host …), look up a word with its article, or translate. Bangla, English and Banglish questions are understood
+- **💬 Help chat** – ask anything about the website (plan, days, tests, audio, features, how to host …), look up a word with its article, or paste any German / English / Bangla text and get it translated into the other two languages automatically (optional free Gemini AI for a premium feel). Bangla, English and Banglish questions are understood
 - **📷 Photo translation** – send **as many pictures as you like** (camera or gallery, several at once, paste or drag & drop). The German text in each picture is read (OCR) and translated into **Bangla** (English with one tap)
 - **🎙 Voice input** – speak your question to the chat in বাংলা, English or Deutsch
 - **One single file** – no installation, no server, works offline (the translator, photo reading and voice input need internet)
@@ -154,7 +154,8 @@ Tap the round chat button (bottom right).
 |---|---|
 | **Ask about the website** | “What is this site?”, “Day 8”, “Week 3”, “How do I start?”, “Audio not working”, “How do I host it?” … (English, বাংলা or Banglish) |
 | **Look up a word** | “article of Tisch”, “টেবিল মানে কী”, “Haus” → article, plural, meanings, examples |
-| **Translate** | “translate ich bin müde to bangla”, “how do you say apple in German” |
+| **Translate anything (A–Z)** | Just **type or paste any word or paragraph** – the language is detected automatically: **German → Bangla + English**, **Bangla → German + English**, **English → German + Bangla**. Every result has a listen (German) and a copy button; single words also get the article and example sentences. Commands such as “translate ich bin müde to bangla” still work |
+| **🌐 Auto / 🔤 Übersetzen** | The button next to the ä ö ü ß keys. *Auto*: questions about the site are answered, other text is translated. *Übersetzen*: **everything** you type is translated |
 | **📷 Camera** | Phone: opens the camera app. Computer: live camera window – snap one page after another |
 | **🖼 Photos** | Choose many pictures at once, or paste (Ctrl+V) / drag & drop them into the chat. **There is no limit** – pictures are processed one after another |
 | **🎙 Voice** | Tap the microphone, speak, the question is sent automatically. Tap the language button next to the ä ö ü ß keys to choose বাংলা / English / Deutsch (Chrome or Safari) |
@@ -162,6 +163,18 @@ Tap the round chat button (bottom right).
 **How photo translation works:** the picture is shrunk and cleaned up in your browser, the German text is read with [Tesseract.js](https://github.com/naptha/tesseract.js) (OCR, runs **on your device** – the first time it downloads about 15 MB, afterwards it is cached), and only the recognised **text** is sent to the online translator. The picture itself never leaves your device. You see the German text, the Bangla translation, a listen button, a copy button and **“Edit in translator”** to fix reading errors.
 
 Tips for good results: good light, hold the page straight, fill the frame with the text, avoid shadows and blur. Printed books work best; handwriting does not.
+
+### ✨ Premium AI (free) – optional
+
+The chat works on its own (course data + free online translators). For a smarter, ChatGPT-like experience you can switch on **Google Gemini** at **no cost**: free-form questions, whole paragraphs, grammar explanations and **photo reading with AI vision** (better than the offline reader). The key stays secret on a small server function, [`api/chat.ts`](api/chat.ts) (TypeScript, Vercel). If the AI is not set up, busy or offline, the chat silently falls back to the free built-in engine – nothing breaks.
+
+1. Get a free key: <https://aistudio.google.com/apikey> (no credit card).
+2. Import this repository at <https://vercel.com/new> (free Hobby plan). Vercel detects `api/chat.ts` automatically.
+3. In Vercel → *Settings → Environment Variables* add `GEMINI_API_KEY` (your key). Optional: `GEMINI_MODEL` (default `gemini-2.5-flash`), `ALLOWED_ORIGINS` (default `https://mdbellalhosen.github.io`). Redeploy.
+4. In `index.html` set `const AI_ENDPOINT='https://YOUR-PROJECT.vercel.app/api/chat';` and commit. (If you open the site from the Vercel URL itself, it works the same.)
+5. Check `https://YOUR-PROJECT.vercel.app/api/chat` in the browser – it shows `"configured": true`.
+
+Good to know: the free Gemini tier has rate limits, so AI photo reading is not unlimited – when the limit is reached the chat uses the offline reader (Tesseract) automatically, which has no limit. On Google's free tier, messages may be used by Google to improve its products, so do not send private information. The function allows only your site, caps the size of messages/pictures and limits requests per visitor.
 
 ## 🗂 Project structure
 
@@ -172,7 +185,9 @@ index.html
 ├── <style>    Design: colours, layout, mobile view
 ├── <script>   Course content: DAYS.push({ … }) – one block per day (Days 1–30)
 └── <script>   App logic: audio engine, router, exercises, flashcards, word list, syllabus,
-               translator, A–Z dictionary, help chat (photo OCR, voice, camera)
+               translator, A–Z dictionary, help chat (auto translation, photo OCR, voice, camera)
+api/chat.ts        Optional free AI proxy (TypeScript, Vercel Function → Google Gemini)
+package.json, tsconfig.json, vercel.json   Config for the AI function only
 ```
 
 Pages (hash routes): `#home` · `#plan` · `#day-1` … `#day-30` · `#words` · `#secrets` · `#translate` · `#dictionary`
@@ -212,6 +227,7 @@ DAYS.push({n:31, w:5, s:"Short title",
 - Web Speech API for audio (text-to-speech) and voice input (speech recognition)
 - [Tesseract.js](https://github.com/naptha/tesseract.js) (loaded from a CDN only when you send a photo) for reading German text in pictures
 - Google Translate web endpoint / MyMemory API for online translation and [German Wiktionary](https://de.wiktionary.org) (articles and word types of words outside the course) – only used when the course has no answer
+- TypeScript + [Vercel Functions](https://vercel.com/docs/functions) and the [Google Gemini API](https://ai.google.dev/) (free tier) for the optional premium AI chat
 - Google Fonts: Inter, Fraunces, Hind Siliguri
 - `localStorage` for progress (stays in your own browser only)
 
