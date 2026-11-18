@@ -173,7 +173,7 @@ The chat works on its own (course data + free online translators). For a smarter
 
 1. Get a free key: <https://aistudio.google.com/apikey> (no credit card).
 2. Import this repository at <https://vercel.com/new> (free Hobby plan). Vercel detects `api/chat.ts` automatically.
-3. In Vercel → *Settings → Environment Variables* add `GEMINI_API_KEY` (your key). Optional: `GEMINI_MODEL` (default `gemini-2.5-flash`), `ALLOWED_ORIGINS` (default `https://mdbellalhosen.github.io`). Redeploy.
+3. In Vercel → *Settings → Environment Variables* add `GEMINI_API_KEY` (your key). Optional: `GEMINI_MODEL` (default `gemini-3.5-flash-lite`; Google retires older free models from time to time – if `/api\/chat` ever returns a “model … no longer available” error in `detail`, set `GEMINI_MODEL` to a current Gemini Flash model), `ALLOWED_ORIGINS` (default `https://mdbellalhosen.github.io`). Redeploy.
 4. In `index.html` set `const AI_ENDPOINT=…` to your function URL (this repo already uses `https://german-a1-eight.vercel.app/api/chat`).
 5. Check `https://YOUR-PROJECT.vercel.app/api/chat` in the browser – it shows `"configured": true`.
 

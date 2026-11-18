@@ -7,7 +7,7 @@
  *
  * Environment variables (Vercel → Project → Settings → Environment Variables):
  *   GEMINI_API_KEY   required – free key from https://aistudio.google.com/apikey
- *   GEMINI_MODEL     optional – default "gemini-2.5-flash" (any free-tier model with image input)
+ *   GEMINI_MODEL     optional – default "gemini-3.5-flash-lite" (any free-tier model with image input)
  *   ALLOWED_ORIGINS  optional – comma separated list of sites that may call this API
  *                    (default: https://mdbellalhosen.github.io)
  */
@@ -19,7 +19,7 @@ interface InBody { messages?: InMessage[]; images?: InImage[]; context?: string 
 type Part = { text: string } | { inlineData: { mimeType: string; data: string } };
 interface Content { role: 'user' | 'model'; parts: Part[] }
 
-const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const MODEL = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
 const ALLOWED = (process.env.ALLOWED_ORIGINS || 'https://mdbellalhosen.github.io')
   .split(',').map((s) => s.trim().replace(/\/$/, '')).filter(Boolean);
 
