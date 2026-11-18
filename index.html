@@ -426,6 +426,63 @@ input[type=range]{width:100%;accent-color:var(--red)}
 .chcam div{display:flex;gap:10px;justify-content:center;padding:12px;background:#111}
 .chcam .btn{padding:10px 18px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ---- polish & responsive pass ---- */
+html{-webkit-text-size-adjust:100%}
+body{padding-bottom:env(safe-area-inset-bottom)}
+img,svg,video,canvas{max-width:100%}
+pre,code{overflow-x:auto;max-width:100%}
+table{max-width:100%}
+.btn,.opt,.seg button{min-height:40px}
+.btn{transition:transform .12s,box-shadow .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(30,25,10,.08)}
+.btn:active{transform:translateY(0)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:8px}
+.kicker a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+.pagehead h1{line-height:1.15;word-break:break-word}
+.pagehead .trbtns{margin-top:12px}
+.card{box-shadow:0 1px 2px rgba(30,25,10,.04),0 6px 18px rgba(30,25,10,.04)}
+.topgrid{gap:16px}
+.topcard{display:flex;flex-direction:column;gap:2px;height:100%}
+.topcard>.en{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:14px}
+.topcard>.bn{display:none}
+.topcard small{margin-top:auto;padding-top:10px}
+.topcard:hover{box-shadow:0 10px 26px rgba(30,25,10,.1)}
+.opts{gap:10px}
+.opt{min-height:44px;text-align:left}
+.opt.right{background:#e6f5ec;border-color:var(--ok)}
+.opt.wrong{background:#fdeaed;border-color:var(--bad)}
+.fb{margin-top:12px;padding:10px 12px;border-radius:12px;background:#faf6ec;border:1px solid var(--line)}
+details{margin-top:8px}
+details summary{cursor:pointer;font-weight:600;padding:6px 0}
+textarea.win{width:100%;max-width:100%;box-sizing:border-box;margin:8px 0;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:inherit;resize:vertical}
+.sec{scroll-margin-top:76px}
+.sech{flex-wrap:wrap;gap:4px 12px}
+#rvBox .btn,#bkBox .btn{min-width:120px;justify-content:center}
+@media(max-width:700px){
+ .hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .hero-cta .btn{justify-content:center;text-align:center;padding:10px 8px;font-size:13px}
+ .hero-cta .btn.gold{grid-column:1/-1;font-size:15px;padding:13px}
+ .hero-cta .btn svg{display:none}
+ .pagehead h1{font-size:28px}
+ .topgrid{grid-template-columns:1fr 1fr;gap:10px}
+ .topcard{padding:14px 12px}
+ .topcard h3{font-size:16px}
+ .topcard>.en{-webkit-line-clamp:2;font-size:13px}
+ .topic-ic{font-size:26px}
+ .opts{flex-direction:column}
+ .opt{width:100%}
+ #bkBox .trbtns,#rvBox .trbtns{display:flex;flex-direction:column}
+ #bkBox .btn,#rvBox .btn{width:100%}
+ main,.main{padding-bottom:96px}
+ .vtools{flex-wrap:wrap}
+}
+.stats .card{text-align:center;padding:12px}.stats h3{font-size:26px;margin:0}
+@media(min-width:701px){.stats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:340px){.topgrid:not(.stats){grid-template-columns:1fr}.hero-cta{grid-template-columns:1fr}}
+@media(min-width:1500px){.topgrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}
+.dctl{flex-wrap:wrap}.seg.sm{max-width:100%;overflow-x:auto;flex-wrap:nowrap}.seg.sm button{white-space:nowrap}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.bar,.side,#chatfab,.fab,.trbtns,.hero-cta{display:none!important}.card{box-shadow:none;break-inside:avoid}body{background:#fff}}
 </style>
 </head>
 <body class="l-both">
@@ -4355,7 +4412,7 @@ function rvGrade(ok){const v=RV.q[RV.i],s=store.get('srs',{}),cur=s[v[0]]?s[v[0]
   if(ok)RV.ok++;else if(RV.q.length<30)RV.q.push(v);
   RV.i++;RV.shown=false;rvRender();}
 function showReview(){const st=srsStats();RV.q=[];RV.i=0;RV.ok=0;RV.shown=false;
-  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>🔁 Wiederholung</h1><p class="en">Spaced repetition: the best way to keep words in your head. ${st.total} words from the course book and the topics.</p><p class="bn">স্পেসড রিপিটিশন: শব্দ মনে রাখার সেরা উপায়। কোর্সবুক ও টপিক থেকে ${bnNum(st.total)}টি শব্দ।</p></div><div class="topgrid"><div class="card"><h3>${st.due}</h3><div class="mute">${L('due now','এখন রিভিশনের')}</div></div><div class="card"><h3>${st.fresh}</h3><div class="mute">${L('new words','নতুন শব্দ')}</div></div><div class="card"><h3>${st.learned}</h3><div class="mute">${L('well known','ভালো জানা')}</div></div><div class="card"><h3>🔥 ${streakNow()}</h3><div class="mute">${L('day streak','টানা দিন')}</div></div></div><div class="card" style="margin-top:14px"><div id="rvBox"></div></div>`;rvRender();}
+  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>🔁 Wiederholung</h1><p class="en">Spaced repetition: the best way to keep words in your head. ${st.total} words from the course book and the topics.</p><p class="bn">স্পেসড রিপিটিশন: শব্দ মনে রাখার সেরা উপায়। কোর্সবুক ও টপিক থেকে ${bnNum(st.total)}টি শব্দ।</p></div><div class="topgrid stats"><div class="card"><h3>${st.due}</h3><div class="mute">${L('due now','এখন রিভিশনের')}</div></div><div class="card"><h3>${st.fresh}</h3><div class="mute">${L('new words','নতুন শব্দ')}</div></div><div class="card"><h3>${st.learned}</h3><div class="mute">${L('well known','ভালো জানা')}</div></div><div class="card"><h3>🔥 ${streakNow()}</h3><div class="mute">${L('day streak','টানা দিন')}</div></div></div><div class="card" style="margin-top:14px"><div id="rvBox"></div></div>`;rvRender();}
 
 function hearQs(c,nHa,nHt){const q=[];
   ezShuffle(c.p.slice()).slice(0,nHa).forEach(p=>{const d=ezShuffle(c.p.filter(x=>x!==p)).slice(0,2);q.push({t:'ha',sent:p[0],q:'',opts:ezShuffle([p[0]].concat(d.map(x=>x[0]))),a:p[0],ex:[p[1],p[2]],ch:c.n,part:'Hören'});});
