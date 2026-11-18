@@ -308,6 +308,116 @@ input[type=range]{width:100%;accent-color:var(--red)}
 .uml{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:90;background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px;display:flex;gap:4px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
 .uml[hidden]{display:none}
 .uml button{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:var(--soft);font-weight:700;font-size:18px;cursor:pointer;color:var(--ink);padding:0}
+/* ===== translator page ===== */
+.trcard{padding:20px 22px}
+.trpre{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.trpre .btn.on{background:var(--blk);color:#fff;border-color:var(--blk)}
+.trbar{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.trbar select{flex:1;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;font-weight:600;color:var(--ink)}
+#trIn{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;font-size:17px;line-height:1.55;resize:vertical;min-height:120px;background:var(--soft);color:var(--ink)}
+#trIn:focus{outline:2px solid var(--gold);background:#fff}
+.trbtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.trbtns .hint{font-size:12.5px;color:var(--mute);margin-left:auto}
+.trres{margin-top:18px;border-top:1px dashed var(--line);padding-top:16px}
+.trlbl{font-size:12.5px;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.trtext{font-size:20px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.trtext[lang=bn]{font-family:"Hind Siliguri",Inter,sans-serif}
+.trmeta{margin-top:8px;font-size:14px;color:var(--mute)}
+.trhelp{margin-top:14px}
+.trhelp .chipw{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:baseline;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:5px 10px;margin:0 6px 6px 0;font-size:14px}
+.trerr{margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--badbg);color:var(--bad);font-size:14.5px}
+.trwait{margin-top:16px;color:var(--mute);font-size:14.5px}
+/* ===== help chat ===== */
+.chatfab{position:fixed;right:18px;bottom:18px;z-index:85;width:58px;height:58px;border-radius:50%;border:0;background:var(--blk);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+.chatfab svg{width:27px;height:27px}
+.chatfab::after{content:"";position:absolute;left:12px;right:12px;bottom:7px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--red) 50%,var(--gold) 50%)}
+.chatfab:hover{transform:translateY(-2px)}
+.chatbox{position:fixed;right:18px;bottom:88px;z-index:100;width:392px;max-width:calc(100vw - 24px);height:min(620px,calc(100vh - 110px));background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden}
+.chatbox[hidden]{display:none}
+.chhead{display:flex;align-items:center;gap:8px;padding:12px 12px 12px 16px;background:var(--blk);color:#fff;position:relative}
+.chhead::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--red) 50%,var(--gold) 50%)}
+.chhead div{margin-right:auto;min-width:0}.chhead b{display:block;font-size:16px;line-height:1.2}.chhead small{display:block;font-size:12px;opacity:.8;line-height:1.3}
+.chhead button{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer;font-size:16px;display:grid;place-items:center;padding:0}
+.chbody{flex:1;overflow-y:auto;padding:14px;background:var(--soft);display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.msg{display:flex}.msg.me{justify-content:flex-end}
+.bub{max-width:88%;padding:10px 13px;border-radius:16px;font-size:14.5px;line-height:1.55;word-break:break-word}
+.msg.bot .bub{background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px}
+.msg.me .bub{background:var(--blk);color:#fff;border-bottom-right-radius:5px}
+.bub a{color:var(--m);font-weight:600}
+.bub ul{margin:6px 0 6px 18px;padding:0}.bub li{margin:2px 0}
+.bub small{color:var(--mute)}
+.bub .cb-bn{font-family:"Hind Siliguri",Inter,sans-serif;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.bub .wr{margin:6px 0;padding:7px 9px;background:var(--soft);border:1px solid var(--line);border-radius:10px}
+.dots{display:inline-flex;gap:4px;align-items:center;height:18px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:dots 1s infinite ease-in-out}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dots{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.chchips{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;border-top:1px solid var(--line);background:#fff;scrollbar-width:none}
+.chchips::-webkit-scrollbar{display:none}
+.chchips button{flex:none;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);white-space:nowrap}
+.chchips button:hover{background:var(--hl)}
+.chuml{display:flex;gap:4px;padding:6px 12px 0;background:#fff}
+.chuml button{width:34px;height:30px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font-weight:700;font-size:15px;cursor:pointer;color:var(--ink);padding:0}
+.chform{display:flex;gap:8px;padding:8px 12px 12px;background:#fff}
+.chform input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:15px;background:var(--soft);color:var(--ink)}
+.chform input:focus{outline:2px solid var(--gold);background:#fff}
+.chform .btn{padding:9px 14px}
+.stopfab{right:auto!important;left:18px}
+@media(max-width:700px){
+ .hide-s{display:none!important}
+ .chatbox{right:8px;left:8px;bottom:8px;top:8px;width:auto;max-width:none;height:auto;border-radius:16px}
+ body.chat-open .chatfab{display:none}
+ .chatfab{right:14px;bottom:14px;width:54px;height:54px}
+}
+/* ===== word card / dictionary ===== */
+.seg a{border:0;background:transparent;font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;color:var(--mute);cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+.seg a.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.trtabs{margin-bottom:16px}
+.wcard{margin-top:14px;border:1px solid var(--line);border-left:5px solid var(--mute);border-radius:12px;padding:12px 14px;background:#fff}
+.wcard.b-cm{border-left-color:var(--m)}.wcard.b-cf{border-left-color:var(--f)}.wcard.b-cn{border-left-color:var(--n)}.wcard.b-cp{border-left-color:var(--p)}
+.wcard.guess{border-left-color:var(--gold);background:var(--almbg)}
+.wc-top{font-size:22px;font-weight:700;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.wc-top .wpl{font-size:14px;font-weight:500;color:var(--mute)}
+.wc-art{margin-top:4px;font-size:15px;font-weight:700}
+.wc-m{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:15px}
+.wc-h{margin-top:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.wc-s{margin-top:6px;padding:8px 10px;background:var(--soft);border-radius:10px;font-size:15px}
+.wc-s .tr{font-size:14px;color:var(--mute)}
+.bub .wcard{margin-top:8px;padding:9px 11px}.bub .wc-top{font-size:18px}
+.trhelp .chipw b{font-weight:700}
+.dctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.dctl input{flex:1;min-width:180px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font:inherit;font-size:16px;background:var(--soft);color:var(--ink)}
+.dctl input:focus{outline:2px solid var(--gold);background:#fff}
+.dlets{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 4px}
+.dlets button{min-width:32px;height:32px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font-weight:700;font-size:14px;cursor:pointer;color:var(--ink);padding:0 6px}
+.dlets button:disabled{opacity:.3;cursor:default}
+.dlets button:not(:disabled):hover{background:var(--hl)}
+.dlet{font-family:Fraunces,serif;font-size:26px;margin:22px 0 6px;padding-bottom:4px;border-bottom:2px solid var(--gold);scroll-margin-top:76px}
+.drow{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(150px,1.2fr) auto;gap:4px 14px;align-items:center;padding:9px 12px 9px 14px;border:1px solid var(--line);border-left:5px solid var(--mute);border-radius:12px;background:#fff;margin-bottom:6px}
+.drow.b-cm{border-left-color:var(--m)}.drow.b-cf{border-left-color:var(--f)}.drow.b-cn{border-left-color:var(--n)}.drow.b-cp{border-left-color:var(--p)}
+.dmain{font-size:18px;font-weight:600}.dpl{display:block;font-size:13.5px;font-weight:500;color:var(--mute)}
+.dmean{display:flex;flex-direction:column;gap:1px;font-size:15px}.dm-b{font-family:"Hind Siliguri",Inter,sans-serif}.dm-e{color:var(--mute)}
+.dxx{grid-column:1/-1}
+.dxx[hidden]{display:none}
+.dempty{padding:26px;text-align:center;color:var(--mute)}
+@media(max-width:620px){.drow{grid-template-columns:1fr auto}.dmean{grid-column:1/2}}
+/* ===== chat: photo / camera / voice ===== */
+.chtool{flex:none;width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:var(--soft);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.chtool svg{width:19px;height:19px}
+.chtool:hover{background:var(--hl)}
+.chtool.on{background:var(--red);border-color:var(--red);color:#fff;animation:micp 1.1s infinite}
+@keyframes micp{0%,100%{box-shadow:0 0 0 0 rgba(215,38,61,.45)}50%{box-shadow:0 0 0 8px rgba(215,38,61,0)}}
+.chuml .vl{margin-left:auto;width:auto;padding:0 10px;font-size:13px;font-weight:600}
+.chform{align-items:center;gap:6px}
+.ocrth{display:block;max-width:110px;max-height:110px;border-radius:8px;border:1px solid var(--line);margin-bottom:6px}
+.ocrtxt{white-space:pre-wrap;margin-top:4px;padding:8px 10px;background:var(--soft);border:1px solid var(--line);border-radius:10px;max-height:240px;overflow:auto;font-size:14.5px}
+.ocrtxt[lang=bn]{font-family:"Hind Siliguri",Inter,sans-serif;font-size:16px;background:#fffdf3}
+.ocren{margin-top:6px}
+.bub .trbtns{margin-top:8px}
+.chcam{position:absolute;inset:0;z-index:5;background:#000;display:flex;flex-direction:column}
+.chcam[hidden]{display:none}
+.chcam video{flex:1;min-height:0;width:100%;object-fit:contain;background:#000}
+.chcam div{display:flex;gap:10px;justify-content:center;padding:12px;background:#111}
+.chcam .btn{padding:10px 18px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -318,6 +428,7 @@ input[type=range]{width:100%;accent-color:var(--red)}
   <button class="iconbtn only-m" data-act="menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <a href="#home" class="brand"><span class="logo">DE</span><span><b>Deutsch A1</b><small>জার্মান শিখি · Schritt für Schritt</small></span></a>
   <div class="seg" id="langSeg" role="group" aria-label="Language"><button data-act="lang" data-l="en">EN</button><button data-act="lang" data-l="bn">বাংলা</button><button data-act="lang" data-l="both">EN+বাং</button></div>
+  <a href="#translate" class="iconbtn hide-s" aria-label="Translator" title="Übersetzer · Translator · অনুবাদ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></a>
   <button class="iconbtn" data-act="settings" aria-label="Audio settings" title="Audio · অডিও"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg></button>
  </div>
 </header>
@@ -330,6 +441,23 @@ input[type=range]{width:100%;accent-color:var(--red)}
 <button id="stopBtn" class="stopfab" data-act="stop" hidden><span class="eq"><i></i><i></i><i></i></span>Stop</button>
 <div id="uml" class="uml" hidden aria-label="Umlauts"><button type="button">ä</button><button type="button">ö</button><button type="button">ü</button><button type="button">ß</button><button type="button">Ä</button><button type="button">Ö</button><button type="button">Ü</button></div>
 <div id="toast" role="status" aria-live="polite"></div>
+<button id="chatFab" class="chatfab" type="button" data-act="chat" aria-label="Help chat · সাহায্য চ্যাট" aria-expanded="false" title="Hilfe-Chat · Help · সাহায্য"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 20l1.1-4.9A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg></button>
+<section id="chat" class="chatbox" hidden aria-label="Help chat">
+ <div class="chhead"><div><b>Hilfe-Chat</b><small>Ask · Fragen · প্রশ্ন · 📷 🖼 🎙</small></div><button type="button" data-act="chatclear" title="New chat · নতুন চ্যাট" aria-label="New chat">↺</button><button type="button" data-act="chat" aria-label="Close">✕</button></div>
+ <div id="chBody" class="chbody" aria-live="polite"></div>
+ <div id="chChips" class="chchips"></div>
+ <div id="chUml" class="chuml"><button type="button">ä</button><button type="button">ö</button><button type="button">ü</button><button type="button">ß</button><button type="button" class="vl" id="chVl" data-act="chvl" title="Voice language · ভয়েসের ভাষা">🎙 বাংলা</button></div>
+ <form id="chForm" class="chform" autocomplete="off">
+  <button type="button" class="chtool" data-act="chcam" aria-label="Camera · ক্যামেরা" title="Camera · ক্যামেরা"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L8 6.5H5a2 2 0 0 0-2 2V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+  <button type="button" class="chtool" data-act="chphoto" aria-label="Photos · ছবি" title="Photos · ছবি"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="m21 15-4.5-4.5L6 21"/></svg></button>
+  <button type="button" class="chtool" id="chMic" data-act="chmic" aria-label="Voice · ভয়েস" title="Voice · ভয়েস"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></button>
+  <input id="chIn" class="cin" type="text" maxlength="400" placeholder="Frage stellen … Ask … প্রশ্ন লিখুন …" aria-label="Message">
+  <button type="submit" class="btn primary" aria-label="Send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+ </form>
+ <input type="file" id="chFile" accept="image/*" multiple hidden>
+ <input type="file" id="chCamIn" accept="image/*" capture="environment" hidden>
+ <div id="chCam" class="chcam" hidden><video id="chVid" autoplay playsinline muted></video><div><button type="button" class="btn primary" data-act="camsnap">📷 Snap · ছবি তোলো</button><button type="button" class="btn" data-act="camclose">Done · শেষ</button></div></div>
+</section>
 <script>var DAYS=[];</script>
 <script>
 /* ===== WEEK 1 ===== */
@@ -3682,7 +3810,7 @@ function renderNav(route){
   const done=store.get('done',[]);
   let h=`<a href="#home" class="nl ${route==='home'?'on':''}"><span class="ib">${IC.home}</span><span class="nt">Start<small class="bn">শুরু</small></span></a><a href="#plan" class="nl ${route==='plan'?'on':''}"><span class="ib">${IC.cal}</span><span class="nt">Kursplan<small>Syllabus · সিলেবাস</small></span></a>`;
   weeks().forEach(W=>{h+=`<div class="ngroup">${weekDe(W.w)} · ${weekBn(W.w)}</div>`;W.days.forEach(d=>{const ok=done.indexOf(d.n)>=0;h+=`<a href="#day-${d.n}" class="nl ${route==='day-'+d.n?'on':''}"><span class="dn ${ok?'ok':''}">${ok?'✓':d.n}</span><span class="nt">${esc(d.s)}<small>Tag ${d.n}${d.review?' · Test':''}</small></span></a>`;});});
-  h+=`<div class="ngroup">Extras</div><a href="#words" class="nl ${route==='words'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Alle Wörter<small>All words · সব শব্দ</small></span></a><a href="#secrets" class="nl ${route==='secrets'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Grammatik-Geheimnisse<small>Grammar secrets · গোপন কৌশল</small></span></a><a href="javascript:void 0" data-act="settings" class="nl"><span class="ib">${IC.spk}</span><span class="nt">Audio<small>Voice & speed · ভয়েস ও গতি</small></span></a>`;
+  h+=`<div class="ngroup">Extras</div><a href="#words" class="nl ${route==='words'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Alle Wörter<small>All words · সব শব্দ</small></span></a><a href="#secrets" class="nl ${route==='secrets'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Grammatik-Geheimnisse<small>Grammar secrets · গোপন কৌশল</small></span></a><a href="#translate" class="nl ${route==='translate'?'on':''}"><span class="ib">${IC.tr}</span><span class="nt">Übersetzer<small>Translator · অনুবাদক</small></span></a><a href="#dictionary" class="nl ${route==='dictionary'?'on':''}"><span class="ib">${IC.dict}</span><span class="nt">Wörterbuch A–Z<small>Dictionary · অভিধান</small></span></a><a href="javascript:void 0" data-act="settings" class="nl"><span class="ib">${IC.spk}</span><span class="nt">Audio<small>Voice & speed · ভয়েস ও গতি</small></span></a>`;
   $('#side').innerHTML=h;
 }
 
@@ -3693,7 +3821,7 @@ function showHome(){
   let h=`<section class="hero"><div class="hero-main"><div class="kicker">Komplettkurs A1 · 30 Tage</div><h1>Deutsch lernen<br><span>A1 in 30 Tagen</span></h1>
   <p class="en">The complete A1 syllabus in one month for Bangla speakers: one lesson a day with vocabulary, grammar, dialogues, exercises, a test every week, exam training – and audio on every German word.</p>
   <p class="bn">বাংলাভাষীদের জন্য এক মাসে পুরো A1 সিলেবাস: প্রতিদিন একটি পাঠ – শব্দ, ব্যাকরণ, সংলাপ, অনুশীলন, প্রতি সপ্তাহে একটি পরীক্ষা, পরীক্ষার প্রস্তুতি – আর প্রতিটি জার্মান শব্দে অডিও।</p>
-  <div class="hero-cta"><a class="btn gold" href="#day-${next}">${done.length?'Weiter':'Los geht\'s'} → Tag ${next}</a><button class="btn" data-act="testaudio">${IC.spk} ${L('Test audio','অডিও পরীক্ষা')}</button></div><div class="astatus" style="margin-top:12px"></div></div>
+  <div class="hero-cta"><a class="btn gold" href="#day-${next}">${done.length?'Weiter':'Los geht\'s'} → Tag ${next}</a><button class="btn" data-act="testaudio">${IC.spk} ${L('Test audio','অডিও পরীক্ষা')}</button><a class="btn" href="#translate">${IC.tr} ${L('Translator','অনুবাদক')}</a><a class="btn" href="#dictionary">${IC.dict} ${L('Dictionary A–Z','A–Z অভিধান')}</a><button class="btn" data-act="chat">${IC.chat} ${L('Help chat','হেল্প চ্যাট')}</button></div><div class="astatus" style="margin-top:12px"></div></div>
   <div class="hero-side"><h3>${L('Try it – tap a word','চেষ্টা করো – শব্দে চাপ দাও')}</h3><div class="bubbles">${['Hallo!','Guten Morgen!','Danke schön!','Wie geht\'s?','Tschüss!','Ich heiße …','Entschuldigung!'].map(w=>`<span class="bubble say" role="button" tabindex="0" data-say="${esc(w)}">${esc(w)}</span>`).join('')}</div>
   <div style="margin-top:auto"><div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px"><span>${L('Your progress','তোমার অগ্রগতি')}</span><span>${done.length} / ${DAYS.length}</span></div><div class="pbar"><i style="width:${pct}%"></i></div></div></div></section>`;
   if(done.length>=DAYS.length&&DAYS.length)h+=`<div class="card cert"><div class="kicker">🎓 Zertifikat</div><h2>Herzlichen Glückwunsch!</h2><p class="en">You have completed all ${DAYS.length} days of the A1 course. You are ready for the Goethe-Zertifikat A1 / telc Deutsch A1.</p><p class="bn">তুমি A1 কোর্সের সব ${bnNum(DAYS.length)} দিন শেষ করেছ। এখন তুমি গ্যোটে-সার্টিফিকেট A1 / telc Deutsch A1 পরীক্ষার জন্য প্রস্তুত।</p></div>`;
@@ -3896,6 +4024,27 @@ function act(a,el,ev){
     case'audiohelp':audioHelp('');break;
     case'testaudio':TTS.say('Hallo! Willkommen zum Deutschkurs. Viel Spaß beim Lernen!',el);break;
     case'stop':TTS.stop();break;
+    case'chat':toggleChat();break;
+    case'chatq':chatSend(el.dataset.q);break;
+    case'chatclear':chatReset();break;
+    case'chphoto':$('#chFile').click();break;
+    case'chcam':if(window.matchMedia&&matchMedia('(pointer:coarse)').matches)$('#chCamIn').click();else camOpen();break;
+    case'chmic':micToggle();break;
+    case'chvl':vlNext();break;
+    case'camsnap':camSnap();break;
+    case'camclose':camClose();break;
+    case'ocrtotr':{TR.from='de';TR.to='bn';TR.pending=el.dataset.t;store.set('trFrom','de');store.set('trTo','bn');if(window.innerWidth<=700)toggleChat(false);if(location.hash==='#translate')showTranslate();else location.hash='#translate';break;}
+    case'ocren':{el.disabled=true;const bx=el.closest('.bub').querySelector('.ocren');bx.innerHTML=wait(L('Translating …','অনুবাদ হচ্ছে …'));trCore(el.dataset.t,'de','en').then(r=>{bx.innerHTML=r.err?`<small>${L('Could not translate.','অনুবাদ করা গেল না।')}</small>`:`<div class="wc-h">English</div><div class="ocrtxt" lang="en">${esc(r.text)}</div>`;chScroll();});break;}
+    case'trswap':trSwap();break;
+    case'trgo':trGo();break;
+    case'trclear':trClear();break;
+    case'trpre':trSet(el.dataset.f,el.dataset.t);break;
+    case'trsayin':{const i=$('#trIn');if(i&&i.value.trim())TTS.say(i.value.trim(),el);break;}
+    case'trcopy':copyTxt(el.dataset.t,el);break;
+    case'ddir':DQ.dir=el.dataset.d;store.set('dictDir',DQ.dir);$$('[data-act="ddir"]').forEach(b=>b.classList.toggle('on',b===el));renderDict();break;
+    case'dart':DQ.a=el.dataset.a;$$('[data-act="dart"]').forEach(b=>b.classList.toggle('on',b===el));renderDict();break;
+    case'dlet':{const t=document.getElementById('dl-'+(el.dataset.l==='#'?'x':el.dataset.l));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});break;}
+    case'dex':dictEx(el);break;
     case'jump':{const t=document.getElementById(el.dataset.to);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});break;}
     case'playvocab':{const rows=$$('#sec-vocab .vrow:not(.h)');TTS.play(CUR.d.vocab.map((v,i)=>({t:TTS.clean(v[0]),el:rows[i],gap:650})));break;}
     case'flashday':flash(CUR.d.vocab,'Tag '+CUR.d.n+' · '+CUR.d.s);break;
@@ -3957,11 +4106,682 @@ document.addEventListener('change',e=>{
 });
 /* umlaut helper */
 let LAST=null;
-document.addEventListener('focusin',e=>{if(e.target.matches&&e.target.matches('.fin,.tin,.win')){LAST=e.target;$('#uml').hidden=false;}});
-document.addEventListener('focusout',e=>{if(e.target.matches&&e.target.matches('.fin,.tin,.win'))setTimeout(()=>{const a=document.activeElement;if(!a||!a.matches||!a.matches('.fin,.tin,.win'))$('#uml').hidden=true;},180);});
+document.addEventListener('focusin',e=>{if(e.target.matches&&e.target.matches('.fin,.tin,.win,.xin')){LAST=e.target;$('#uml').hidden=false;}});
+document.addEventListener('focusout',e=>{if(e.target.matches&&e.target.matches('.fin,.tin,.win,.xin'))setTimeout(()=>{const a=document.activeElement;if(!a||!a.matches||!a.matches('.fin,.tin,.win,.xin'))$('#uml').hidden=true;},180);});
 function insertChar(ch){const el=LAST;if(!el)return;const s=el.selectionStart!=null?el.selectionStart:el.value.length,en=el.selectionEnd!=null?el.selectionEnd:s;el.value=el.value.slice(0,s)+ch+el.value.slice(en);el.focus();try{el.setSelectionRange(s+ch.length,s+ch.length);}catch(x){}el.dispatchEvent(new Event('input',{bubbles:true}));}
 ['pointerdown','mousedown'].forEach(ev=>$('#uml').addEventListener(ev,e=>{e.preventDefault();}));
 $('#uml').addEventListener('click',e=>{const b=e.target.closest('button');if(b)insertChar(b.textContent);});
+
+/* ======= TRANSLATOR · A–Z DICTIONARY · HELP CHAT ======= */
+const BN_DIG='০১২৩৪৫৬৭৮৯';
+const asciiNum=s=>String(s==null?'':s).replace(/[০-৯]/g,c=>BN_DIG.indexOf(c));
+const nrm=s=>asciiNum(s).toLowerCase().replace(/[.,!?;:"“”„‚‘’'()\[\]{}\/\\|…–—_*·।-]/g,' ').replace(/\s+/g,' ').trim();
+const NOART=w=>String(w).replace(/^(der|die|das|ein|eine)\s+/i,'');
+const NOPAR=w=>String(w).replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+const firstM=s=>String(s||'').replace(/\([^)]*\)/g,'').split(/[,;\/]/)[0].trim();
+const splitM=s=>{const o=[];String(s||'').replace(/\([^)]*\)/g,' ').split(/[,;\/]|\sor\s/).forEach(p=>{const k=nrm(p);if(!k)return;o.push(k);const k2=k.replace(/^(to|the|a|an)\s+/,'');if(k2&&k2!==k)o.push(k2);});return o;};
+const uniqE=a=>{const s={};return a.filter(e=>s[e.de]?false:(s[e.de]=1));};
+const GEN={der:['masculine','পুংলিঙ্গ'],die:['feminine','স্ত্রীলিঙ্গ'],das:['neuter','ক্লীবলিঙ্গ']};
+IC.tr=`<svg ${SV}><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>`;
+IC.chat=`<svg ${SV}><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 20l1.1-4.9A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg>`;
+IC.dict=`<svg ${SV}><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg>`;
+
+/* ---- course lexicon (built once from the lessons) ---- */
+let LEX=null;
+function buildLex(){
+  if(LEX)return LEX;
+  const X=LEX={ph:Object.create(null),wd:Object.create(null),m:{en:Object.create(null),bn:Object.create(null)},sent:[],seen:Object.create(null)};
+  const putPh=(lang,txt,obj)=>{const k=nrm(txt);if(k&&!X.ph[lang+':'+k])X.ph[lang+':'+k]=obj;};
+  const addSent=(de,en,bn)=>{
+    if(!de||!en||/_{2}/.test(de))return;
+    const o={de:de,en:en,bn:bn||''};
+    putPh('de',de,o);putPh('en',en,o);if(bn)putPh('bn',bn,o);
+    if(!X.seen[de]){X.seen[de]=1;X.sent.push(o);}
+  };
+  DAYS.forEach(d=>{
+    (d.vocab||[]).forEach(v=>{
+      const e={de:v[0],pl:v[1],en:v[2],bn:v[3],n:d.n};
+      const clean=NOPAR(v[0]);
+      putPh('de',clean,e);
+      clean.split(/\s\/\s/).forEach(a=>{const b=NOART(a.trim());const k=nrm(b);if(k&&!X.wd[k])X.wd[k]=e;putPh('de',b,e);});
+      if(/^(der|die|das)\s/.test(v[0])){const par=/\(([^)]+)\)/.exec(v[0]);if(par){const k=nrm(par[1]);if(k&&k.indexOf(' ')<0&&!X.wd[k])X.wd[k]=e;}}
+      putPh('en',v[2],e);putPh('bn',v[3],e);
+      splitM(v[2]).forEach(m=>{(X.m.en[m]=X.m.en[m]||[]).push(e);});
+      splitM(v[3]).forEach(m=>{(X.m.bn[m]=X.m.bn[m]||[]).push(e);});
+    });
+    (d.gram||[]).forEach(g=>(g.ex||[]).forEach(e=>addSent(e[0],e[1],e[2])));
+    (d.dlg||[]).forEach(dl=>(dl.l||[]).forEach(l=>addSent(l[1],l[2],l[3])));
+    (d.qa||[]).forEach(q=>{addSent(q[0],q[1],q[2]);addSent(q[3],q[4],q[5]);});
+    (d.ex||[]).forEach(e=>{if(e.k==='tr')(e.q||[]).forEach(q=>addSent(q[2],q[0],q[1]));});
+  });
+  X.sent.forEach(s=>{s.t=nrm(s.de).split(' ');});
+  return X;
+}
+const entryFor=t=>{const X=buildLex();return X.wd[nrm(NOART(NOPAR(String(t||'').trim())))]||null;};
+
+/* ---- example sentences: real ones from the lessons, else a model sentence ---- */
+function exampleFor(e,max){
+  const X=buildLex();max=max||3;
+  const isNoun=/^(der|die|das)\s/.test(e.de);
+  const base=NOART(NOPAR(e.de)).split(/\s\/\s/)[0].trim();
+  const forms=[nrm(base)];
+  if(isNoun&&e.pl&&e.pl!=='-'&&e.pl!=='Pl.'&&e.pl!=='–')forms.push(nrm(e.pl));
+  const single=base.indexOf(' ')<0;
+  const stem=(!isNoun&&single&&/en$/.test(base)&&base.length>=5)?nrm(base).slice(0,-2):'';
+  let hit=[];
+  if(single||forms[0]){
+    X.sent.forEach(s=>{
+      if(s.t.length<2)return;
+      let ok=false;
+      if(single){for(let i=0;i<s.t.length&&!ok;i++){const t=s.t[i];if(forms.indexOf(t)>=0||(stem&&t.indexOf(stem)===0&&t.length<=stem.length+3))ok=true;}}
+      else ok=nrm(s.de).indexOf(forms[0])>=0;
+      if(ok)hit.push(s);
+    });
+  }
+  hit.sort((a,b)=>a.de.length-b.de.length);
+  const out=hit.slice(0,max).map(s=>({de:s.de,en:s.en,bn:s.bn}));
+  if(!out.length&&isNoun&&e.pl!=='Pl.'){
+    const art=/^(der|die|das)/.exec(e.de)[1],en1=firstM(e.en),bn1=firstM(e.bn),ind={der:'ein',die:'eine',das:'ein'}[art];
+    if(e.pl!=='-'&&e.pl!=='–')out.push({de:`Das ist ${ind} ${base}.`,en:`This is ${/^[aeiou]/i.test(en1)?'an':'a'} ${en1}.`,bn:`এটা একটি ${bn1}।`,auto:1});
+    out.push({de:`Hier ist ${art} ${base}.`,en:`Here is the ${en1}.`,bn:`এই যে ${bn1}।`,auto:1});
+  }
+  return out;
+}
+
+/* ---- article guess for words that are NOT in the course (by ending) ---- */
+const GA=[['das',/(chen|lein)$/i],['das',/(ment|um)$/i],['die',/(ung|heit|keit|schaft|ion|tät|ik|ur|ie|ei)$/i],['der',/(ling|ismus|ist|or|er)$/i]];
+function guessArticle(w){for(const g of GA){const m=g[1].exec(w);if(m)return{art:g[0],why:'-'+m[1].toLowerCase()};}return null;}
+const isNounLike=w=>/^[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]{2,}$/.test(w);
+
+/* ---- word card (article · gender · plural · meanings · examples) ---- */
+function plHtml(e){
+  if(e.pl==='Pl.')return `<span class="cp">${L('only plural','শুধু বহুবচন')}</span>`;
+  if(e.pl&&e.pl!=='-'&&e.pl!=='–')return `Plural: ${say(`<span class="cp">die</span> ${esc(e.pl)}`,'die '+e.pl)}`;
+  return '';
+}
+function wordCard(e,o){
+  o=o||{};
+  const m=/^(der|die|das)\s/.exec(e.de),c=artClass(e.de,e.pl);
+  let art='';
+  if(m){art=`<div class="wc-art">${L('Article','আর্টিকেল')}: <span class="${c}">${m[1]}</span> <span class="mute">· ${e.pl==='Pl.'?L('plural','বহুবচন'):L(GEN[m[1]][0],GEN[m[1]][1])}</span></div>`;}
+  const top=o.bare?'':`<div class="wc-top">${say(wordHtml(e.de,e.pl),e.de)}<span class="wpl">${plHtml(e)}</span></div>`;
+  const mean=o.bare?'':`<div class="wc-m"><span><b>EN</b> ${esc(e.en)}</span><span class="bnf"><b>বাংলা</b> ${esc(e.bn)}</span>${e.n?`<a class="dpill" href="#day-${e.n}" data-close="1">Tag ${e.n}</a>`:''}</div>`;
+  const ex=exampleFor(e,o.n||3);
+  const exh=ex.length?`<div class="wc-h">${L('Example sentences','উদাহরণ বাক্য')}</div>`+ex.map(s=>`<div class="wc-s">${say(esc(s.de),s.de)}<div class="en tr">${esc(s.en)}</div><div class="bn tr">${esc(s.bn)}</div>${s.auto?`<small class="mute">${L('auto-made model sentence','স্বয়ংক্রিয় নমুনা বাক্য')}</small>`:''}</div>`).join(''):'';
+  return `<div class="wcard ${c?'b-'+c:''}">${top}${o.bare&&plHtml(e)?`<div class="wc-art">${plHtml(e)}</div>`:''}${art}${mean}${exh}</div>`;
+}
+function guessCard(g){
+  const c={der:'cm',die:'cf',das:'cn'}[g.art];
+  return `<div class="wcard guess"><div class="wc-top"><span class="${c}">${g.art}</span> ${say(esc(g.w),g.art+' '+g.w)}</div><div class="mute" style="font-size:14px;margin-top:4px">${L(`Not in the A1 course. By its ending (${g.why}) the article is probably “${g.art}” – this is only a guess, please check in a dictionary.`,`এটি A1 কোর্সে নেই। শেষাংশ (${g.why}) দেখে আর্টিকেল সম্ভবত “${g.art}” – এটি শুধু অনুমান, অভিধানে মিলিয়ে নিও।`)}</div></div>`;
+}
+
+/* ---- online translation (only used when the course has no answer) ---- */
+function decodeEnt(t){try{return new DOMParser().parseFromString(String(t),'text/html').documentElement.textContent||t;}catch(e){return t;}}
+function chunkTxt(t,n){const res=[];let cur='';(t.match(/[^.!?।\n]+[.!?।\n]*/g)||[t]).forEach(s=>{if(cur&&(cur+s).length>n){res.push(cur);cur='';}if(s.length>n){for(let i=0;i<s.length;i+=n)res.push(s.slice(i,i+n));}else cur+=s;});if(cur.trim())res.push(cur);return res;}
+async function netPiece(text,from,to,sig){
+  try{
+    const r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+from+'&tl='+to+'&dt=t&q='+encodeURIComponent(text),{signal:sig});
+    if(r.ok){const j=await r.json();const o=((j&&j[0])||[]).map(x=>(x&&x[0])||'').join('');if(o.trim())return{text:o,src:'Google Translate'};}
+  }catch(e){if(sig&&sig.aborted)return null;}
+  try{
+    const out=[];
+    for(const p of chunkTxt(text,450)){
+      const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(p)+'&langpair='+from+'|'+to,{signal:sig});
+      if(!r.ok)return null;
+      const j=await r.json();const t=j&&j.responseData&&j.responseData.translatedText;
+      if(!t||/MYMEMORY WARNING|INVALID|QUERY LENGTH/i.test(t)||(j.responseStatus&&+j.responseStatus!==200))return null;
+      out.push(decodeEnt(t));
+    }
+    return{text:out.join(' '),src:'MyMemory'};
+  }catch(e){return null;}
+}
+async function netTr(text,from,to){
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),Math.min(90000,12000+text.length*10));
+  try{
+    const res=[];let src='';
+    for(const p of chunkTxt(text,1200)){const r=await netPiece(p,from,to,ctl.signal);if(!r)return null;res.push(r.text);src=r.src;}
+    return{text:res.join(' '),src:src};
+  }catch(e){return null;}finally{clearTimeout(tm);}
+}
+function localTr(text,from,to){
+  const X=buildLex(),k=nrm(text);if(!k)return null;
+  const e=X.ph[from+':'+k];
+  if(e&&e[to])return{text:e[to],entries:e.pl!==undefined?[e]:[]};
+  if(from!=='de'){
+    const arr=X.m[from][k]||X.m[from][k.replace(/^(to|the|a|an)\s+/,'')];
+    if(arr&&arr.length){const u=uniqE(arr);return{text:u[0][to],entries:u.slice(0,3)};}
+  }
+  return null;
+}
+async function trCore(text,from,to){
+  const r={text:'',src:'',entries:[],guess:null,err:''};
+  const loc=localTr(text,from,to);
+  if(loc){r.text=loc.text;r.src='course';r.entries=loc.entries;}
+  else{
+    if(navigator.onLine===false){r.err='offline';return r;}
+    const n=await netTr(text,from,to);
+    if(!n){r.err='net';return r;}
+    r.text=n.text;r.src=n.src;
+  }
+  if(!r.entries.length){
+    const e=from==='de'?entryFor(text):(to==='de'?entryFor(r.text):null);
+    if(e&&nrm(text).split(' ').length<=3)r.entries=[e];
+  }
+  if(!r.entries.length){
+    const w=(from==='de'?text:(to==='de'?r.text:'')).trim();
+    if(isNounLike(w)){const g=guessArticle(w);if(g)r.guess={w:w,art:g.art,why:g.why};}
+  }
+  return r;
+}
+/* German words of a longer text, with their article from the course */
+function wordHelp(text,to){
+  const X=buildLex(),seen={},out=[];
+  nrm(text).split(' ').forEach(t=>{if(t.length<2||seen[t])return;seen[t]=1;const w=X.wd[t];if(w&&!out.some(o=>o===w))out.push(w);});
+  return out.slice(0,14);
+}
+
+/* ---- translator page ---- */
+const TLN={de:['Deutsch','German','জার্মান'],en:['English','English','ইংরেজি'],bn:['বাংলা','Bangla','বাংলা']};
+const TR={from:store.get('trFrom','de'),to:store.get('trTo','bn'),last:''};
+const TR_PRE=[['de','bn','Deutsch → বাংলা'],['de','en','Deutsch → English'],['en','de','English → Deutsch'],['bn','de','বাংলা → Deutsch']];
+const tabs=cur=>`<div class="seg trtabs" role="tablist"><a href="#translate" class="${cur==='tr'?'on':''}">${IC.tr.replace('<svg','<svg style="width:15px;height:15px;vertical-align:-2px"')} Übersetzer · Translator</a><a href="#dictionary" class="${cur==='dict'?'on':''}">${IC.dict.replace('<svg','<svg style="width:15px;height:15px;vertical-align:-2px"')} Wörterbuch A–Z</a></div>`;
+function showTranslate(){
+  const opt=(v,sel)=>Object.keys(TLN).map(k=>`<option value="${k}" ${k===sel?'selected':''}>${TLN[k][0]}${k==='bn'?'':' · '+TLN[k][2]}</option>`).join('');
+  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>Übersetzer</h1>${tabs('tr')}<p class="en">Translate between German, English and Bangla. For every word you also get the <b>article (der / die / das)</b>, the plural and <b>example sentences</b>.</p><p class="bn">জার্মান, ইংরেজি ও বাংলার মধ্যে অনুবাদ করো। প্রতিটি শব্দের সঙ্গে পাবে <b>আর্টিকেল (der / die / das)</b>, বহুবচন এবং <b>উদাহরণ বাক্য</b>।</p></div>
+  <div class="card trcard">
+   <div class="trpre">${TR_PRE.map(p=>`<button type="button" class="btn xs" data-act="trpre" data-f="${p[0]}" data-t="${p[1]}">${p[2]}</button>`).join('')}</div>
+   <div class="trbar"><select id="trFrom" aria-label="From">${opt('f',TR.from)}</select><button type="button" class="iconbtn" data-act="trswap" aria-label="Swap" title="Swap · tauschen · অদলবদল"><svg ${SV}><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></button><select id="trTo" aria-label="To">${opt('t',TR.to)}</select></div>
+   <textarea id="trIn" class="xin" rows="4" maxlength="1500" spellcheck="false" placeholder=""></textarea>
+   <div class="trbtns"><button type="button" class="btn primary" data-act="trgo">${IC.tr} ${L('Translate','অনুবাদ করো')}</button><button type="button" class="btn" id="trSayIn" data-act="trsayin">${IC.spk} ${L('Listen','শোনো')}</button><button type="button" class="btn" data-act="trclear">${L('Clear','মুছো')}</button><span class="hint">Ctrl + Enter</span></div>
+   <div id="trOut" aria-live="polite"></div>
+  </div>
+  <div class="card"><p class="en"><b>How it works:</b> words and sentences from the course are answered instantly (also offline). Everything else is translated online, so you need an internet connection for that. Articles and plurals come from the course word list; for other nouns the article is only a guess from the word ending.</p><p class="bn"><b>কীভাবে কাজ করে:</b> কোর্সের শব্দ ও বাক্য সঙ্গে সঙ্গে (অফলাইনেও) পাওয়া যায়। বাকি সবকিছু অনলাইনে অনুবাদ হয়, তাই ইন্টারনেট লাগবে। আর্টিকেল ও বহুবচন কোর্সের শব্দতালিকা থেকে আসে; কোর্সের বাইরের noun-এর আর্টিকেল শুধু শেষাংশ দেখে অনুমান করা হয়।</p></div>`;
+  updTr();
+  if(TR.pending){const t=TR.pending;TR.pending='';$('#trIn').value=t;trGo();}
+}
+function updTr(){
+  const f=$('#trFrom'),t=$('#trTo'),i=$('#trIn');if(!f)return;
+  f.value=TR.from;t.value=TR.to;
+  $$('[data-act="trpre"]').forEach(b=>b.classList.toggle('on',b.dataset.f===TR.from&&b.dataset.t===TR.to));
+  const ph={de:'Schreib hier auf Deutsch … (z. B. Tisch, Ich bin müde)',en:'Type in English … (e.g. table, I am tired)',bn:'এখানে বাংলায় লেখো … (যেমন: টেবিল, আমি ক্লান্ত)'};
+  i.placeholder=ph[TR.from];i.lang=TR.from;
+  const s=$('#trSayIn');if(s)s.hidden=TR.from!=='de';
+}
+function trSet(f,t){if(f===t){t=TR.from;}TR.from=f;TR.to=t;store.set('trFrom',f);store.set('trTo',t);updTr();}
+function trSwap(){const o=TR.last;trSet(TR.to,TR.from);const i=$('#trIn');if(o&&i){i.value=o;trGo();}}
+function trClear(){const i=$('#trIn');if(i){i.value='';i.focus();}$('#trOut').innerHTML='';TR.last='';}
+let trBusy=0;
+async function trGo(){
+  const i=$('#trIn'),out=$('#trOut');if(!i||!out)return;
+  const text=i.value.trim();if(!text){out.innerHTML='';return;}
+  const from=TR.from,to=TR.to,my=++trBusy;
+  out.innerHTML=`<div class="trwait"><span class="dots"><i></i><i></i><i></i></span> ${L('Translating …','অনুবাদ হচ্ছে …')}</div>`;
+  const r=await trCore(text,from,to);
+  if(my!==trBusy)return;
+  if(r.err){out.innerHTML=`<div class="trerr">${r.err==='offline'?L('You are offline. Only words and sentences from the course can be translated without internet.','তুমি অফলাইনে আছ। ইন্টারনেট ছাড়া শুধু কোর্সের শব্দ ও বাক্য অনুবাদ করা যায়।'):L('The online translator could not be reached. Please check your internet and try again.','অনলাইন অনুবাদক পাওয়া যায়নি। ইন্টারনেট দেখে আবার চেষ্টা করো।')}</div>`;return;}
+  TR.last=r.text;
+  const src=r.src==='course'?L('From the course','কোর্স থেকে'):esc(r.src);
+  let h=`<div class="trres"><div class="trlbl">${TLN[from][0]} → ${TLN[to][0]} · ${src}</div><div class="trtext" lang="${to}">${esc(r.text)}</div><div class="trbtns">${to==='de'?sayBtn(r.text):''}<button type="button" class="btn xs" data-act="trcopy" data-t="${esc(r.text)}">${L('Copy','কপি')}</button></div></div>`;
+  h+=r.entries.map(e=>wordCard(e,{n:3})).join('');
+  if(r.guess)h+=guessCard(r.guess);
+  if(from==='de'&&!r.entries.length){
+    const hp=wordHelp(text);
+    if(hp.length)h+=`<div class="trhelp"><div class="wc-h">${L('Words from your text (with article)','তোমার লেখার শব্দ (আর্টিকেলসহ)')}</div>${hp.map(w=>`<span class="chipw">${say(wordHtml(w.de,w.pl),w.de)} <span class="en">${esc(w.en)}</span><span class="bn">${esc(w.bn)}</span></span>`).join('')}</div>`;
+  }
+  out.innerHTML=h;
+}
+function copyTxt(t,el){
+  const done=()=>toast(L('Copied ✓','কপি হয়েছে ✓'),1400);
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,()=>{});return;}
+  const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');done();}catch(e){}a.remove();
+}
+
+/* ---- A–Z dictionary page ---- */
+let DICT=null;
+const DQ={q:'',a:'all',dir:store.get('dictDir','bn')};
+function dictList(){
+  if(DICT)return DICT;
+  const sk=w=>nrm(NOART(NOPAR(w))).replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss');
+  DICT=allWords().map(x=>({k:sk(x.v[0]),e:{de:x.v[0],pl:x.v[1],en:x.v[2],bn:x.v[3],n:x.n}}));
+  DICT.sort((a,b)=>a.k<b.k?-1:a.k>b.k?1:0);
+  DICT.forEach(d=>{const l=(d.k[0]||'#').toUpperCase();d.l=/[A-Z]/.test(l)?l:'#';});
+  return DICT;
+}
+function showDictionary(){
+  const D=dictList(),nouns=D.filter(d=>/^(der|die|das)\s/.test(d.e.de)).length;
+  const dirs=[['bn','Deutsch → বাংলা'],['en','Deutsch → English'],['both','Deutsch → EN + বাং']];
+  const arts=[['all','Alle'],['der','der'],['die','die'],['das','das'],['pl','Plural'],['other','andere']];
+  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>Wörterbuch A–Z</h1>${tabs('dict')}<p class="en">The A1 dictionary: all <b>${D.length}</b> words and phrases of the course in A–Z order – <b>${nouns}</b> nouns with article and plural – German → Bangla and German → English. Tap <b>Examples</b> for sentences.</p><p class="bn">A1 অভিধান: কোর্সের সব <b>${bnNum(D.length)}</b>টি শব্দ ও বাক্যাংশ A–Z ক্রমে – <b>${bnNum(nouns)}</b>টি noun আর্টিকেল ও বহুবচনসহ – জার্মান → বাংলা ও জার্মান → ইংরেজি। বাক্য দেখতে <b>উদাহরণ</b> চাপো।</p></div>
+  <div class="card"><div class="dctl"><div class="seg sm" role="group" aria-label="Direction">${dirs.map(d=>`<button type="button" data-act="ddir" data-d="${d[0]}" class="${DQ.dir===d[0]?'on':''}">${d[1]}</button>`).join('')}</div>
+  <input id="dq" class="xin" type="search" placeholder="Suchen · Search · খুঁজুন (Haus, house, বাড়ি)" value="${esc(DQ.q)}" autocomplete="off"></div>
+  <div class="seg sm" role="group" aria-label="Article">${arts.map(a=>`<button type="button" data-act="dart" data-a="${a[0]}" class="${DQ.a===a[0]?'on':''}">${a[1]}</button>`).join('')}</div>
+  <div class="dlets" id="dlets"></div><div class="mute" id="dcount" style="font-size:13.5px;margin-top:6px"></div></div>
+  <div id="dlist"></div>`;
+  renderDict();
+}
+function renderDict(){
+  const D=dictList(),list=$('#dlist');if(!list)return;
+  const nq=nrm(DQ.q);
+  const keep=d=>{
+    const e=d.e,m=/^(der|die|das)\s/.exec(e.de);
+    if(DQ.a==='der'||DQ.a==='die'||DQ.a==='das'){if(!m||m[1]!==DQ.a||e.pl==='Pl.')return false;}
+    else if(DQ.a==='pl'){if(e.pl!=='Pl.')return false;}
+    else if(DQ.a==='other'){if(m)return false;}
+    if(!nq)return true;
+    return d.k.indexOf(nq)>=0||nrm(e.de).indexOf(nq)>=0||nrm(e.en).indexOf(nq)>=0||nrm(e.bn).indexOf(nq)>=0;
+  };
+  let h='',last='',cnt=0;const has={};
+  D.forEach((d,i)=>{
+    if(!keep(d))return;cnt++;has[d.l]=1;
+    if(d.l!==last){last=d.l;h+=`<h3 class="dlet" id="dl-${d.l==='#'?'x':d.l}">${d.l}</h3>`;}
+    const e=d.e,c=artClass(e.de,e.pl),pl=plHtml(e);
+    h+=`<div class="drow ${c?'b-'+c:''}" data-i="${i}"><div class="dmain">${say(wordHtml(e.de,e.pl),e.de)}${pl?`<span class="dpl">${pl}</span>`:''}</div><div class="dmean">${DQ.dir!=='en'?`<span class="dm-b">${esc(e.bn)}</span>`:''}${DQ.dir!=='bn'?`<span class="dm-e">${esc(e.en)}</span>`:''}</div><button type="button" class="btn xs" data-act="dex" data-i="${i}">${L('Examples','উদাহরণ')}</button><div class="dxx" hidden></div></div>`;
+  });
+  list.innerHTML=h||`<div class="card dempty">${L('Nothing found.','কিছু পাওয়া যায়নি।')}</div>`;
+  const all={};D.forEach(d=>{all[d.l]=1;});
+  const lets='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter(l=>all[l]);
+  $('#dlets').innerHTML=lets.map(l=>`<button type="button" data-act="dlet" data-l="${l}" ${has[l]?'':'disabled'}>${l}</button>`).join('');
+  $('#dcount').textContent=cnt+' / '+D.length;
+}
+function dictEx(el){
+  const row=el.closest('.drow'),box=$('.dxx',row),d=dictList()[+el.dataset.i];
+  if(box.hidden){if(!box.innerHTML)box.innerHTML=wordCard(d.e,{bare:true,n:3});box.hidden=false;}else box.hidden=true;
+}
+
+/* ---- help chat ---- */
+const CH={open:false,ready:false};
+const lnk=(h,t)=>`<a href="${h}" data-close="1">${t}</a>`;
+const WKT={1:['Basics','মৌলিক বিষয়'],2:['Everyday life','দৈনন্দিন জীবন'],3:['Living in Germany','জার্মানিতে জীবন'],4:['Past, work and travel','অতীত, কাজ ও ভ্রমণ'],5:['Exam week','পরীক্ষার সপ্তাহ']};
+const LIVE_URL='https://mdbellalhosen.github.io/German-A1/';
+const CH_MAIN=[['What is this site?','এই ওয়েবসাইট কী?'],['How do I start?','কীভাবে শুরু করব?'],['Show the course plan','কোর্স প্ল্যান দেখাও'],['How does the translator work?','অনুবাদক কীভাবে কাজ করে?'],['Dictionary A–Z','A–Z অভিধান'],['Audio not working','অডিও কাজ করছে না'],['Translate a book photo','বইয়ের ছবি অনুবাদ']];
+const STOP=new Set('von mit zu für ist und nicht ich du wir sie a an the is are was be to of in on at for and or what whats which who how do does did can could would you your me my i we it this that these those please tell show give about word words meaning mean means say said german english bangla bengali deutsch translate translation in into with from article artikel der die das ein eine ki kii koro dao bolo er ke te mane arth মানে কী কি এর কে তে অর্থ বলো দাও আর্টিকেল শব্দ জার্মান ইংরেজি বাংলা কোনটা কোন'.split(' '));
+function chatLang(q){
+  if(BN_RE.test(q))return'bn';
+  if(/\b(kivabe|kibhabe|kothay|kothai|kemon|amar|ami|apni|tumi|koro|korbo|korte|kore|dao|daw|dibo|bolo|bolun|shuru|suru|shikh\w*|sikh\w*|achhe|ache|nai|hobe|jabe|jay|sob|shob|ekta|ektu|porikkha|onubad|anubad|ovidhan|obhidhan|abhidhan|mane|arth|ki)\b/i.test(q))return'both';
+  return store.get('lang','both')==='bn'&&!/[a-z]{3,}/i.test(q)?'bn':'en';
+}
+const A=(lang,en,bn)=>lang==='bn'?bn:(lang==='both'?`${en}<div class="cb-bn">${bn}</div>`:en);
+const nW=()=>allWords().length;
+const WEEKS_EN=()=>weeks().map(W=>`${lnk('#day-'+W.days[0].n,(W.w>=5?'Exam week':'Week '+W.w))}: Day ${dayRange(W.days)} – ${WKT[W.w]?WKT[W.w][0]:''}`).join('<br>');
+const WEEKS_BN=()=>weeks().map(W=>`${lnk('#day-'+W.days[0].n,(W.w>=5?'পরীক্ষার সপ্তাহ':'সপ্তাহ '+bnNum(W.w)))}: দিন ${bnNum(dayRange(W.days).replace('–','–'))} – ${WKT[W.w]?WKT[W.w][1]:''}`).join('<br>');
+const KB=[
+ {k:/\b(photos?|camera|images?|pictures?|scan|ocr|upload|microphone|mic)\b|book page|voice (input|chat|typing|search)|speech to text|ছবি|ফটো|ক্যামেরা|স্ক্যান|আপলোড|মাইক|ভয়েস ইনপুট|বইয়ের পাতা/i,
+  en:()=>`<b>Photos:</b> tap 📷 (camera) or 🖼 (photos) in the chat box – you can send as many pictures as you like, also several at once, or paste / drag them in. I read the German text in each picture (OCR) and translate it into <b>Bangla</b>, with a button for English, a listen button and a shortcut to the translator. For a good result: good light, hold the page straight, fill the frame with the text.<br><b>Voice:</b> tap 🎙, speak, and your question is sent automatically. Tap the language button next to it to choose বাংলা, English or Deutsch. (Needs Chrome or Safari and internet.)`,
+  bn:()=>`<b>ছবি:</b> চ্যাট বক্সে 📷 (ক্যামেরা) বা 🖼 (ছবি) চাপো – যত খুশি ছবি পাঠাতে পারবে, একসঙ্গে অনেকগুলোও, অথবা পেস্ট / ড্র্যাগ করে দিতে পারো। আমি প্রতিটি ছবির জার্মান লেখা পড়ে (OCR) <b>বাংলায়</b> অনুবাদ করে দিই – সঙ্গে ইংরেজির বোতাম, শোনার বোতাম ও অনুবাদকে নেওয়ার শর্টকাট থাকে। ভালো ফলের জন্য: ভালো আলো, পাতা সোজা ধরো এবং লেখা দিয়ে ফ্রেম ভরাও।<br><b>ভয়েস:</b> 🎙 চেপে বলো, প্রশ্ন নিজে থেকেই চলে যাবে। পাশের ভাষা-বোতামে বাংলা, English বা Deutsch বেছে নাও। (Chrome বা Safari ও ইন্টারনেট লাগবে।)`,
+  c:[3,1]},
+ {k:/dictionar|wörterbuch|woerterbuch|\ba[\s-]*z\b|অভিধান|ডিকশনারি/i,
+  en:()=>`The <b>A1 dictionary (A–Z)</b> lists all ${nW()} words and phrases of the course with article, plural, Bangla and English meaning. Switch between German → Bangla, German → English or both, search in any language, filter by der / die / das, and tap “Examples” for sentences. ${lnk('#dictionary','Open the dictionary →')}`,
+  bn:()=>`<b>A1 অভিধান (A–Z)</b>-এ কোর্সের সব ${bnNum(nW())}টি শব্দ ও বাক্যাংশ আছে – আর্টিকেল, বহুবচন, বাংলা ও ইংরেজি অর্থসহ। জার্মান → বাংলা, জার্মান → ইংরেজি বা দুটোই বেছে নিতে পারবে, যেকোনো ভাষায় খুঁজতে পারবে, der / die / das দিয়ে ফিল্টার করতে পারবে এবং “উদাহরণ” চাপলে বাক্য দেখাবে। ${lnk('#dictionary','অভিধান খোলো →')}`,
+  c:[1,4]},
+ {k:/translat|übersetz|uebersetz|অনুবাদ|ট্রান্সলেট|onubad|anubad/i,
+  en:()=>`The <b>Translator</b> works in all directions: German → Bangla, German → English, English → German and Bangla → German. For every word it also shows the <b>article (der/die/das)</b>, gender, plural and example sentences. Course words and sentences work offline; everything else needs internet. ${lnk('#translate','Open the translator →')}<br><small>Tip: you can also type “translate ich bin müde to bangla” right here in the chat.</small>`,
+  bn:()=>`<b>অনুবাদক</b> সব দিকেই কাজ করে: জার্মান → বাংলা, জার্মান → ইংরেজি, ইংরেজি → জার্মান ও বাংলা → জার্মান। প্রতিটি শব্দের সঙ্গে <b>আর্টিকেল (der/die/das)</b>, লিঙ্গ, বহুবচন ও উদাহরণ বাক্যও দেখায়। কোর্সের শব্দ ও বাক্য অফলাইনে চলে; বাকিটার জন্য ইন্টারনেট লাগে। ${lnk('#translate','অনুবাদক খোলো →')}<br><small>টিপস: এই চ্যাটেই লিখতে পারো “translate ich bin müde to bangla”।</small>`,
+  c:[4,1]},
+ {k:/\b(audio|sound|voice|speak|listen|hear|tts|speech)\b|pronounc|অডিও|আওয়াজ|ভয়েস|উচ্চারণ|শব্দ নেই|শব্দ আসছে না|শুনতে|শোনা যাচ্ছে না|awaj|shona/i,
+  en:()=>`Tap any underlined German word, sentence or dialogue (the little speaker icon) to hear it. Audio uses your device’s built-in German voice. <b>No sound?</b> Open the site in Chrome or Safari (not inside another app), turn up the media volume, and install a German voice (Android: Google Speech Services → Deutsch; iPhone: Settings → Accessibility → Spoken Content → Voices → German). Tap ⚙️ at the top → <b>Test</b> to check which voice is used; there you can also slow the speed to 0.75×.`,
+  bn:()=>`যেকোনো দাগ-দেওয়া জার্মান শব্দ, বাক্য বা সংলাপে (ছোট স্পিকার আইকন) চাপ দিলেই শুনতে পাবে। অডিও তোমার ডিভাইসের জার্মান ভয়েসে চলে। <b>শব্দ না এলে:</b> সাইটটি Chrome বা Safari-তে খোলো (অন্য অ্যাপের ভেতরে নয়), মিডিয়া ভলিউম বাড়াও এবং জার্মান ভয়েস ইনস্টল করো (Android: Google Speech Services → Deutsch; iPhone: Settings → Accessibility → Spoken Content → Voices → German)। উপরে ⚙️ চেপে <b>Test</b> করলে কোন ভয়েস চলছে দেখা যায়; সেখানে গতি ০.৭৫× করাও যায়।`,
+  c:[0,3]},
+ {k:/\bflash|ফ্ল্যাশ|ফ্লাশ|কার্ড/i,
+  en:()=>`Every lesson has a <b>Flashcards</b> button in its vocabulary section, and the “All words” page has flashcards for all ${nW()} words. Tap a card to flip it, use ← → to move on, shuffle, or turn on auto-play of the audio.`,
+  bn:()=>`প্রতিটি পাঠের শব্দ-অংশে একটি <b>ফ্ল্যাশকার্ড</b> বোতাম আছে, আর “সব শব্দ” পাতায় ${bnNum(nW())}টি শব্দের সবগুলোর ফ্ল্যাশকার্ড আছে। কার্ডে চাপ দিলে উল্টে যায়, ← → দিয়ে এগোনো যায়, শাফল করা যায় এবং অডিও অটো-প্লে চালু করা যায়।`,
+  c:[0]},
+ {k:/umlaut|ä\s*ö\s*ü|\bkeyboard\b|type german|কীবোর্ড|উমলাউট/i,
+  en:()=>`When you click into an exercise answer box, a small keyboard with <b>ä ö ü ß</b> appears at the bottom of the screen – tap a letter to insert it. The chat and translator boxes have the same helper, so you can type German on any phone.`,
+  bn:()=>`অনুশীলনের উত্তর-বাক্সে চাপ দিলেই পর্দার নিচে <b>ä ö ü ß</b> সহ একটি ছোট কীবোর্ড আসে – অক্ষরে চাপ দিলেই বসে যায়। চ্যাট ও অনুবাদক বাক্সেও একই সুবিধা আছে, তাই যেকোনো ফোনে জার্মান লেখা যায়।`,
+  c:[]},
+ {k:/\b(progress|save|saved|reset|completed)\b|mark.*done|অগ্রগতি|সেভ|সংরক্ষণ|রিসেট|শেষ চিহ্ন/i,
+  en:()=>`Press “Mark day as done” at the end of a lesson. Completed days (✓) and your best test scores are saved <b>in your own browser</b> (localStorage) – nothing is sent to a server. To start over, open ⚙️ → “Reset my progress”.`,
+  bn:()=>`পাঠের শেষে “দিনটি শেষ চিহ্নিত করো” চাপো। শেষ করা দিন (✓) ও পরীক্ষার সেরা স্কোর <b>তোমার নিজের ব্রাউজারেই</b> (localStorage) সেভ থাকে – কোনো সার্ভারে যায় না। নতুন করে শুরু করতে ⚙️ → “আমার অগ্রগতি মুছে ফেলো”।`,
+  c:[1]},
+ {k:/\b(offline|install|download)\b|ইনস্টল|অফলাইন|ডাউনলোড/i,
+  en:()=>`The whole course is <b>one file</b> (index.html), no installation or server needed. Download it, double-click it and it opens in your browser, also offline. Only the online translator and the Google fonts need internet.`,
+  bn:()=>`পুরো কোর্সটি <b>একটি ফাইল</b> (index.html) – কোনো ইনস্টল বা সার্ভার লাগে না। ডাউনলোড করে ডাবল-ক্লিক করলেই ব্রাউজারে খোলে, অফলাইনেও। শুধু অনলাইন অনুবাদক ও গুগল ফন্টের জন্য ইন্টারনেট লাগে।`,
+  c:[]},
+ {k:/\b(live|link|github|host|deploy|url)\b|লাইভ|লিংক|লিঙ্ক|হোস্ট/i,
+  en:()=>`Live website: <a href="${LIVE_URL}" target="_blank" rel="noopener">${LIVE_URL.replace('https://','')}</a><br>To host your own copy: upload index.html to a public GitHub repository → Settings → Pages → “Deploy from a branch” → main / root → Save. It is live after 1–2 minutes.`,
+  bn:()=>`লাইভ ওয়েবসাইট: <a href="${LIVE_URL}" target="_blank" rel="noopener">${LIVE_URL.replace('https://','')}</a><br>নিজের কপি হোস্ট করতে: index.html একটি পাবলিক GitHub রিপোজিটরিতে আপলোড করো → Settings → Pages → “Deploy from a branch” → main / root → Save। ১–২ মিনিট পর লাইভ হবে।`,
+  c:[]},
+ {k:/\bedit\b|add (a )?(day|lesson|content)|\bcontribut|\b(mistake|error|wrong)\b|source code|এডিট|সম্পাদনা|ভুল|কন্ট্রিবিউট|নতুন দিন|কোড/i,
+  en:()=>`Each day is one <code>DAYS.push({ … })</code> block inside index.html (search for <code>n:8</code> to find Day 8). Found a German or Bangla mistake? Open an issue or pull request on the GitHub repository – corrections are welcome. ${lnk('https://github.com/MdBellalHosen/German-A1','Repository →')}`,
+  bn:()=>`প্রতিটি দিন index.html-এর ভেতরে একটি <code>DAYS.push({ … })</code> ব্লক (দিন ৮ খুঁজতে <code>n:8</code> সার্চ করো)। জার্মান বা বাংলায় ভুল পেলে GitHub রিপোজিটরিতে issue বা pull request খোলো – সংশোধন স্বাগত। ${lnk('https://github.com/MdBellalHosen/German-A1','রিপোজিটরি →')}`,
+  c:[]},
+ {k:/built with|\btechnolog|\b(framework|javascript|html|css)\b|made with|কীভাবে বানান|প্রযুক্তি/i,
+  en:()=>`It is plain HTML, CSS and vanilla JavaScript – no frameworks, no build step. Audio uses the Web Speech API, progress uses localStorage, and fonts are Inter, Fraunces and Hind Siliguri.`,
+  bn:()=>`এটি সাধারণ HTML, CSS ও ভ্যানিলা JavaScript দিয়ে বানানো – কোনো ফ্রেমওয়ার্ক বা বিল্ড স্টেপ নেই। অডিওর জন্য Web Speech API, অগ্রগতির জন্য localStorage এবং ফন্ট হিসেবে Inter, Fraunces ও Hind Siliguri ব্যবহার হয়েছে।`,
+  c:[]},
+ {k:/\b(mobile|phone|tablet|android|iphone|responsive)\b|মোবাইল|ফোন|ট্যাবলেট/i,
+  en:()=>`Yes, the site is mobile friendly – it works on phone, tablet and computer. On a phone, open the ☰ menu (top left) for the lesson list.`,
+  bn:()=>`হ্যাঁ, সাইটটি মোবাইল-বান্ধব – ফোন, ট্যাবলেট ও কম্পিউটারে চলে। ফোনে পাঠের তালিকা দেখতে উপরে বাঁ দিকের ☰ মেনু খোলো।`,
+  c:[]},
+ {k:/language switch|switch language|bangla only|english only|\blanguage\b|ভাষা পরিবর্তন|ভাষা বদল|শুধু বাংলা|শুধু ইংরেজি|ভাষা|bhasha/i,
+  en:()=>`Use the switch at the top: <b>EN</b>, <b>বাংলা</b> or <b>EN+বাং</b> to show explanations in English, Bangla or both. The German text always stays German.`,
+  bn:()=>`উপরের সুইচ থেকে <b>EN</b>, <b>বাংলা</b> বা <b>EN+বাং</b> বেছে নাও – ব্যাখ্যা ইংরেজি, বাংলা বা দুই ভাষাতেই দেখাবে। জার্মান লেখা সবসময় জার্মানই থাকে।`,
+  c:[]},
+ {k:/\ball words|\bword ?list|\bvocab|সব শব্দ|শব্দভান্ডার|শব্দতালিকা|শব্দ খুঁজ/i,
+  en:()=>`The <b>${lnk('#words','All words')}</b> page has all ${nW()} course words in one list with article colours (der = blue, die = red, das = green, plural = orange), plural forms, English + Bangla meaning, search, filters by week / day / article, audio and flashcards. For an A–Z list, use the ${lnk('#dictionary','dictionary')}.`,
+  bn:()=>`<b>${lnk('#words','সব শব্দ')}</b> পাতায় কোর্সের ${bnNum(nW())}টি শব্দ এক তালিকায় আছে – আর্টিকেলের রং (der = নীল, die = লাল, das = সবুজ, বহুবচন = কমলা), বহুবচন, ইংরেজি ও বাংলা অর্থ, সার্চ, সপ্তাহ/দিন/আর্টিকেল ফিল্টার, অডিও ও ফ্ল্যাশকার্ডসহ। A–Z তালিকার জন্য ${lnk('#dictionary','অভিধান')} দেখো।`,
+  c:[4]},
+ {k:/\bgrammar|grammatik|\bsecrets?\b|geheimnis|ব্যাকরণ|গ্রামার|গোপন কৌশল|কৌশল|der die das|\barticles?\b|\bartikel\b|আর্টিকেল/i,
+  en:()=>`${lnk('#secrets','Grammatik-Geheimnisse')} (Grammar secrets) collects short cuts: how the ending shows der / die / das, plural patterns, the verb in position 2, cases (accusative, dative) and the perfect tense. Every lesson also has its own grammar tables. Article colours: <b>der</b> = blue, <b>die</b> = red, <b>das</b> = green, plural = orange. Ask me “article of Tisch” to look up a word.`,
+  bn:()=>`${lnk('#secrets','Grammatik-Geheimnisse')} পাতায় ছোট ছোট কৌশল আছে: শেষাংশ দেখে der / die / das চেনা, বহুবচনের নিয়ম, ক্রিয়া ২য় অবস্থানে, কারক (accusative, dative) ও Perfekt। প্রতিটি পাঠেও নিজস্ব ব্যাকরণ-টেবিল আছে। আর্টিকেলের রং: <b>der</b> = নীল, <b>die</b> = লাল, <b>das</b> = সবুজ, বহুবচন = কমলা। কোনো শব্দ খুঁজতে লেখো “Tisch এর আর্টিকেল”।`,
+  c:[4]},
+ {k:/\bdialog|\bconversation|সংলাপ|কথোপকথন/i,
+  en:()=>`Each lesson has dialogues with a <b>Play</b> button: the lines are read one by one with different voices for each speaker. Tap any line to hear it again; English and Bangla translations are below every line.`,
+  bn:()=>`প্রতিটি পাঠে <b>শোনো</b> বোতামসহ সংলাপ আছে: প্রতিটি বক্তার জন্য আলাদা ভয়েসে লাইনগুলো একটি একটি করে পড়া হয়। যেকোনো লাইনে চাপ দিলে আবার শোনা যায়; প্রতিটি লাইনের নিচে ইংরেজি ও বাংলা অনুবাদ আছে।`,
+  c:[]},
+ {k:/\b(exercises?|practice|quiz|homework)\b|অনুশীলন|প্র্যাকটিস|বাড়ির কাজ|হোমওয়ার্ক/i,
+  en:()=>`Every lesson ends with interactive exercises – multiple choice, fill-in-the-gap, translation and writing tasks – checked instantly with the “Check” button (“Show solution” if you are stuck), then Q&A speaking practice and homework.`,
+  bn:()=>`প্রতিটি পাঠের শেষে ইন্টারঅ্যাকটিভ অনুশীলন আছে – বহুনির্বাচনী, ফাঁকা পূরণ, অনুবাদ ও লেখার কাজ – “যাচাই করো” চাপলেই সঙ্গে সঙ্গে ফলাফল দেখায় (আটকে গেলে “সমাধান দেখাও”)। তারপর প্রশ্নোত্তরে কথা বলার অনুশীলন ও বাড়ির কাজ।`,
+  c:[]},
+ {k:/\btests?\b|\bexams?\b|prüfung|pruefung|goethe|telc|\bfinal\b|পরীক্ষা|টেস্ট/i,
+  en:()=>`Weekly tests are on <b>Days 7, 14, 21 and 28</b> (${lnk('#day-7','Day 7')} · ${lnk('#day-14','14')} · ${lnk('#day-21','21')} · ${lnk('#day-28','28')}). ${lnk('#day-29','Day 29')} trains you for the <b>Goethe-Zertifikat A1 / telc Deutsch A1</b> exam and ${lnk('#day-30','Day 30')} is the final test. Aim for 90 % before you move on – your best scores are saved.`,
+  bn:()=>`সাপ্তাহিক পরীক্ষা <b>দিন ৭, ১৪, ২১ ও ২৮</b>-এ (${lnk('#day-7','দিন ৭')} · ${lnk('#day-14','১৪')} · ${lnk('#day-21','২১')} · ${lnk('#day-28','২৮')})। ${lnk('#day-29','দিন ২৯')}-এ <b>Goethe-Zertifikat A1 / telc Deutsch A1</b> পরীক্ষার প্রশিক্ষণ এবং ${lnk('#day-30','দিন ৩০')}-এ চূড়ান্ত পরীক্ষা। এগোনোর আগে ৯০ % পাওয়ার চেষ্টা করো – সেরা স্কোর সেভ থাকে।`,
+  c:[2]},
+ {k:/\bplan\b|\bsyllabus\b|kursplan|\bschedule\b|\bcurriculum\b|\bweeks?\b|\bwoche\b|সিলেবাস|প্ল্যান|সপ্তাহ|পাঠ্যসূচি|কোর্স প্ল্যান|কোর্সের পরিকল্পনা/i,
+  en:()=>`The course has ${DAYS.length} lessons in 5 weeks:<br>${WEEKS_EN()}<br>Open the ${lnk('#plan','Kursplan')} for all days and a grammar map. Ask “Day 8” or “Week 3” for details.`,
+  bn:()=>`কোর্সে ৫ সপ্তাহে ${bnNum(DAYS.length)}টি পাঠ আছে:<br>${WEEKS_BN()}<br>সব দিন ও ব্যাকরণ-ম্যাপের জন্য ${lnk('#plan','Kursplan')} খোলো। বিস্তারিত জানতে লেখো “দিন ৮” বা “সপ্তাহ ৩”।`,
+  c:[1]},
+ {k:/\bstart\b|\bbegin\b|how to use|how do i|use this|শুরু|ব্যবহার|কীভাবে|কিভাবে|kivabe|shuru/i,
+  en:()=>`Start with ${lnk('#day-1','Day 1')} and do one lesson a day: <b>1.</b> tap words with the speaker icon and repeat them aloud 3×, <b>2.</b> read the grammar and play the dialogue, <b>3.</b> do the exercises and press “Check”, <b>4.</b> practise the words with flashcards and mark the day as done. Every 7th day is a test.`,
+  bn:()=>`${lnk('#day-1','দিন ১')} থেকে শুরু করো, প্রতিদিন একটি পাঠ: <b>১.</b> স্পিকার আইকনযুক্ত শব্দে চাপ দিয়ে শোনো ও ৩ বার জোরে বলো, <b>২.</b> ব্যাকরণ পড়ো ও সংলাপ চালাও, <b>৩.</b> অনুশীলন করো ও “যাচাই করো” চাপো, <b>৪.</b> ফ্ল্যাশকার্ডে শব্দ অনুশীলন করে দিনটি শেষ চিহ্নিত করো। প্রতি ৭ম দিন পরীক্ষা।`,
+  c:[2,0]},
+ {k:/\bfeatures?\b|what can|what does|কী কী|কি কি|ফিচার|সুবিধা|সুযোগ/i,
+  en:()=>`Features: ${DAYS.length} daily lessons · ${nW()} words with articles and meanings · audio on every German word · dialogues · interactive exercises · weekly tests + final test · Goethe/telc exam training · flashcards · All-words page · <b>A–Z dictionary</b> · <b>translator with article + example sentences</b> · grammar secrets · EN/বাংলা switch · progress tracking · umlaut keyboard · mobile friendly · works offline.`,
+  bn:()=>`ফিচার: ${bnNum(DAYS.length)}টি দৈনিক পাঠ · আর্টিকেল ও অর্থসহ ${bnNum(nW())}টি শব্দ · প্রতিটি জার্মান শব্দে অডিও · সংলাপ · ইন্টারঅ্যাকটিভ অনুশীলন · সাপ্তাহিক ও চূড়ান্ত পরীক্ষা · Goethe/telc প্রস্তুতি · ফ্ল্যাশকার্ড · সব শব্দের পাতা · <b>A–Z অভিধান</b> · <b>আর্টিকেল ও উদাহরণ বাক্যসহ অনুবাদক</b> · ব্যাকরণ-কৌশল · EN/বাংলা সুইচ · অগ্রগতি ট্র্যাকিং · umlaut কীবোর্ড · মোবাইল-বান্ধব · অফলাইনে চলে।`,
+  c:[1,2]},
+ {k:/who (made|built|created|wrote)|author|creator|developer|কে বানিয়েছ|নির্মাতা|ডেভেলপার|কে তৈরি/i,
+  en:()=>`The course is an open GitHub project: ${lnk('https://github.com/MdBellalHosen/German-A1','github.com/MdBellalHosen/German-A1')}.`,
+  bn:()=>`কোর্সটি একটি ওপেন GitHub প্রজেক্ট: ${lnk('https://github.com/MdBellalHosen/German-A1','github.com/MdBellalHosen/German-A1')}।`,
+  c:[]},
+ {k:/\ba to z\b|\ba-z\b|\beverything\b|\boverview\b|all info|\babout\b|what is this|what is it|who are you|tell me|ওয়েবসাইট|ওয়েবসাইটটি|এ টু জেড|সব তথ্য|সবকিছু|পরিচয়|সম্পর্কে|কী এটা|এটা কী|এটি কী|ei website|website er/i,
+  en:()=>`<b>Deutsch A1 in 30 Tagen</b> is a complete German A1 course for Bangla speakers: ${DAYS.length} daily lessons (4 learning weeks + exam week) with ${nW()} words in English and Bangla, grammar tables, dialogues, interactive exercises, weekly tests, flashcards and audio for every German word – plus an A–Z dictionary, a translator and this help chat.<br><br>Pages: ${lnk('#home','Start')} · ${lnk('#plan','Kursplan')} · ${lnk('#words','Alle Wörter')} · ${lnk('#dictionary','Wörterbuch A–Z')} · ${lnk('#translate','Übersetzer')} · ${lnk('#secrets','Grammatik-Geheimnisse')}. The ⚙️ button opens the audio settings.`,
+  bn:()=>`<b>Deutsch A1 in 30 Tagen</b> বাংলাভাষীদের জন্য একটি সম্পূর্ণ জার্মান A1 কোর্স: ${bnNum(DAYS.length)}টি দৈনিক পাঠ (৪টি শেখার সপ্তাহ + পরীক্ষার সপ্তাহ), ইংরেজি ও বাংলা অর্থসহ ${bnNum(nW())}টি শব্দ, ব্যাকরণ-টেবিল, সংলাপ, ইন্টারঅ্যাকটিভ অনুশীলন, সাপ্তাহিক পরীক্ষা, ফ্ল্যাশকার্ড এবং প্রতিটি জার্মান শব্দে অডিও – সঙ্গে A–Z অভিধান, অনুবাদক ও এই হেল্প চ্যাট।<br><br>পাতাসমূহ: ${lnk('#home','Start')} · ${lnk('#plan','Kursplan')} · ${lnk('#words','Alle Wörter')} · ${lnk('#dictionary','Wörterbuch A–Z')} · ${lnk('#translate','Übersetzer')} · ${lnk('#secrets','Grammatik-Geheimnisse')}। ⚙️ বোতামে অডিও সেটিংস খোলে।`,
+  c:[1,2,3]},
+ {k:/^(thanks?|thank you|danke|ধন্যবাদ|শুকরিয়া|thx)\b|ধন্যবাদ/i,
+  en:()=>`Gern geschehen! 😊 Ask me anything else about the course.`,bn:()=>`Gern geschehen! (আপনাকেও ধন্যবাদ) 😊 কোর্স নিয়ে আরও কিছু জানতে চাইলে জিজ্ঞাসা করো।`,c:[0]},
+ {k:/^(bye|tschüss|tschuess|goodbye|auf wiedersehen|বিদায়|আল্লাহ হাফেজ)/i,
+  en:()=>`Tschüss! Viel Erfolg beim Deutschlernen! 🇩🇪`,bn:()=>`Tschüss! জার্মান শেখায় শুভকামনা! 🇩🇪🇧🇩`,c:[]}
+];
+const KB_SHORT=[
+ {k:/^(hi|hello|hey|hallo|salam|assalamu\S*|হ্যালো|হাই|সালাম|আসসালামু\S*|নমস্কার|guten (tag|morgen|abend))\b/i,
+  en:()=>`Hallo! 👋 I can answer questions about this course, look up words (with article and example sentences), and translate. What would you like to know?`,
+  bn:()=>`Hallo! 👋 আমি এই কোর্স নিয়ে প্রশ্নের উত্তর দিতে পারি, শব্দ (আর্টিকেল ও উদাহরণসহ) খুঁজে দিতে পারি এবং অনুবাদ করতে পারি। কী জানতে চাও?`,c:[0,1]}
+];
+const chips=(ids,lang)=>(ids&&ids.length?ids:[6,0,1,2,3,4,5]).map(i=>CH_MAIN[i]);
+function dayAns(n,lang){
+  const d=DAYS.find(x=>x.n===n);if(!d)return null;
+  const goals=(d.goals||[]).slice(0,4),gh=(d.gram||[]).map(g=>g.h).slice(0,5);
+  const nm=(d.vocab||[]).length,nd=(d.dlg||[]).length,ne=(d.ex||[]).length;
+  const wk=d.w>=5?['Exam week','পরীক্ষার সপ্তাহ']:['Week '+d.w,'সপ্তাহ '+bnNum(d.w)];
+  const en=`<b>Tag ${d.n} – ${esc(d.de)}</b><br>${esc(d.en)}<br><small>${wk[0]}${d.review?' · test day':''} · ${nm} words · ${nd} dialogue${nd===1?'':'s'} · ${ne} exercise sets</small>${goals.length?`<ul>${goals.map(g=>`<li>${esc(g[0])}</li>`).join('')}</ul>`:''}${gh.length?`Grammar: ${gh.map(esc).join(' · ')}<br>`:''}${lnk('#day-'+d.n,'Open Day '+d.n+' →')}`;
+  const bn=`<b>Tag ${d.n} – ${esc(d.de)}</b><br>${esc(d.bn)}<br><small>${wk[1]}${d.review?' · পরীক্ষার দিন':''} · ${bnNum(nm)}টি শব্দ · ${bnNum(nd)}টি সংলাপ · ${bnNum(ne)}টি অনুশীলন-সেট</small>${goals.length?`<ul>${goals.map(g=>`<li>${esc(g[1])}</li>`).join('')}</ul>`:''}${gh.length?`ব্যাকরণ: ${gh.map(esc).join(' · ')}<br>`:''}${lnk('#day-'+d.n,'দিন '+bnNum(d.n)+' খোলো →')}`;
+  return A(lang,en,bn);
+}
+function weekAns(w,lang){
+  const W=weeks().find(x=>x.w===w);if(!W)return null;
+  const li=(k)=>W.days.map(d=>`<li>${lnk('#day-'+d.n,'Tag '+d.n)} – ${esc(k==='bn'?d.bn:d.en)}${d.review?' ✔':''}</li>`).join('');
+  return A(lang,`<b>${W.w>=5?'Exam week':'Week '+W.w}</b> – ${WKT[w][0]}<ul>${li('en')}</ul>`,`<b>${W.w>=5?'পরীক্ষার সপ্তাহ':'সপ্তাহ '+bnNum(W.w)}</b> – ${WKT[w][1]}<ul>${li('bn')}</ul>`);
+}
+function vocabFind(q){
+  const X=buildLex(),toks=nrm(q).split(' ').filter(t=>t.length>=2&&!STOP.has(t)),hits=[],seen={};
+  const add=e=>{if(!seen[e.de]){seen[e.de]=1;hits.push(e);}};
+  toks.forEach(t=>{
+    if(X.wd[t])add(X.wd[t]);
+    (X.m.en[t]||[]).forEach(add);(X.m.bn[t]||[]).forEach(add);
+    if(BN_RE.test(t)&&t.length>=4){for(let i=t.length-1;i>=3;i--){const a=X.m.bn[t.slice(0,i)];if(a){a.forEach(add);break;}}}
+  });
+  return hits.slice(0,4);
+}
+function topicFind(q){
+  const toks=nrm(q).split(' ').filter(t=>t.length>=3&&!STOP.has(t));if(!toks.length)return[];
+  return DAYS.map(d=>{
+    const hay=nrm([d.s,d.de,d.en,d.bn].concat((d.goals||[]).map(g=>g.join(' '))).concat((d.gram||[]).map(g=>g.h)).join(' '));
+    let s=0;toks.forEach(t=>{if(hay.indexOf(t)>=0||(BN_RE.test(t)&&t.length>=5&&hay.indexOf(t.slice(0,t.length-2))>=0))s++;});
+    return{d:d,s:s};
+  }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||a.d.n-b.d.n).slice(0,4).map(x=>x.d);
+}
+const LW={de:/^(german|deutsch|জার্মান|jarman)/i,en:/^(english|englisch|ইংরেজি|ইংলিশ)/i,bn:/^(bangla|bengali|bengla|বাংলা)/i};
+const lwOf=s=>{s=String(s||'').trim();return LW.de.test(s)?'de':LW.en.test(s)?'en':LW.bn.test(s)?'bn':'';};
+function parseTr(q){
+  let m=/^\s*(?:translate|übersetze|übersetzen|\/tr|tr:|অনুবাদ(?:\s+করো|\s+কর)?)\s*[:\-]?\s*["“]?(.+?)["”]?\s+(?:to|into|in|ins|nach|auf)\s+(german|deutsch|english|englisch|bangla|bengali|বাংলা|জার্মান|ইংরেজি)\s*$/i.exec(q);
+  if(m)return{text:m[1],to:lwOf(m[2])};
+  m=/^\s*(?:how (?:do (?:i|you) )?say|what(?:'s| is| does)?)\s+["“']?(.+?)["”']?\s+in\s+(german|deutsch|english|bangla|bengali)\s*\??\s*$/i.exec(q);
+  if(m)return{text:m[1],to:lwOf(m[2])};
+  m=/^\s*["“]?(.+?)["”]?\s*(?:কে|টা|টি|এর)?\s*(জার্মান|ইংরেজি|বাংলা)(?:তে|য়|ায়|ে)?\s*(?:অনুবাদ|বলো|বল|লেখো|কী হবে|কি হবে|বলে)/.exec(q);
+  if(m)return{text:m[1],to:lwOf(m[2])};
+  return null;
+}
+function guessLang(t,to){
+  if(BN_RE.test(t))return'bn';
+  if(/[äöüß]/i.test(t)||/\b(ich|du|er|sie|es|wir|ihr|ist|bin|bist|sind|und|nicht|kein|keine|der|die|das|ein|eine|wie|was|wo|wer|wann|warum|haben|habe|hast|mein|dein|guten|danke|bitte|hallo|heiße|komme|aus|nach|mit|zu|für|auf|ja|nein|gut|schön|müde)\b/i.test(t))return'de';
+  if(to==='en'&&entryFor(t))return'de';
+  return to==='en'?'de':'en';
+}
+async function chatTranslate(p,lang){
+  const to=p.to,from=guessLang(p.text,to);
+  if(from===to)return{h:A(lang,`That text is already in ${TLN[to][1]}. Which language should I translate it into?`,`লেখাটি আগে থেকেই ${TLN[to][2]}-তে। কোন ভাষায় অনুবাদ করব?`),c:[3]};
+  const r=await trCore(p.text,from,to);
+  if(r.err)return{h:A(lang,'Sorry, I could not translate that right now (no internet or the online translator is busy). Words from the course work offline.','দুঃখিত, এখন অনুবাদ করা গেল না (ইন্টারনেট নেই বা অনলাইন অনুবাদক ব্যস্ত)। কোর্সের শব্দ অফলাইনে কাজ করে।'),c:[3]};
+  let h=`<small>${TLN[from][0]} → ${TLN[to][0]}</small><br><b style="font-size:16px" lang="${to}">${esc(r.text)}</b> ${to==='de'?sayBtn(r.text):''}`;
+  h+=r.entries.slice(0,2).map(e=>wordCard(e,{n:2})).join('');
+  if(r.guess)h+=guessCard(r.guess);
+  h+=`<br><small>${lnk('#translate','Open full translator →')}</small>`;
+  return{h:h,c:[3,4]};
+}
+const ART_Q=/article|artikel|আর্টিকেল|der.?die.?das|gender|লিঙ্গ/i;
+async function botReply(q){
+  const lang=chatLang(q),t=asciiNum(q).toLowerCase().trim();
+  const wc=t.split(/\s+/).length;
+  let m;
+  const tp=parseTr(q);if(tp&&tp.to&&tp.text)return chatTranslate(tp,lang);
+  if((m=/(?:\b(?:day|tag|din|dina)\b\s*#?\s*(\d{1,2})\b|(\d{1,2})\s*(?:ম|তম|র|ই|লা)?\s*(?:দিন|din\b|tag\b|day\b)|দিন\s*(\d{1,2}))/i.exec(t))){
+    const n=+(m[1]||m[2]||m[3]);const a=dayAns(n,lang);if(a)return{h:a,c:[2,5]};
+    return{h:A(lang,`The course has days 1 to ${DAYS.length}.`,`কোর্সে ১ থেকে ${bnNum(DAYS.length)} নম্বর দিন আছে।`),c:[2]};
+  }
+  if((m=/(?:\b(?:week|woche)\b\s*(\d)|(\d)\s*(?:ম|য়|র|তম)?\s*(?:সপ্তাহ|week|woche)|সপ্তাহ\s*(\d))/i.exec(t))){
+    const a=weekAns(+(m[1]||m[2]||m[3]),lang);if(a)return{h:a,c:[2]};
+  }
+  // explicit "meaning / article of ..." -> word lookup first; otherwise site topics first
+  const cue=ART_Q.test(q)||/\bmean(s|ing)?\b|মানে|অর্থ/i.test(q);
+  const kbHit=()=>{for(const k of (wc<=4?KB_SHORT:[]).concat(KB)){if(k.k.test(t)||k.k.test(q))return k;}return null;};
+  const kb=cue?null:kbHit();
+  if(!kb&&ART_Q.test(q)){
+    const cw=(q.match(/[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]{2,}/g)||[]).filter(x=>!/^(Article|Artikel|Der|Die|Das|Ein|Eine|What|Which|How)$/.test(x))[0];
+    if(cw){
+      const ce=entryFor(cw);
+      if(ce)return{h:A(lang,'Here is the match from the course:','কোর্স থেকে মিলে যাওয়া শব্দ:')+wordCard(ce,{n:2}),c:[4]};
+      const g=guessArticle(cw);
+      if(g)return{h:guessCard({w:cw,art:g.art,why:g.why}),c:[4]};
+      return{h:A(lang,`“${esc(cw)}” is not in the course word list, so I cannot say its article for sure. Try the translator or a dictionary.`,`“${esc(cw)}” কোর্সের শব্দতালিকায় নেই, তাই আর্টিকেল নিশ্চিত করে বলতে পারছি না। অনুবাদক বা অভিধানে দেখো।`),c:[3]};
+    }
+  }
+  if(!kb){
+    const hits=vocabFind(q);
+    if(hits.length&&(wc<=4||cue)){
+      return{h:A(lang,`Here ${hits.length>1?'are the matches':'is the match'} from the course:`,`কোর্স থেকে ${hits.length>1?'মিলে যাওয়া শব্দগুলো':'মিলে যাওয়া শব্দটি'}:`)+hits.map(e=>wordCard(e,{n:2})).join('')+`<small>${lnk('#dictionary','Dictionary A–Z →')}</small>`,c:[3,4]};
+    }
+  }
+  if(!kb&&ART_Q.test(q)){
+    const w=(q.match(/[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]{2,}/g)||[]).filter(x=>!/^(Article|Artikel|Der|Die|Das)$/.test(x))[0];
+    if(w){const g=guessArticle(w);if(g)return{h:guessCard({w:w,art:g.art,why:g.why}),c:[4]};
+      return{h:A(lang,`“${esc(w)}” is not in the course word list, so I cannot say its article for sure. Try the translator or a dictionary.`,`“${esc(w)}” কোর্সের শব্দতালিকায় নেই, তাই আর্টিকেল নিশ্চিত করে বলতে পারছি না। অনুবাদক বা অভিধানে দেখো।`),c:[3]};}
+  }
+  const k2=kb||kbHit();
+  if(k2)return{h:A(lang,k2.en(),k2.bn()),c:k2.c};
+  const days=topicFind(q);
+  if(days.length)return{h:A(lang,`These lessons match your question:<ul>${days.map(d=>`<li>${lnk('#day-'+d.n,'Tag '+d.n)} – ${esc(d.en)}</li>`).join('')}</ul>`,`এই পাঠগুলো তোমার প্রশ্নের সঙ্গে মেলে:<ul>${days.map(d=>`<li>${lnk('#day-'+d.n,'Tag '+d.n)} – ${esc(d.bn)}</li>`).join('')}</ul>`),c:[2]};
+  return{h:A(lang,`I could not find an answer to that. I can explain the course (plan, tests, audio, features), look up a word with its article and example sentences, or translate – try one of these:`,`এর উত্তর খুঁজে পাইনি। আমি কোর্স (প্ল্যান, পরীক্ষা, অডিও, ফিচার) বুঝিয়ে দিতে পারি, শব্দের আর্টিকেল ও উদাহরণ বাক্য খুঁজে দিতে পারি এবং অনুবাদ করতে পারি – এগুলো চেষ্টা করো:`),c:null};
+}
+function chatAdd(who,html){
+  const b=$('#chBody');const row=document.createElement('div');row.className='msg '+who;
+  const bub=document.createElement('div');bub.className='bub';bub.innerHTML=html;row.appendChild(bub);b.appendChild(row);b.scrollTop=b.scrollHeight;return bub;
+}
+function chatChips(ids){
+  const bn=store.get('lang','both')==='bn';
+  $('#chChips').innerHTML=chips(ids).map(c=>`<button type="button" data-act="chatq" data-q="${esc(bn?c[1]:c[0])}">${esc(bn?c[1]:c[0])}</button>`).join('');
+  $('#chChips').scrollLeft=0;
+}
+function chatSend(q){
+  q=String(q||'').trim();if(!q)return;
+  chatAdd('me',esc(q));
+  const bub=chatAdd('bot','<span class="dots"><i></i><i></i><i></i></span>');
+  Promise.resolve(botReply(q)).then(r=>{
+    setTimeout(()=>{bub.innerHTML=r.h;chatChips(r.c);$('#chBody').scrollTop=$('#chBody').scrollHeight;},250);
+  }).catch(()=>{bub.innerHTML=L('Sorry, something went wrong.','দুঃখিত, কিছু একটা সমস্যা হয়েছে।');});
+}
+function chatReset(){
+  $('#chBody').innerHTML='';
+  chatAdd('bot',`<b>Hallo! 👋</b><br>${L('Ask me anything about this site – lessons, tests, audio, features. I can also look up a word (with article and example sentences) or translate: try “translate ich bin müde to bangla”. Send a <b>photo of a German book page</b> (📷 / 🖼) and I translate it into Bangla – or speak with 🎙.','এই সাইট নিয়ে যেকোনো প্রশ্ন করো – পাঠ, পরীক্ষা, অডিও, ফিচার। আমি শব্দের আর্টিকেল ও উদাহরণ বাক্য খুঁজে দিতে পারি, অনুবাদও করতে পারি: লিখে দেখো “translate ich bin müde to bangla”। জার্মান বইয়ের <b>পাতার ছবি</b> (📷 / 🖼) পাঠালে আমি বাংলায় অনুবাদ করে দেব – অথবা 🎙 চেপে বলো।')}`);
+  chatChips(null);
+}
+function toggleChat(force){
+  const box=$('#chat');CH.open=force!=null?force:!CH.open;
+  box.hidden=!CH.open;document.body.classList.toggle('chat-open',CH.open);if(!CH.open){camClose();if(CH.rec){try{CH.rec.stop();}catch(e){}}}
+  $('#chatFab').setAttribute('aria-expanded',String(CH.open));
+  if(CH.open){vlLabel();if(!CH.ready){CH.ready=true;chatReset();}if(window.matchMedia&&matchMedia('(pointer:fine)').matches)setTimeout(()=>$('#chIn').focus(),50);}
+}
+
+/* ---- photos: read German text in pictures (OCR in the browser) and translate ---- */
+const OCR={worker:null,loading:null,cb:null,q:Promise.resolve()};
+const wait=t=>`<span class="dots"><i></i><i></i><i></i></span> <small>${t}</small>`;
+const chScroll=()=>{const b=$('#chBody');if(b)b.scrollTop=b.scrollHeight;};
+function loadScript(src){return new Promise((res,rej)=>{if(window.Tesseract)return res();const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('load'));document.head.appendChild(s);});}
+async function ocrWorker(){
+  if(OCR.worker)return OCR.worker;
+  if(!OCR.loading)OCR.loading=(async()=>{
+    await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
+    const w=await Tesseract.createWorker('deu+eng',1,{logger:m=>{if(OCR.cb)OCR.cb(m);}});
+    OCR.worker=w;return w;
+  })();
+  try{return await OCR.loading;}catch(e){OCR.loading=null;throw e;}
+}
+function loadImg(file){return new Promise((res,rej)=>{const u=URL.createObjectURL(file),i=new Image();i.onload=()=>{URL.revokeObjectURL(u);res(i);};i.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('img'));};i.src=u;});}
+/* shrink big phone photos, make grey + stretch contrast: faster and more accurate OCR */
+async function prepImage(file){
+  const img=await loadImg(file);
+  const sc=Math.min(1,2200/Math.max(img.naturalWidth,img.naturalHeight));
+  const w=Math.max(1,Math.round(img.naturalWidth*sc)),h=Math.max(1,Math.round(img.naturalHeight*sc));
+  const c=document.createElement('canvas');c.width=w;c.height=h;
+  const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,w,h);
+  const d=x.getImageData(0,0,w,h),p=d.data,hist=new Uint32Array(256);
+  for(let i=0;i<p.length;i+=4){const g=((p[i]*299+p[i+1]*587+p[i+2]*114)/1000)|0;p[i]=p[i+1]=p[i+2]=g;hist[g]++;}
+  const tot=w*h;let lo=0,hi=255,a=0;
+  while(lo<254&&(a+=hist[lo])<tot*0.02)lo++;
+  a=0;while(hi>1&&(a+=hist[hi])<tot*0.02)hi--;
+  if(hi-lo>20){const k=255/(hi-lo);for(let i=0;i<p.length;i+=4){let v=(p[i]-lo)*k;v=v<0?0:v>255?255:v;p[i]=p[i+1]=p[i+2]=v;}}
+  x.putImageData(d,0,0);
+  const tc=document.createElement('canvas'),ts=Math.min(1,150/Math.max(w,h));tc.width=Math.round(w*ts)||1;tc.height=Math.round(h*ts)||1;
+  tc.getContext('2d').drawImage(c,0,0,tc.width,tc.height);
+  return{canvas:c,thumb:tc.toDataURL('image/jpeg',0.7)};
+}
+function cleanOcr(t){return String(t||'').replace(/\r/g,'').replace(/-\n(?=[a-zäöüß])/g,'').replace(/[ \t]+/g,' ').replace(/\n{2,}/g,'\u0001').replace(/\n/g,' ').replace(/\u0001/g,'\n\n').replace(/ *\n */g,'\n').trim();}
+async function ocrOne(file,bub,i,total){
+  const set=h=>{bub.innerHTML=h;chScroll();};
+  const tag=total>1?`${L('Photo','ছবি')} ${i}/${total} · `:'';
+  let prep=null;
+  try{
+    set(wait(tag+L('Preparing photo …','ছবি প্রস্তুত হচ্ছে …')));
+    try{prep=await prepImage(file);}catch(e){set(`⚠ ${L('This picture could not be opened. Please use a JPG or PNG photo.','ছবিটি খোলা গেল না। অনুগ্রহ করে JPG বা PNG ছবি দাও।')}`);return;}
+    set(wait(tag+(OCR.worker?L('Reading text …','লেখা পড়া হচ্ছে …'):L('Loading the text reader (first time only, about 15 MB) …','টেক্সট রিডার লোড হচ্ছে (শুধু প্রথমবার, প্রায় ১৫ MB) …'))));
+    let w;
+    try{w=await ocrWorker();}catch(e){set(`⚠ ${L('The text reader could not be loaded. Please check your internet connection and try again.','টেক্সট রিডার লোড হয়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করো।')}`);return;}
+    OCR.cb=m=>{if(m.status==='recognizing text')set(wait(tag+L('Reading text … ','লেখা পড়া হচ্ছে … ')+Math.round((m.progress||0)*100)+' %'));};
+    let res;
+    try{res=await w.recognize(prep.canvas);}finally{OCR.cb=null;}
+    const thumb=prep.thumb;prep.canvas.width=prep.canvas.height=1;
+    const de=cleanOcr(res.data&&res.data.text);
+    const img=`<img class="ocrth" alt="" src="${thumb}">`;
+    if(de.replace(/\s/g,'').length<3){set(`${img}<div>⚠ ${L('I could not find any text in this picture. Try again with more light, hold the page straight and come closer.','এই ছবিতে কোনো লেখা পাইনি। আরও আলোয়, পাতা সোজা করে এবং কাছ থেকে আবার তোলো।')}</div>`);return;}
+    set(img+wait(tag+L('Translating …','অনুবাদ হচ্ছে …')));
+    const r=await trCore(de,'de','bn');
+    const low=res.data&&res.data.confidence<55;
+    let h=`${img}<small>${tag}Deutsch → বাংলা${r.src&&r.src!=='course'&&!r.err?' · '+esc(r.src):''}</small>`;
+    h+=`<div class="wc-h">Deutsch (${L('recognised','চেনা লেখা')})</div><div class="ocrtxt" lang="de">${esc(de)}</div><div class="trbtns">${sayBtn(de.slice(0,2500))}<button type="button" class="btn xs" data-act="trcopy" data-t="${esc(de)}">${L('Copy','কপি')}</button><button type="button" class="btn xs" data-act="ocrtotr" data-t="${esc(de)}">${IC.tr} ${L('Edit in translator','অনুবাদকে নাও')}</button></div>`;
+    if(r.err)h+=`<div class="trerr" style="margin-top:10px">${r.err==='offline'?L('You are offline – the translation needs internet.','তুমি অফলাইনে – অনুবাদের জন্য ইন্টারনেট লাগবে।'):L('The online translator could not be reached. Please try again.','অনলাইন অনুবাদক পাওয়া যায়নি। আবার চেষ্টা করো।')}</div>`;
+    else{
+      h+=`<div class="wc-h">বাংলা</div><div class="ocrtxt" lang="bn">${esc(r.text)}</div><div class="trbtns"><button type="button" class="btn xs" data-act="trcopy" data-t="${esc(r.text)}">${L('Copy','কপি')}</button><button type="button" class="btn xs" data-act="ocren" data-t="${esc(de)}">English</button></div><div class="ocren"></div>`;
+      h+=r.entries.slice(0,1).map(e=>wordCard(e,{n:2})).join('');
+      if(r.guess)h+=guessCard(r.guess);
+    }
+    if(!r.entries.length){const hp=wordHelp(de);if(hp.length)h+=`<div class="trhelp"><div class="wc-h">${L('Words with article','আর্টিকেলসহ শব্দ')}</div>${hp.map(x=>`<span class="chipw">${say(wordHtml(x.de,x.pl),x.de)} <span class="en">${esc(x.en)}</span><span class="bn">${esc(x.bn)}</span></span>`).join('')}</div>`;}
+    if(low)h+=`<small class="mute">${L('The text may contain reading errors (blurry or dark photo). Use “Edit in translator” to correct it.','লেখায় ভুল থাকতে পারে (ছবি ঝাপসা বা অন্ধকার)। ঠিক করতে “অনুবাদকে নাও” ব্যবহার করো।')}</small>`;
+    set(h);
+  }catch(e){set(`⚠ ${L('Something went wrong with this picture.','এই ছবিটিতে কিছু সমস্যা হয়েছে।')}`);}
+  finally{if(prep&&prep.canvas){prep.canvas.width=prep.canvas.height=1;}}
+}
+function chatImages(files){
+  files=Array.from(files||[]).filter(f=>/^image\//.test(f.type)||/\.(jpe?g|png|webp|bmp|gif|avif)$/i.test(f.name));
+  if(!files.length){toast(L('Please choose a picture (JPG or PNG).','একটি ছবি বেছে নাও (JPG বা PNG)।'),2800);return;}
+  if(!CH.open)toggleChat(true);
+  chatAdd('me',`📷 ${files.length} ${files.length===1?L('photo','ছবি'):L('photos','ছবি')}`);
+  files.forEach((f,i)=>{
+    const bub=chatAdd('bot',wait(L('Waiting …','অপেক্ষা …')));
+    OCR.q=OCR.q.then(()=>ocrOne(f,bub,i+1,files.length));
+  });
+}
+/* camera on computers (phones use the camera app through the file input) */
+async function camOpen(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){$('#chCamIn').click();return;}
+  try{
+    const st=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920}},audio:false});
+    CH.stream=st;const v=$('#chVid');v.srcObject=st;$('#chCam').hidden=false;
+  }catch(e){toast(L('Camera not available – choose a photo instead.','ক্যামেরা পাওয়া যায়নি – এর বদলে ছবি বেছে নাও।'),3000);$('#chFile').click();}
+}
+function camClose(){if(CH.stream){CH.stream.getTracks().forEach(t=>t.stop());CH.stream=null;}const v=$('#chVid');if(v)v.srcObject=null;const c=$('#chCam');if(c)c.hidden=true;}
+function camSnap(){
+  const v=$('#chVid');if(!v||!v.videoWidth)return;
+  const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);
+  c.toBlob(b=>{if(b){chatImages([new File([b],'camera.jpg',{type:'image/jpeg'})]);toast('✓ '+L('Photo added','ছবি যোগ হয়েছে'),1200);}},'image/jpeg',0.92);
+}
+/* voice input */
+const SRC=window.SpeechRecognition||window.webkitSpeechRecognition;
+const VL=[['bn-BD','বাংলা'],['en-US','English'],['de-DE','Deutsch']];
+CH.vl=store.get('vlang','bn-BD');
+const chPh=()=>{const i=$('#chIn');if(i)i.placeholder='Frage stellen … Ask … প্রশ্ন লিখুন …';};
+function vlLabel(){const v=VL.find(x=>x[0]===CH.vl)||VL[0];const b=$('#chVl');if(b)b.textContent='🎙 '+v[1];}
+function vlNext(){const i=VL.findIndex(x=>x[0]===CH.vl);CH.vl=VL[(i+1)%VL.length][0];store.set('vlang',CH.vl);vlLabel();}
+function micToggle(){
+  if(!SRC){toast(L('Voice input does not work in this browser – please use Chrome or Safari.','এই ব্রাউজারে ভয়েস ইনপুট চলে না – Chrome বা Safari ব্যবহার করো।'),3600);return;}
+  if(CH.rec){try{CH.rec.stop();}catch(e){}return;}
+  TTS.stop();
+  const r=new SRC(),inp=$('#chIn'),mic=$('#chMic');CH.rec=r;
+  r.lang=CH.vl;r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+  r.onstart=()=>{mic.classList.add('on');inp.placeholder=L('Listening … speak now','শুনছি … এখন বলো').replace(/<[^>]+>/g,'');};
+  r.onresult=e=>{let s='';for(let i=0;i<e.results.length;i++)s+=e.results[i][0].transcript;inp.value=s;};
+  r.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed')toast(L('Microphone is blocked – please allow it in your browser.','মাইক্রোফোন বন্ধ – ব্রাউজারে অনুমতি দাও।'),3600);else if(e.error==='no-speech')toast(L('I did not hear anything.','কিছু শুনতে পাইনি।'),1800);else if(e.error==='network')toast(L('Voice input needs internet.','ভয়েস ইনপুটের জন্য ইন্টারনেট লাগে।'),2600);};
+  r.onend=()=>{CH.rec=null;mic.classList.remove('on');chPh();const v=inp.value.trim();if(v){inp.value='';chatSend(v);}};
+  try{r.start();}catch(e){CH.rec=null;}
+}
+document.addEventListener('submit',e=>{if(e.target.id==='chForm'){e.preventDefault();const i=$('#chIn');const v=i.value;i.value='';chatSend(v);}});
+document.addEventListener('click',e=>{
+  const u=e.target.closest('#chUml button');
+  if(u){const i=$('#chIn'),s=i.selectionStart==null?i.value.length:i.selectionStart,en=i.selectionEnd==null?s:i.selectionEnd;i.value=i.value.slice(0,s)+u.textContent+i.value.slice(en);i.focus();try{i.setSelectionRange(s+1,s+1);}catch(x){}return;}
+  const a=e.target.closest('#chat a[data-close]');
+  if(a&&window.innerWidth<=700)toggleChat(false);
+});
+['pointerdown','mousedown'].forEach(ev=>document.addEventListener(ev,e=>{if(e.target.closest&&e.target.closest('#chUml'))e.preventDefault();}));
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&CH.open&&$('#modal').hidden)toggleChat(false);
+  if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&e.target.id==='trIn'){e.preventDefault();trGo();}
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='trFrom')trSet(e.target.value,TR.to===e.target.value?TR.from:TR.to);
+  else if(e.target.id==='trTo')trSet(TR.from===e.target.value?TR.to:TR.from,e.target.value);
+});
+document.addEventListener('input',e=>{
+  if(e.target.id==='dq'){DQ.q=e.target.value;renderDict();}
+});
+
+document.addEventListener('change',e=>{
+  if(e.target.id==='chFile'||e.target.id==='chCamIn'){const f=e.target.files;chatImages(f);e.target.value='';}
+});
+document.addEventListener('dragover',e=>{if(e.target.closest&&e.target.closest('#chat'))e.preventDefault();});
+document.addEventListener('drop',e=>{if(e.target.closest&&e.target.closest('#chat')&&e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files.length){e.preventDefault();chatImages(e.dataTransfer.files);}});
+document.addEventListener('paste',e=>{
+  if(!CH.open||!e.clipboardData||!e.clipboardData.files||!e.clipboardData.files.length)return;
+  const f=Array.from(e.clipboardData.files).filter(x=>/^image\//.test(x.type));
+  if(f.length){e.preventDefault();chatImages(f);}
+});
 
 /* ---------- router ---------- */
 function route(){
@@ -3973,6 +4793,8 @@ function route(){
   else if(h==='words'){r=h;showWords();}
   else if(h==='secrets'){r=h;showSecrets();}
   else if(h==='plan'){r=h;showPlan();}
+  else if(h==='translate'){r=h;showTranslate();}
+  else if(h==='dictionary'){r=h;showDictionary();}
   else showHome();
   renderNav(r);
   window.scrollTo(0,0);
