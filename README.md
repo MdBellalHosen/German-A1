@@ -6,7 +6,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 **বাংলাভাষীদের জন্য ৩০ দিনে সম্পূর্ণ জার্মান A1 কোর্স।**
 শব্দ, ব্যাকরণ, সংলাপ, অনুশীলন, সাপ্তাহিক পরীক্ষা আর প্রতিটি জার্মান শব্দে অডিও – ইংরেজি ও বাংলায়।
 
-🔗 **Live website:** **[mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/)**
+🔗 **Live website:** **[mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/)** – open it on your phone or computer, nothing to install.
 
 | Live pages | Link |
 |---|---|
@@ -136,10 +136,13 @@ The audio uses the **Web Speech API** – the text-to-speech engine that is buil
 Open **Übersetzer** (top right 🌐 icon, or `#translate`).
 
 - Choose a direction with one tap: **Deutsch → বাংলা**, **Deutsch → English**, **English → Deutsch**, **বাংলা → Deutsch** (or pick any pair with the two menus, ⇄ swaps them)
-- Type a word and you get the translation **plus the article** (coloured der = blue, die = red, das = green), gender, plural, English + Bangla meaning, the lesson (Tag) it comes from and **example sentences** (real sentences from the lessons; if there is none, a model sentence is made)
+- Type **any German, English or Bangla word** and you get the translation **plus the article** (coloured der = blue, die = red, das = green), gender and plural – and **4 example sentences** with English and Bangla translation
+  - **Word in the A1 course** → article, plural, meanings and the lesson (Tag) come from the course; the example sentences are real sentences from the lessons, completed with model sentences if needed
+  - **Word not in the course** → the word type and article (and plural) are looked up online in [German Wiktionary](https://de.wiktionary.org); if that is not possible the article is guessed from the ending and clearly marked as a guess
+  - **Pronouns, verbs, adjectives …** have no article – the card says so and shows the word type, with example sentences
+  - Model sentences are always grammatically safe patterns (e.g. *Das ist ein Tisch.* · *Wo ist der Tisch?* · *Ich brauche einen Tisch.* · *Wir haben zwei Tische.*) and are marked “model sentence”
 - Type a sentence and you get the translation and, for German text, the course words in it with their articles
-- Words and sentences from the course are answered **instantly and offline**. Everything else is translated online ([Google Translate](https://translate.google.com) web endpoint, with [MyMemory](https://mymemory.translated.net) as a fallback)
-- Nouns that are **not** in the A1 word list get an article **guess** from the word ending (-ung → die, -chen → das …). It is clearly marked as a guess – always check in a dictionary
+- The translation of words and sentences from the course is answered **instantly and offline** (example sentences that need a translation, and everything outside the course, need internet). Everything else is translated online ([Google Translate](https://translate.google.com) web endpoint, with [MyMemory](https://mymemory.translated.net) as a fallback)
 
 **Wörterbuch A–Z** (`#dictionary`) lists every word and phrase of the course (663 entries, 363 of them nouns with article) from A to Z. Switch **Deutsch → বাংলা**, **Deutsch → English** or both, search in German, English or Bangla, filter by **der / die / das / Plural**, jump with the letter bar and tap **Examples** for sentences.
 
@@ -208,7 +211,7 @@ DAYS.push({n:31, w:5, s:"Short title",
 - HTML, CSS and vanilla JavaScript – no frameworks, no build step
 - Web Speech API for audio (text-to-speech) and voice input (speech recognition)
 - [Tesseract.js](https://github.com/naptha/tesseract.js) (loaded from a CDN only when you send a photo) for reading German text in pictures
-- Google Translate web endpoint / MyMemory API for online translation (only used when the course has no answer)
+- Google Translate web endpoint / MyMemory API for online translation and [German Wiktionary](https://de.wiktionary.org) (articles and word types of words outside the course) – only used when the course has no answer
 - Google Fonts: Inter, Fraunces, Hind Siliguri
 - `localStorage` for progress (stays in your own browser only)
 
@@ -217,5 +220,7 @@ DAYS.push({n:31, w:5, s:"Short title",
 Found a mistake in German or Bangla? Open an issue or a pull request – corrections are very welcome!
 
 ---
+
+🔗 **Live:** [mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/) · 🌐 [Translator](https://mdbellalhosen.github.io/German-A1/#translate) · 📖 [Dictionary A–Z](https://mdbellalhosen.github.io/German-A1/#dictionary)
 
 **Viel Erfolg beim Deutschlernen! · জার্মান শেখায় শুভকামনা!** 🇩🇪🇧🇩
