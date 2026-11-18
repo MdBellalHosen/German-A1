@@ -3818,7 +3818,7 @@ function renderNav(route){
   const done=store.get('done',[]);
   let h=`<a href="#home" class="nl ${route==='home'?'on':''}"><span class="ib">${IC.home}</span><span class="nt">Start<small class="bn">শুরু</small></span></a><a href="#plan" class="nl ${route==='plan'?'on':''}"><span class="ib">${IC.cal}</span><span class="nt">Kursplan<small>Syllabus · সিলেবাস</small></span></a>`;
   weeks().forEach(W=>{h+=`<div class="ngroup">${weekDe(W.w)} · ${weekBn(W.w)}</div>`;W.days.forEach(d=>{const ok=done.indexOf(d.n)>=0;h+=`<a href="#day-${d.n}" class="nl ${route==='day-'+d.n?'on':''}"><span class="dn ${ok?'ok':''}">${ok?'✓':d.n}</span><span class="nt">${esc(d.s)}<small>Tag ${d.n}${d.review?' · Test':''}</small></span></a>`;});});
-  h+=`<div class="ngroup">Extras</div><a href="#book" class="nl ${route==='book'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Kursbuch A1<small>Course book chapters 1–12 · বইয়ের ১২ চ্যাপ্টার</small></span></a><a href="#words" class="nl ${route==='words'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Alle Wörter<small>All words · সব শব্দ</small></span></a><a href="#topics" class="nl ${route==='topics'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Themen-Training<small>Practice by topic · বিষয়ভিত্তিক</small></span></a><a href="#easy" class="nl ${route==='easy'?'on':''}"><span class="ib">${IC.cards}</span><span class="nt">Leicht erklärt<small>Easy guide & games · সহজ গাইড ও গেম</small></span></a><a href="#secrets" class="nl ${route==='secrets'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Grammatik-Geheimnisse<small>Grammar secrets · গোপন কৌশল</small></span></a><a href="#translate" class="nl ${route==='translate'?'on':''}"><span class="ib">${IC.tr}</span><span class="nt">Übersetzer<small>Translator · অনুবাদক</small></span></a><a href="#dictionary" class="nl ${route==='dictionary'?'on':''}"><span class="ib">${IC.dict}</span><span class="nt">Wörterbuch A–Z<small>Dictionary · অভিধান</small></span></a><a href="javascript:void 0" data-act="settings" class="nl"><span class="ib">${IC.spk}</span><span class="nt">Audio<small>Voice & speed · ভয়েস ও গতি</small></span></a>`;
+  h+=`<div class="ngroup">Extras</div><a href="#review" class="nl ${route==='review'?'on':''}"><span class="ib">${IC.cards}</span><span class="nt">Wiederholung<small>Spaced repetition · রিভিশন</small></span></a><a href="#listen" class="nl ${route==='listen'?'on':''}"><span class="ib">${IC.spk}</span><span class="nt">Hörverstehen<small>Listening · শোনা অনুশীলন</small></span></a><a href="#exam" class="nl ${route==='exam'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Prüfungs-Simulator<small>Mock exam · মক পরীক্ষা</small></span></a><a href="#book" class="nl ${route==='book'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Kursbuch A1<small>Course book chapters 1–12 · বইয়ের ১২ চ্যাপ্টার</small></span></a><a href="#words" class="nl ${route==='words'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Alle Wörter<small>All words · সব শব্দ</small></span></a><a href="#topics" class="nl ${route==='topics'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Themen-Training<small>Practice by topic · বিষয়ভিত্তিক</small></span></a><a href="#easy" class="nl ${route==='easy'?'on':''}"><span class="ib">${IC.cards}</span><span class="nt">Leicht erklärt<small>Easy guide & games · সহজ গাইড ও গেম</small></span></a><a href="#secrets" class="nl ${route==='secrets'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Grammatik-Geheimnisse<small>Grammar secrets · গোপন কৌশল</small></span></a><a href="#translate" class="nl ${route==='translate'?'on':''}"><span class="ib">${IC.tr}</span><span class="nt">Übersetzer<small>Translator · অনুবাদক</small></span></a><a href="#dictionary" class="nl ${route==='dictionary'?'on':''}"><span class="ib">${IC.dict}</span><span class="nt">Wörterbuch A–Z<small>Dictionary · অভিধান</small></span></a><a href="javascript:void 0" data-act="settings" class="nl"><span class="ib">${IC.spk}</span><span class="nt">Audio<small>Voice & speed · ভয়েস ও গতি</small></span></a>`;
   $('#side').innerHTML=h;
 }
 
@@ -3829,7 +3829,7 @@ function showHome(){
   let h=`<section class="hero"><div class="hero-main"><div class="kicker">Komplettkurs A1 · 30 Tage</div><h1>Deutsch lernen<br><span>A1 in 30 Tagen</span></h1>
   <p class="en">The complete A1 syllabus in one month for Bangla speakers: one lesson a day with vocabulary, grammar, dialogues, exercises, a test every week, exam training – and audio on every German word.</p>
   <p class="bn">বাংলাভাষীদের জন্য এক মাসে পুরো A1 সিলেবাস: প্রতিদিন একটি পাঠ – শব্দ, ব্যাকরণ, সংলাপ, অনুশীলন, প্রতি সপ্তাহে একটি পরীক্ষা, পরীক্ষার প্রস্তুতি – আর প্রতিটি জার্মান শব্দে অডিও।</p>
-  <div class="hero-cta"><a class="btn gold" href="#day-${next}">${done.length?'Weiter':'Los geht\'s'} → Tag ${next}</a><button class="btn" data-act="testaudio">${IC.spk} ${L('Test audio','অডিও পরীক্ষা')}</button><a class="btn" href="#book">${IC.book} ${L('Course book 1–12','বই চ্যাপ্টার ১–১২')}</a><a class="btn" href="#topics">${IC.book} ${L('Practice by topic','বিষয়ভিত্তিক অনুশীলন')}</a><a class="btn" href="#easy">${IC.cards} ${L('Easy guide & games','সহজ গাইড ও গেম')}</a><a class="btn" href="#translate">${IC.tr} ${L('Translator','অনুবাদক')}</a><a class="btn" href="#dictionary">${IC.dict} ${L('Dictionary A–Z','A–Z অভিধান')}</a><button class="btn" data-act="chat">${IC.chat} ${L('Help chat','হেল্প চ্যাট')}</button></div><div class="astatus" style="margin-top:12px"></div></div>
+  <div class="hero-cta"><a class="btn gold" href="#day-${next}">${done.length?'Weiter':'Los geht\'s'} → Tag ${next}</a><button class="btn" data-act="testaudio">${IC.spk} ${L('Test audio','অডিও পরীক্ষা')}</button><a class="btn" href="#review">${IC.cards} ${L('Review words','শব্দ রিভিশন')}</a><a class="btn" href="#listen">${IC.spk} ${L('Listening','শোনা')}</a><a class="btn" href="#exam">${IC.key} ${L('Mock exam','মক পরীক্ষা')}</a><a class="btn" href="#book">${IC.book} ${L('Course book 1–12','বই চ্যাপ্টার ১–১২')}</a><a class="btn" href="#topics">${IC.book} ${L('Practice by topic','বিষয়ভিত্তিক অনুশীলন')}</a><a class="btn" href="#easy">${IC.cards} ${L('Easy guide & games','সহজ গাইড ও গেম')}</a><a class="btn" href="#translate">${IC.tr} ${L('Translator','অনুবাদক')}</a><a class="btn" href="#dictionary">${IC.dict} ${L('Dictionary A–Z','A–Z অভিধান')}</a><button class="btn" data-act="chat">${IC.chat} ${L('Help chat','হেল্প চ্যাট')}</button></div><div class="astatus" style="margin-top:12px"></div></div>
   <div class="hero-side"><h3>${L('Try it – tap a word','চেষ্টা করো – শব্দে চাপ দাও')}</h3><div class="bubbles">${['Hallo!','Guten Morgen!','Danke schön!','Wie geht\'s?','Tschüss!','Ich heiße …','Entschuldigung!'].map(w=>`<span class="bubble say" role="button" tabindex="0" data-say="${esc(w)}">${esc(w)}</span>`).join('')}</div>
   <div style="margin-top:auto"><div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px"><span>${L('Your progress','তোমার অগ্রগতি')}</span><span>${done.length} / ${DAYS.length}</span></div><div class="pbar"><i style="width:${pct}%"></i></div></div></div></section>`;
   if(done.length>=DAYS.length&&DAYS.length)h+=`<div class="card cert"><div class="kicker">🎓 Zertifikat</div><h2>Herzlichen Glückwunsch!</h2><p class="en">You have completed all ${DAYS.length} days of the A1 course. You are ready for the Goethe-Zertifikat A1 / telc Deutsch A1.</p><p class="bn">তুমি A1 কোর্সের সব ${bnNum(DAYS.length)} দিন শেষ করেছ। এখন তুমি গ্যোটে-সার্টিফিকেট A1 / telc Deutsch A1 পরীক্ষার জন্য প্রস্তুত।</p></div>`;
@@ -4311,26 +4311,75 @@ function bkQs(c,withTF){
   return q;
 }
 function bkBuild(mode,id){
+  if(mode==='listen'||mode==='exam')return bkBuildMore(mode);
   if(mode==='ch'){const c=BOOK[id-1];return ezShuffle(bkQs(c,true));}
   if(mode==='test'){const a=(id-1)*3;let q=[];BOOK.slice(a,a+3).forEach(c=>{q=q.concat(bkQs(c,true));});return ezShuffle(q);}
   let q=[];BOOK.forEach(c=>{q=q.concat(bkQs(c,true));});return ezShuffle(q).slice(0,20);
 }
 function bkRender(){
   const box=$('#bkBox');if(!box)return;
-  if(!BK.list.length){box.innerHTML=`<p class="en">${BK.mode==='final'?'20 random questions from all 12 chapters. Pass mark: 60%.':'Mixed questions: grammar and reading, with explanations.'}</p><p class="bn">${BK.mode==='final'?'১২টি চ্যাপ্টার থেকে ২০টি এলোমেলো প্রশ্ন। পাস মার্ক: ৬০%।':'ব্যাকরণ ও পড়ার মিশ্র প্রশ্ন, ব্যাখ্যাসহ।'}</p><button type="button" class="btn primary" data-act="bkstart">${L('Start','শুরু করো')}</button>`;return;}
+  const lm=BK.mode==='listen',em=BK.mode==='exam';
+  if(!BK.list.length){box.innerHTML=`<p class="en">${em?'Tap start when you are ready. The timer starts now.':lm?'10 listening questions.':BK.mode==='final'?'20 random questions from all 12 chapters. Pass mark: 60%.':'Mixed questions: grammar and reading, with explanations.'}</p><p class="bn">${em?'প্রস্তুত হলে শুরু চাপো। টাইমার তখনই চালু হবে।':lm?'১০টি শোনার প্রশ্ন।':BK.mode==='final'?'১২টি চ্যাপ্টার থেকে ২০টি এলোমেলো প্রশ্ন। পাস মার্ক: ৬০%।':'ব্যাকরণ ও পড়ার মিশ্র প্রশ্ন, ব্যাখ্যাসহ।'}</p><button type="button" class="btn primary" data-act="bkstart">${L('Start','শুরু করো')}</button>`;return;}
   const n=BK.list.length;
   if(BK.i>=n){
     const pct=Math.round(BK.ok*100/n),pass=pct>=60;
-    if(BK.mode!=='ch'){const best=store.get('bk:'+BK.mode+BK.id,0);if(pct>best)store.set('bk:'+BK.mode+BK.id,pct);}
-    box.innerHTML=`<div style="font-size:24px;font-weight:700">${BK.ok} / ${n} · ${pct}% ${pass?'🏆':'💪'}</div><p>${pass?L('Bestanden! You passed.','পাস করেছ!'):L('Not yet 60%. Read the chapter again and retry.','এখনও ৬০% হয়নি। চ্যাপ্টার আবার পড়ে চেষ্টা করো।')}</p><div class="trbtns" style="margin-top:10px"><button type="button" class="btn primary" data-act="bkstart">${L('Again','আবার')}</button></div>`;return;
+    if(BK.mode==='ch'){}else if(BK.mode==='listen'||BK.mode==='exam'){const best=store.get('bk:'+BK.mode,0);if(pct>best)store.set('bk:'+BK.mode,pct);}else{const best=store.get('bk:'+BK.mode+BK.id,0);if(pct>best)store.set('bk:'+BK.mode+BK.id,pct);}
+    box.innerHTML=`<div style="font-size:24px;font-weight:700">${BK.ok} / ${n} · ${pct}% ${pass?'🏆':'💪'}</div><p>${pass?L('Bestanden! You passed.','পাস করেছ!'):L('Not yet 60%. Read the chapter again and retry.','এখনও ৬০% হয়নি। চ্যাপ্টার আবার পড়ে চেষ্টা করো।')}</p>${em?exResult():''}<div class="trbtns" style="margin-top:10px"><button type="button" class="btn primary" data-act="bkstart">${L('Again','আবার')}</button></div>`;return;
   }
   const q=BK.list[BK.i],done=BK.ans!==null;
-  box.innerHTML=`<div class="mute" style="font-size:13px">${BK.i+1} / ${n} · ${q.t==='tf'?L('Richtig oder falsch?','সত্য নাকি মিথ্যা?'):L('Choose the answer','উত্তর বাছাই করো')} · ${L('Chapter','চ্যাপ্টার')} ${q.ch}</div>
-  ${q.t==='tf'?`<div class="card" style="margin:8px 0;background:var(--soft,#f6f7fb)">${say(esc(q.ctx),q.ctx)}</div>`:''}
+  const kind=q.t==='tf'?L('Richtig oder falsch?','সত্য নাকি মিথ্যা?'):q.t==='ha'?L('What do you hear?','কী শুনছ?'):q.t==='ht'?L('Listen, then decide','শোনো, তারপর ঠিক করো'):L('Choose the answer','উত্তর বাছাই করো');
+  const ctx=q.t==='tf'?`<div class="card" style="margin:8px 0">${say(esc(q.ctx),q.ctx)}</div>`:q.t==='ht'?`<div class="card" style="margin:8px 0">${sayBtn(q.ctx)} ${L('Play the text','লেখাটি শোনো')}${done?`<p>${esc(q.ctx)}</p>`:''}</div>`:q.t==='ha'?`<div class="card" style="margin:8px 0">${sayBtn(q.sent)} ${L('Play the sentence','বাক্যটি শোনো')}</div>`:'';
+  box.innerHTML=`<div class="mute" style="font-size:13px">${BK.i+1} / ${n} · ${kind}${q.part?' · '+q.part:''}${q.t!=='ha'&&q.t!=='ht'||true?' · '+L('Chapter','চ্যাপ্টার')+' '+q.ch:''}</div>${ctx}
   <div style="font-size:20px;font-weight:700;margin:8px 0">${esc(q.q)}</div>
   <div class="opts">${q.opts.map((o,i)=>`<button type="button" class="opt ${done?(o===q.a?'right':(i===BK.ans?'wrong':'')):''}" data-act="bkpick" data-i="${i}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div>
   ${done?`<div class="fb">${q.opts[BK.ans]===q.a?'✅ '+L('Richtig!','ঠিক!'):'❌ '+L('Correct:','সঠিক:')+' <b>'+esc(q.a)+'</b>'}<div class="en mute">${esc(q.ex[0])}</div><div class="bn mute">${esc(q.ex[1])}</div></div><div class="trbtns" style="margin-top:10px"><button type="button" class="btn primary" data-act="bknext">${BK.i+1>=n?L('Result','ফলাফল'):L('Next','পরের')}</button></div>`:''}`;
 }
+/* ---------- Training: Wiederholung (spaced repetition), Hörverstehen, Prüfungs-Simulator, streak ---------- */
+function todayN(){return Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5);}
+function streakBump(){const s=store.get('streak',{d:0,n:0}),t=todayN();if(s.d===t)return s;s.n=(s.d===t-1)?s.n+1:1;s.d=t;store.set('streak',s);return s;}
+function streakNow(){const s=store.get('streak',{d:0,n:0});return (s.d===todayN()||s.d===todayN()-1)?s.n:0;}
+const SRS_INT=[1,2,4,8,16,32];
+function srsDeck(){const m={};BOOK.forEach(c=>c.v.forEach(v=>{m[v[0]]=v;}));TOPICS.forEach(t=>t.v.forEach(v=>{if(/^(der|die|das)\s/.test(v[0]))m[v[0]]=v;}));return m;}
+function srsStats(){const deck=srsDeck(),s=store.get('srs',{}),t=todayN();let due=0,learned=0,seen=0;Object.keys(s).forEach(k=>{if(!deck[k])return;seen++;if(s[k][1]<=t)due++;if(s[k][0]>=3)learned++;});return {total:Object.keys(deck).length,seen,due,learned,fresh:Object.keys(deck).length-seen};}
+const RV={q:[],i:0,ok:0,shown:false,n:0};
+function rvBuild(){const deck=srsDeck(),s=store.get('srs',{}),t=todayN();
+  const due=Object.keys(s).filter(k=>deck[k]&&s[k][1]<=t),fresh=ezShuffle(Object.keys(deck).filter(k=>!s[k]));
+  return ezShuffle(due).slice(0,15).concat(fresh.slice(0,Math.max(5,15-Math.min(due.length,15))).slice(0,10)).map(k=>deck[k]);}
+function rvRender(){const box=$('#rvBox');if(!box)return;
+  if(!RV.q.length){box.innerHTML=`<p class="en">Each session shows words that are due plus a few new ones. Say if you knew the word. Known words come back later, forgotten words come back soon.</p><p class="bn">প্রতি সেশনে যে শব্দগুলোর সময় হয়েছে ও কিছু নতুন শব্দ আসে। জানলে “Gewusst”, না জানলে “Nochmal”। জানা শব্দ দেরিতে, ভুলে যাওয়া শব্দ তাড়াতাড়ি ফিরে আসে।</p><button type="button" class="btn primary" data-act="rvstart">${L('Start session','সেশন শুরু')}</button>`;return;}
+  if(RV.i>=RV.q.length){box.innerHTML=`<div style="font-size:24px;font-weight:700">${RV.ok} / ${RV.n} 🎉</div><p>${L('Session done. Come back tomorrow for the next due words.','সেশন শেষ। পরের শব্দের জন্য কাল ফিরে এসো।')}</p><p>🔥 ${L('Streak','টানা দিন')}: ${streakNow()}</p><button type="button" class="btn primary" data-act="rvstart">${L('Another session','আরেকটি সেশন')}</button>`;return;}
+  const v=RV.q[RV.i];
+  box.innerHTML=`<div class="mute" style="font-size:13px">${RV.i+1} / ${RV.q.length}</div><div style="font-size:22px;font-weight:700;margin:10px 0"><span class="en">${esc(v[2])}</span> · <span class="bn">${esc(v[3])}</span></div>${RV.shown?`<div class="card" style="font-size:22px">${say(wordHtml(v[0],v[1]),v[0])} ${v[1]&&v[1]!=='-'&&v[1]!=='Pl.'?`<div class="mute" style="font-size:14px">Plural: ${esc(v[1])}</div>`:''}</div><div class="trbtns" style="margin-top:10px"><button type="button" class="btn primary" data-act="rvyes">✅ Gewusst</button><button type="button" class="btn" data-act="rvno">🔁 Nochmal</button></div>`:`<button type="button" class="btn primary" data-act="rvshow">${L('Show German word','জার্মান শব্দ দেখাও')}</button>`}`;}
+function rvGrade(ok){const v=RV.q[RV.i],s=store.get('srs',{}),cur=s[v[0]]?s[v[0]][0]:-1,t=todayN();
+  const b=ok?Math.min(cur+1,5):0;s[v[0]]=[b,ok?t+SRS_INT[b]:t];store.set('srs',s);streakBump();
+  if(ok)RV.ok++;else if(RV.q.length<30)RV.q.push(v);
+  RV.i++;RV.shown=false;rvRender();}
+function showReview(){const st=srsStats();RV.q=[];RV.i=0;RV.ok=0;RV.shown=false;
+  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>🔁 Wiederholung</h1><p class="en">Spaced repetition: the best way to keep words in your head. ${st.total} words from the course book and the topics.</p><p class="bn">স্পেসড রিপিটিশন: শব্দ মনে রাখার সেরা উপায়। কোর্সবুক ও টপিক থেকে ${bnNum(st.total)}টি শব্দ।</p></div><div class="topgrid"><div class="card"><h3>${st.due}</h3><div class="mute">${L('due now','এখন রিভিশনের')}</div></div><div class="card"><h3>${st.fresh}</h3><div class="mute">${L('new words','নতুন শব্দ')}</div></div><div class="card"><h3>${st.learned}</h3><div class="mute">${L('well known','ভালো জানা')}</div></div><div class="card"><h3>🔥 ${streakNow()}</h3><div class="mute">${L('day streak','টানা দিন')}</div></div></div><div class="card" style="margin-top:14px"><div id="rvBox"></div></div>`;rvRender();}
+
+function hearQs(c,nHa,nHt){const q=[];
+  ezShuffle(c.p.slice()).slice(0,nHa).forEach(p=>{const d=ezShuffle(c.p.filter(x=>x!==p)).slice(0,2);q.push({t:'ha',sent:p[0],q:'',opts:ezShuffle([p[0]].concat(d.map(x=>x[0]))),a:p[0],ex:[p[1],p[2]],ch:c.n,part:'Hören'});});
+  if(nHt)ezShuffle(c.les[1].slice()).slice(0,nHt).forEach(x=>q.push({t:'ht',ctx:c.les[0],q:x[0],opts:['Richtig','Falsch'],a:x[1]?'Richtig':'Falsch',ex:[x[2],x[3]],ch:c.n,part:'Hören'}));
+  return q;}
+function bkBuildMore(mode){
+  if(mode==='listen'){let q=[];ezShuffle(BOOK.slice()).slice(0,6).forEach(c=>{q=q.concat(hearQs(c,1,1));});return ezShuffle(q).slice(0,10);}
+  let h=[],l=[],g=[];
+  ezShuffle(BOOK.slice()).slice(0,6).forEach(c=>{h=h.concat(hearQs(c,1,1)).slice(0);});h=ezShuffle(h).slice(0,6);
+  ezShuffle(BOOK.slice()).slice(0,6).forEach(c=>{const r=ezShuffle(c.les[1].slice())[0];l.push({t:'tf',ctx:c.les[0],q:r[0],opts:['Richtig','Falsch'],a:r[1]?'Richtig':'Falsch',ex:[r[2],r[3]],ch:c.n,part:'Lesen'});});
+  ezShuffle(BOOK.slice()).slice(0,8).forEach(c=>{const x=ezShuffle(c.q.slice())[0];g.push({t:'mc',q:x[0],opts:ezShuffle(x[1].slice()),a:x[1][x[2]],ex:[x[3],x[4]],ch:c.n,part:'Grammatik'});});
+  return h.concat(l,g);}
+function showListen(){BK.mode='listen';BK.id=0;BK.list=[];BK.i=0;BK.ok=0;BK.ans=null;
+  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>🎧 Hörverstehen</h1><p class="en">Listening practice like the A1 exam. Press the speaker, listen (you can repeat), then answer. The text is hidden until you answer. Use headphones; set the voice speed in Audio.</p><p class="bn">A1 পরীক্ষার মতো শোনার অনুশীলন। স্পিকারে চাপ দাও, শোনো (আবার শোনা যায়), তারপর উত্তর দাও। উত্তরের আগে লেখা দেখা যাবে না। হেডফোন ব্যবহার করো; গতি Audio-তে ঠিক করো।</p></div><div class="card"><div id="bkBox"></div></div>`;bkRender();}
+function showExam(){BK.mode='exam';BK.id=0;BK.list=[];BK.i=0;BK.ok=0;BK.ans=null;clearInterval(BK.tm);
+  main().innerHTML=`<div class="pagehead"><div class="kicker">Extras</div><h1>🎓 Prüfungs-Simulator</h1><p class="en">A mock of the A1 exam: Hören (6) → Lesen (6) → Grammatik (8) → then Schreiben and Sprechen tasks with model answers. 40 minutes. Pass mark 60%.</p><p class="bn">A1 পরীক্ষার মক: শোনা (৬) → পড়া (৬) → ব্যাকরণ (৮) → তারপর লেখা ও বলার টাস্ক নমুনা উত্তরসহ। ৪০ মিনিট। পাস মার্ক ৬০%।</p></div><div class="card"><div id="exTimer" class="mute" style="font-weight:700"></div><div id="bkBox"></div></div>`;bkRender();}
+function exStart(){BK.end=Date.now()+40*60e3;clearInterval(BK.tm);
+  const tick=()=>{const e=$('#exTimer');if(!e||BK.mode!=='exam'){clearInterval(BK.tm);return;}const left=BK.end-Date.now();if(left<=0){clearInterval(BK.tm);BK.i=BK.list.length;bkRender();return;}e.textContent='⏱ '+Math.floor(left/6e4)+':'+String(Math.floor(left/1e3)%60).padStart(2,'0');};
+  tick();BK.tm=setInterval(tick,1000);}
+function exResult(){clearInterval(BK.tm);const e=$('#exTimer');if(e)e.textContent='';
+  const parts={};BK.list.forEach((q,i)=>{const p=q.part||'';parts[p]=parts[p]||[0,0];parts[p][1]++;if(q.right)parts[p][0]++;});
+  const c=ezShuffle(BOOK.slice())[0],c2=ezShuffle(BOOK.slice())[0];
+  return `<div class="card" style="margin-top:12px"><h3>${L('Result by part','অংশ অনুযায়ী ফল')}</h3>${Object.keys(parts).map(p=>`<div>${p}: <b>${parts[p][0]} / ${parts[p][1]}</b></div>`).join('')}</div><div class="card" style="margin-top:12px"><h3>✍️ Schreiben</h3><div class="en">${esc(c.sch[0])}</div><div class="bn">${esc(c.sch[1])}</div><textarea class="win" rows="3" placeholder="Schreib hier …"></textarea><details><summary>${L('Show model answer','নমুনা উত্তর দেখো')}</summary><p>${say(esc(c.sch[2]),c.sch[2])}</p></details><h3 style="margin-top:14px">🗣️ Sprechen</h3><div class="en">${esc(c2.spr[0])}</div><div class="bn">${esc(c2.spr[1])}</div><details><summary>${L('Show model answer','নমুনা উত্তর দেখো')}</summary><p>${say(esc(c2.spr[2]),c2.spr[2])}</p></details></div>`;}
+
 function bkDayLinks(c){
   let h=c.days.map(d=>`<a class="btn" href="#day-${d}">${L('Day','দিন')} ${d}</a>`).join(' ');
   if(c.top)h+=` <a class="btn" href="#topic-${c.top}">${IC.book} ${L('Topic practice','বিষয়ভিত্তিক অনুশীলন')}</a>`;
@@ -4446,8 +4495,12 @@ function act(a,el,ev){
     case'testaudio':TTS.say('Hallo! Willkommen zum Deutschkurs. Viel Spaß beim Lernen!',el);break;
     case'stop':TTS.stop();break;
     case'chat':toggleChat();break;
-    case'bkstart':{BK.list=bkBuild(BK.mode,BK.id);BK.i=0;BK.ok=0;BK.ans=null;bkRender();break;}
-    case'bkpick':{const q=BK.list[BK.i];if(q&&BK.ans===null){BK.ans=+el.dataset.i;if(q.opts[BK.ans]===q.a)BK.ok++;bkRender();}break;}
+    case'bkstart':{BK.list=bkBuild(BK.mode,BK.id);BK.i=0;BK.ok=0;BK.ans=null;if(BK.mode==='exam')exStart();bkRender();break;}
+    case'rvstart':{RV.q=rvBuild();RV.n=RV.q.length;RV.i=0;RV.ok=0;RV.shown=false;rvRender();break;}
+    case'rvshow':{RV.shown=true;rvRender();break;}
+    case'rvyes':{rvGrade(true);break;}
+    case'rvno':{rvGrade(false);break;}
+    case'bkpick':{const q=BK.list[BK.i];if(q&&BK.ans===null){BK.ans=+el.dataset.i;q.right=q.opts[BK.ans]===q.a;if(q.right)BK.ok++;streakBump();bkRender();}break;}
     case'bknext':{BK.i++;BK.ans=null;bkRender();break;}
     case'tqstart':{const t=TOPICS.find(x=>x.id===TQ.t);if(t){TQ.list=tqBuild(t);TQ.i=0;TQ.ok=0;TQ.ans=null;tqRender();}break;}
     case'tqpick':{const q=TQ.list[TQ.i];if(q&&TQ.ans===null){TQ.ans=+el.dataset.i;if(q.opts[TQ.ans]===q.a)TQ.ok++;tqRender();}break;}
@@ -5245,7 +5298,7 @@ async function trAll(text,lang,from){
 const AI_ENDPOINT='https://german-a1-eight.vercel.app/api/chat';  /* free Gemini proxy on Vercel – see README "Premium AI" */
 const aiUrl=()=>window.AI_ENDPOINT||AI_ENDPOINT;
 const aiOn=()=>!!aiUrl()&&navigator.onLine!==false&&Date.now()>CH.aiUntil;
-const ABOUT='Site: "Deutsch A1 in 30 Tagen" – free German A1 course for Bangla speakers, live at '+LIVE_URL+'. 30 daily lessons in 5 weeks (1 Basics, 2 Everyday life, 3 Living in Germany, 4 Past/work/travel, 5 Exam week). Each lesson: goals, vocabulary with article colours (der blue, die red, das green), grammar, dialogues with audio (browser text-to-speech), exercises, daily test. Pages: #translate (translator DE/EN/BN with article and example sentences), #dictionary (A1 dictionary A-Z), #words, #book (Kursbuch A1: the 12 Netzwerk A1 chapters – Guten Tag!, Freunde Kollegen und ich, In der Stadt, Guten Appetit!, Tag für Tag, Zeit mit Freunden, Kontakte, Meine Wohnung, Alles Arbeit?, Kleidung und Mode, Gesund und munter, Ab in den Urlaub! – each with grammar, words, practice sentences, reading, writing/speaking tasks and a quiz; plus 4 tests and a final mock exam: #booktest-1..4, #bookfinal), #topics (Themen-Training: 8 topics – Wohnung, Essen & Trinken, Arbeit & Beruf, Familie, Einkaufen, Freizeit, Unterwegs, Beim Arzt – with words, phrases, dialogue, quiz), #easy (Leicht erklärt: article trainer game, sentence builder game, nicht/kein, modal verbs, separable verbs, prepositions, question words, numbers and time, 20 key verbs, common mistakes, A1 exam guide, daily plan and self-test), #secrets (grammar tips). Language switch: English / বাংলা / both. Progress is saved in the browser. Chat tools: photo/camera of a German book page, voice input.';
+const ABOUT='Site: "Deutsch A1 in 30 Tagen" – free German A1 course for Bangla speakers, live at '+LIVE_URL+'. 30 daily lessons in 5 weeks (1 Basics, 2 Everyday life, 3 Living in Germany, 4 Past/work/travel, 5 Exam week). Each lesson: goals, vocabulary with article colours (der blue, die red, das green), grammar, dialogues with audio (browser text-to-speech), exercises, daily test. Pages: #translate (translator DE/EN/BN with article and example sentences), #dictionary (A1 dictionary A-Z), #words, #review (Wiederholung: spaced-repetition word cards with daily streak), #listen (Hörverstehen: listening practice), #exam (Prüfungs-Simulator: 40-minute mock exam with Hören, Lesen, Grammatik, Schreiben, Sprechen), #book (Kursbuch A1: the 12 Netzwerk A1 chapters – Guten Tag!, Freunde Kollegen und ich, In der Stadt, Guten Appetit!, Tag für Tag, Zeit mit Freunden, Kontakte, Meine Wohnung, Alles Arbeit?, Kleidung und Mode, Gesund und munter, Ab in den Urlaub! – each with grammar, words, practice sentences, reading, writing/speaking tasks and a quiz; plus 4 tests and a final mock exam: #booktest-1..4, #bookfinal), #topics (Themen-Training: 8 topics – Wohnung, Essen & Trinken, Arbeit & Beruf, Familie, Einkaufen, Freizeit, Unterwegs, Beim Arzt – with words, phrases, dialogue, quiz), #easy (Leicht erklärt: article trainer game, sentence builder game, nicht/kein, modal verbs, separable verbs, prepositions, question words, numbers and time, 20 key verbs, common mistakes, A1 exam guide, daily plan and self-test), #secrets (grammar tips). Language switch: English / বাংলা / both. Progress is saved in the browser. Chat tools: photo/camera of a German book page, voice input.';
 async function aiAsk(msgs,imgs){
   const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),32000);
   try{
@@ -5486,6 +5539,9 @@ function route(){
   else if(h==='secrets'){r=h;showSecrets();}
   else if(h==='easy'){r=h;showEasy();}
   else if(h==='topics'){r=h;showTopics();}
+  else if(h==='review'){r=h;showReview();}
+  else if(h==='listen'){r=h;showListen();}
+  else if(h==='exam'){r=h;showExam();}
   else if(h==='book'){r=h;showBook();}
   else if((m=/^book-(\d+)$/.exec(h))){r='book';showBookChapter(+m[1]);}
   else if((m=/^booktest-([1-4])$/.exec(h))){r='book';showBookTest('test',+m[1]);}
