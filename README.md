@@ -14,6 +14,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 | 🌐 Translator (DE · EN · বাংলা) | [#translate](https://mdbellalhosen.github.io/German-A1/#translate) |
 | 📖 A1 Dictionary A–Z | [#dictionary](https://mdbellalhosen.github.io/German-A1/#dictionary) |
 | 📚 All words | [#words](https://mdbellalhosen.github.io/German-A1/#words) |
+| 🧩 Easy guide & games | [#easy](https://mdbellalhosen.github.io/German-A1/#easy) |
 | 🔑 Grammar secrets | [#secrets](https://mdbellalhosen.github.io/German-A1/#secrets) |
 
 ---
@@ -37,6 +38,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 - **Mobile friendly** – works on phone, tablet and computer
 - **🌐 Translator** – German → Bangla, German → English, English → German, Bangla → German (also English ↔ Bangla). For every word you get the **article (der / die / das)**, gender, plural and **example sentences**
 - **📖 A1 Dictionary A–Z** – all course words and phrases in alphabetical order with article, plural, Bangla and English meaning (German → Bangla / German → English / both), search in any language, filter by der / die / das, example sentences on tap
+- **🧩 Leicht erklärt (easy guide & games)** – `#easy`: **article trainer** (der/die/das game with the ending rule after every answer), **sentence builder** (tap words into the right order), nicht vs. kein, modal verbs, separable verbs, prepositions, question words, numbers & time, the 20 key verbs, common mistakes, **A1 exam guide** (Goethe A1 format, speaking and writing models), a 15-minute daily plan and a 12-point **A1 self-test**
 - **💬 Help chat** – ask anything about the website (plan, days, tests, audio, features, how to host …), look up a word with its article, or paste any German / English / Bangla text and get it translated into the other two languages automatically (optional free Gemini AI for a premium feel). Bangla, English and Banglish questions are understood
 - **📷 Photo translation** – send **as many pictures as you like** (camera or gallery, several at once, paste or drag & drop). The German text in each picture is read (OCR) and translated into **Bangla** (English with one tap)
 - **🎙 Voice input** – speak your question to the chat in বাংলা, English or Deutsch
@@ -190,7 +192,7 @@ api/chat.ts        Optional free AI proxy (TypeScript, Vercel Function → Googl
 package.json, tsconfig.json, vercel.json   Config for the AI function only
 ```
 
-Pages (hash routes): `#home` · `#plan` · `#day-1` … `#day-30` · `#words` · `#secrets` · `#translate` · `#dictionary`
+Pages (hash routes): `#home` · `#easy` · `#plan` · `#day-1` … `#day-30` · `#words` · `#secrets` · `#translate` · `#dictionary`
 
 ## ✏️ Edit or add content
 

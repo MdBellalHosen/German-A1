@@ -350,6 +350,10 @@ input[type=range]{width:100%;accent-color:var(--red)}
 .bub .wr{margin:6px 0;padding:7px 9px;background:var(--soft);border:1px solid var(--line);border-radius:10px}
 .bub .tb{margin:8px 0 0;padding:8px 10px;background:var(--soft);border:1px solid var(--line);border-radius:10px}.bub .tb .ocrtxt{margin:2px 0 4px}
 .bub .aib{display:inline-block;margin-bottom:4px;color:var(--mute)}.bub .aimd p{margin:0 0 6px}.bub .aimd ul{margin:4px 0 6px 18px}
+.ezchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.ezchips a{padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}.ezchips a:hover{border-color:var(--m);color:var(--m)}
+.sb-ans{min-height:52px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;margin:10px 0;border:2px dashed var(--line);border-radius:12px;background:#fbf8f1}.sb-ans.ok{border-color:var(--ok);background:var(--okbg)}.sb-ans.bad{border-color:var(--bad);background:var(--badbg)}
+.exline{padding:8px 0;border-top:1px solid #f0ebe0}.bad-s{color:var(--bad);text-decoration:line-through}
+.ezcan{display:grid;gap:8px;margin:12px 0}.ezc{display:flex;gap:10px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;cursor:pointer;font:inherit;color:var(--ink)}.ezc .bx{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid #cfc6b3;display:grid;place-items:center;color:transparent;font-size:14px}.ezc.on{border-color:var(--ok);background:var(--okbg)}.ezc.on .bx{background:var(--ok);border-color:var(--ok);color:#fff}
 .dots{display:inline-flex;gap:4px;align-items:center;height:18px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:dots 1s infinite ease-in-out}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dots{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
@@ -3813,7 +3817,7 @@ function renderNav(route){
   const done=store.get('done',[]);
   let h=`<a href="#home" class="nl ${route==='home'?'on':''}"><span class="ib">${IC.home}</span><span class="nt">Start<small class="bn">শুরু</small></span></a><a href="#plan" class="nl ${route==='plan'?'on':''}"><span class="ib">${IC.cal}</span><span class="nt">Kursplan<small>Syllabus · সিলেবাস</small></span></a>`;
   weeks().forEach(W=>{h+=`<div class="ngroup">${weekDe(W.w)} · ${weekBn(W.w)}</div>`;W.days.forEach(d=>{const ok=done.indexOf(d.n)>=0;h+=`<a href="#day-${d.n}" class="nl ${route==='day-'+d.n?'on':''}"><span class="dn ${ok?'ok':''}">${ok?'✓':d.n}</span><span class="nt">${esc(d.s)}<small>Tag ${d.n}${d.review?' · Test':''}</small></span></a>`;});});
-  h+=`<div class="ngroup">Extras</div><a href="#words" class="nl ${route==='words'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Alle Wörter<small>All words · সব শব্দ</small></span></a><a href="#secrets" class="nl ${route==='secrets'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Grammatik-Geheimnisse<small>Grammar secrets · গোপন কৌশল</small></span></a><a href="#translate" class="nl ${route==='translate'?'on':''}"><span class="ib">${IC.tr}</span><span class="nt">Übersetzer<small>Translator · অনুবাদক</small></span></a><a href="#dictionary" class="nl ${route==='dictionary'?'on':''}"><span class="ib">${IC.dict}</span><span class="nt">Wörterbuch A–Z<small>Dictionary · অভিধান</small></span></a><a href="javascript:void 0" data-act="settings" class="nl"><span class="ib">${IC.spk}</span><span class="nt">Audio<small>Voice & speed · ভয়েস ও গতি</small></span></a>`;
+  h+=`<div class="ngroup">Extras</div><a href="#words" class="nl ${route==='words'?'on':''}"><span class="ib">${IC.book}</span><span class="nt">Alle Wörter<small>All words · সব শব্দ</small></span></a><a href="#easy" class="nl ${route==='easy'?'on':''}"><span class="ib">${IC.cards}</span><span class="nt">Leicht erklärt<small>Easy guide & games · সহজ গাইড ও গেম</small></span></a><a href="#secrets" class="nl ${route==='secrets'?'on':''}"><span class="ib">${IC.key}</span><span class="nt">Grammatik-Geheimnisse<small>Grammar secrets · গোপন কৌশল</small></span></a><a href="#translate" class="nl ${route==='translate'?'on':''}"><span class="ib">${IC.tr}</span><span class="nt">Übersetzer<small>Translator · অনুবাদক</small></span></a><a href="#dictionary" class="nl ${route==='dictionary'?'on':''}"><span class="ib">${IC.dict}</span><span class="nt">Wörterbuch A–Z<small>Dictionary · অভিধান</small></span></a><a href="javascript:void 0" data-act="settings" class="nl"><span class="ib">${IC.spk}</span><span class="nt">Audio<small>Voice & speed · ভয়েস ও গতি</small></span></a>`;
   $('#side').innerHTML=h;
 }
 
@@ -3824,7 +3828,7 @@ function showHome(){
   let h=`<section class="hero"><div class="hero-main"><div class="kicker">Komplettkurs A1 · 30 Tage</div><h1>Deutsch lernen<br><span>A1 in 30 Tagen</span></h1>
   <p class="en">The complete A1 syllabus in one month for Bangla speakers: one lesson a day with vocabulary, grammar, dialogues, exercises, a test every week, exam training – and audio on every German word.</p>
   <p class="bn">বাংলাভাষীদের জন্য এক মাসে পুরো A1 সিলেবাস: প্রতিদিন একটি পাঠ – শব্দ, ব্যাকরণ, সংলাপ, অনুশীলন, প্রতি সপ্তাহে একটি পরীক্ষা, পরীক্ষার প্রস্তুতি – আর প্রতিটি জার্মান শব্দে অডিও।</p>
-  <div class="hero-cta"><a class="btn gold" href="#day-${next}">${done.length?'Weiter':'Los geht\'s'} → Tag ${next}</a><button class="btn" data-act="testaudio">${IC.spk} ${L('Test audio','অডিও পরীক্ষা')}</button><a class="btn" href="#translate">${IC.tr} ${L('Translator','অনুবাদক')}</a><a class="btn" href="#dictionary">${IC.dict} ${L('Dictionary A–Z','A–Z অভিধান')}</a><button class="btn" data-act="chat">${IC.chat} ${L('Help chat','হেল্প চ্যাট')}</button></div><div class="astatus" style="margin-top:12px"></div></div>
+  <div class="hero-cta"><a class="btn gold" href="#day-${next}">${done.length?'Weiter':'Los geht\'s'} → Tag ${next}</a><button class="btn" data-act="testaudio">${IC.spk} ${L('Test audio','অডিও পরীক্ষা')}</button><a class="btn" href="#easy">${IC.cards} ${L('Easy guide & games','সহজ গাইড ও গেম')}</a><a class="btn" href="#translate">${IC.tr} ${L('Translator','অনুবাদক')}</a><a class="btn" href="#dictionary">${IC.dict} ${L('Dictionary A–Z','A–Z অভিধান')}</a><button class="btn" data-act="chat">${IC.chat} ${L('Help chat','হেল্প চ্যাট')}</button></div><div class="astatus" style="margin-top:12px"></div></div>
   <div class="hero-side"><h3>${L('Try it – tap a word','চেষ্টা করো – শব্দে চাপ দাও')}</h3><div class="bubbles">${['Hallo!','Guten Morgen!','Danke schön!','Wie geht\'s?','Tschüss!','Ich heiße …','Entschuldigung!'].map(w=>`<span class="bubble say" role="button" tabindex="0" data-say="${esc(w)}">${esc(w)}</span>`).join('')}</div>
   <div style="margin-top:auto"><div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px"><span>${L('Your progress','তোমার অগ্রগতি')}</span><span>${done.length} / ${DAYS.length}</span></div><div class="pbar"><i style="width:${pct}%"></i></div></div></div></section>`;
   if(done.length>=DAYS.length&&DAYS.length)h+=`<div class="card cert"><div class="kicker">🎓 Zertifikat</div><h2>Herzlichen Glückwunsch!</h2><p class="en">You have completed all ${DAYS.length} days of the A1 course. You are ready for the Goethe-Zertifikat A1 / telc Deutsch A1.</p><p class="bn">তুমি A1 কোর্সের সব ${bnNum(DAYS.length)} দিন শেষ করেছ। এখন তুমি গ্যোটে-সার্টিফিকেট A1 / telc Deutsch A1 পরীক্ষার জন্য প্রস্তুত।</p></div>`;
@@ -3948,6 +3952,172 @@ function showSecrets(){
   main().innerHTML=h;
 }
 
+/* ---------- "Leicht erklärt": easy guide, trainers, exam help ---------- */
+const EZ={az:null,sb:null};
+const EZ_END=[['ung','die'],['heit','die'],['keit','die'],['schaft','die'],['ion','die'],['tät','die'],['ik','die'],['ur','die'],['ei','die'],['chen','das'],['lein','das'],['ment','das'],['um','das'],['nis','das'],['ling','der'],['ismus','der'],['or','der']];
+const ezHint=w=>{const m=/^(der|die|das)\s+(.+)$/.exec(w);if(!m)return'';const n=m[2].toLowerCase();for(const e of EZ_END){if(n.length>e[0].length+1&&n.endsWith(e[0])&&e[1]===m[1])return L(`Hint: <b>-${e[0]}</b> → ${e[1]}`,`ইঙ্গিত: <b>-${e[0]}</b> → ${e[1]}`);}return'';};
+const ezShuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+function azPool(){return allWords().map(x=>x.v).filter(v=>/^(der|die|das)\s/.test(v[0])&&v[1]!=='Pl.');}
+function azStart(miss){
+  const pool=azPool();let list;
+  if(miss&&miss.length)list=ezShuffle(miss).slice(0,10);
+  else list=ezShuffle(pool).slice(0,10);
+  EZ.az={list:list,i:0,ok:0,miss:[],done:false,ans:''};
+  azRender();
+}
+function azRender(){
+  const box=$('#azBox');if(!box)return;const s=EZ.az;
+  if(!s){box.innerHTML=`<p class="en">Pick the right article for 10 random words from the course. After every answer you see the rule that helps.</p><p class="bn">কোর্সের ১০টি এলোমেলো শব্দের সঠিক আর্টিকেল বাছো। প্রতিটি উত্তরের পর সাহায্যকারী নিয়ম দেখতে পাবে।</p><button type="button" class="btn primary" data-act="azstart">${L('Start','শুরু করো')}</button>`;return;}
+  if(s.done||s.i>=s.list.length){
+    const miss=s.miss;
+    box.innerHTML=`<div class="fin-score"><b style="font-size:22px">${s.ok} / ${s.list.length}</b> ${s.ok>=9?'🏆':s.ok>=7?'👍':'💪'}</div>${miss.length?`<p class="en">Learn these again:</p><p class="bn">এগুলো আবার শেখো:</p><div>${miss.map(v=>`<span class="chipw">${say(wordHtml(v[0],v[1]),v[0])} <span class="en">${esc(v[2])}</span><span class="bn">${esc(v[3])}</span></span>`).join('')}</div>`:`<p class="en">Perfect! 🎉</p><p class="bn">দারুণ! 🎉</p>`}<div class="trbtns" style="margin-top:12px"><button type="button" class="btn primary" data-act="azstart">${L('New round','নতুন রাউন্ড')}</button>${miss.length?`<button type="button" class="btn" data-act="azmiss">${L('Practise my mistakes','ভুলগুলো আবার অনুশীলন')}</button>`:''}</div>`;
+    return;
+  }
+  const v=s.list[s.i],noun=v[0].replace(/^(der|die|das)\s+/,'');
+  box.innerHTML=`<div class="mute" style="font-size:13px">${s.i+1} / ${s.list.length}</div><div style="font-size:26px;font-weight:700;margin:6px 0">${s.ans?wordHtml(v[0],v[1]):'___ '+esc(noun)} ${s.ans?sayBtn(v[0]):''}</div><div class="en mute">${esc(v[2])}</div><div class="bn mute">${esc(v[3])}</div>
+  <div class="opts" id="azOpts">${['der','die','das'].map(a=>`<button type="button" class="opt ${s.ans?(a===v[0].split(' ')[0]?'right':(a===s.ans?'wrong':'')):''}" data-act="azpick" data-a="${a}" ${s.ans?'disabled':''}>${a}</button>`).join('')}</div>
+  ${s.ans?`<div class="fb">${s.ans===v[0].split(' ')[0]?'✅ '+L('Richtig!','ঠিক!'):'❌ '+L('Not quite – it is','হয়নি – সঠিকটি')+' <b>'+esc(v[0].split(' ')[0])+'</b>'} ${ezHint(v[0])}</div><div class="trbtns" style="margin-top:10px"><button type="button" class="btn primary" data-act="aznext">${s.i+1>=s.list.length?L('Result','ফলাফল'):L('Next','পরের')}</button></div>`:''}`;
+}
+function azPick(a){const s=EZ.az;if(!s||s.ans)return;const v=s.list[s.i];s.ans=a;if(a===v[0].split(' ')[0])s.ok++;else s.miss.push(v);azRender();}
+function azNext(){const s=EZ.az;if(!s)return;s.i++;s.ans='';if(s.i>=s.list.length){s.done=true;store.set('azBest',Math.max(store.get('azBest',0),s.ok));}azRender();}
+
+const SB_LIST=[
+['Ich lerne heute Deutsch.','I learn German today.','আমি আজ জার্মান শিখছি।',['Heute lerne ich Deutsch.']],
+['Wo wohnst du?','Where do you live?','তুমি কোথায় থাকো?'],
+['Ich möchte einen Kaffee trinken.','I would like to drink a coffee.','আমি একটা কফি খেতে চাই।'],
+['Er steht um sieben Uhr auf.','He gets up at seven o\'clock.','সে সাতটায় ঘুম থেকে ওঠে।'],
+['Ich habe gestern Tee getrunken.','I drank tea yesterday.','আমি গতকাল চা খেয়েছি।'],
+['Ich habe keine Zeit.','I have no time.','আমার সময় নেই।'],
+['Kommst du morgen mit?','Are you coming along tomorrow?','তুমি কি কাল সঙ্গে আসবে?'],
+['Warum lernst du Deutsch?','Why are you learning German?','তুমি কেন জার্মান শিখছ?'],
+['Ich gehe heute nicht zur Schule.','I am not going to school today.','আমি আজ স্কুলে যাচ্ছি না।'],
+['Wir können am Montag kommen.','We can come on Monday.','আমরা সোমবার আসতে পারি।'],
+['Das Buch kostet zehn Euro.','The book costs ten euros.','বইটার দাম দশ ইউরো।'],
+['Ich fahre mit dem Bus zur Arbeit.','I go to work by bus.','আমি বাসে করে কাজে যাই।']
+];
+function sbStart(){EZ.sb={i:Math.floor(Math.random()*SB_LIST.length),order:SB_LIST.map((_,i)=>i),ans:[],res:''};sbNew(EZ.sb.i);}
+function sbNew(i){const e=SB_LIST[i],w=e[0].replace(/[.?!]$/,'').split(' ');let t=ezShuffle(w.map((x,k)=>({w:x,k:k})));if(t.map(x=>x.w).join(' ')===w.join(' '))t=t.reverse();EZ.sb={i:i,tiles:t,ans:[],res:''};sbRender();}
+function sbRender(){
+  const box=$('#sbBox');if(!box)return;if(!EZ.sb){sbStart();return;}const s=EZ.sb,e=SB_LIST[s.i];
+  const used=s.ans.map(x=>x.k);
+  box.innerHTML=`<div class="en">${esc(e[1])}</div><div class="bn">${esc(e[2])}</div>
+  <div class="sb-ans ${s.res}" id="sbAns">${s.ans.length?s.ans.map((x,j)=>`<button type="button" class="opt" data-act="sbback" data-j="${j}">${esc(x.w)}</button>`).join(''):`<span class="mute">${L('Tap the words in the right order …','শব্দগুলো সঠিক ক্রমে চাপো …')}</span>`}</div>
+  <div class="opts">${s.tiles.filter(x=>used.indexOf(x.k)<0).map(x=>`<button type="button" class="opt" data-act="sbpick" data-k="${x.k}">${esc(x.w)}</button>`).join('')}</div>
+  ${s.res==='ok'?`<div class="fb">✅ ${L('Richtig!','ঠিক!')} ${sayBtn(e[0])}</div>`:s.res==='bad'?`<div class="fb">❌ ${L('Not yet – try again or tap a word to remove it.','এখনও না – আবার চেষ্টা করো বা শব্দে চেপে সরাও।')}</div>`:''}
+  <div class="trbtns" style="margin-top:10px"><button type="button" class="btn" data-act="sbnew">${L('Next sentence','পরের বাক্য')}</button><button type="button" class="btn" data-act="sbclear">${L('Reset','আবার')}</button></div>`;
+}
+function sbCheck(){
+  const s=EZ.sb,e=SB_LIST[s.i];if(s.ans.length!==s.tiles.length){s.res='';return;}
+  const g=s.ans.map(x=>x.w).join(' ');
+  const goods=[e[0].replace(/[.?!]$/,'')].concat((e[3]||[]).map(x=>x.replace(/[.?!]$/,'')));
+  s.res=goods.indexOf(g)>=0?'ok':'bad';
+}
+
+const EZ_CAN=[
+['I can introduce myself (name, age, country, job).','আমি নিজের পরিচয় দিতে পারি (নাম, বয়স, দেশ, পেশা)।'],
+['I can spell my name and say my phone number.','আমি নিজের নামের বানান ও ফোন নম্বর বলতে পারি।'],
+['I can count to 100 and say prices.','আমি ১০০ পর্যন্ত গুনতে ও দাম বলতে পারি।'],
+['I can tell the time and make an appointment.','আমি সময় বলতে ও অ্যাপয়েন্টমেন্ট ঠিক করতে পারি।'],
+['I can order food and drinks.','আমি খাবার ও পানীয় অর্ডার করতে পারি।'],
+['I can ask for the way and understand simple directions.','আমি পথ জিজ্ঞেস করতে ও সহজ নির্দেশ বুঝতে পারি।'],
+['I can describe my family and my daily routine.','আমি পরিবার ও দৈনন্দিন রুটিন বর্ণনা করতে পারি।'],
+['I know der / die / das for the words I use most.','যে শব্দগুলো বেশি ব্যবহার করি তাদের der / die / das জানি।'],
+['I can build simple sentences (verb on position 2) and questions.','আমি সহজ বাক্য (ক্রিয়া ২য় স্থানে) ও প্রশ্ন বানাতে পারি।'],
+['I can use können, müssen, wollen, möchten.','আমি können, müssen, wollen, möchten ব্যবহার করতে পারি।'],
+['I can say what I did yesterday (Perfekt).','আমি গতকাল কী করেছি তা বলতে পারি (Perfekt)।'],
+['I can fill in a form and write a short message (20–30 words).','আমি ফর্ম পূরণ ও ছোট বার্তা (২০–৩০ শব্দ) লিখতে পারি।']
+];
+function ezChk(k){const c=store.get('ezc',{});c[k]=!c[k];store.set('ezc',c);const n=EZ_CAN.filter((_,i)=>c[i]).length;const b=$('#ezCnt');if(b)b.textContent=n+' / '+EZ_CAN.length;const row=$(`[data-act="ezchk"][data-k="${k}"]`);if(row)row.classList.toggle('on',!!c[k]);const bar=$('#ezBar');if(bar)bar.style.width=Math.round(n/EZ_CAN.length*100)+'%';}
+
+function showEasy(){
+  const mt=(head,rows)=>`<div class="tbl"><table><thead><tr>${head.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td>${i===0?`<b>${esc(c)}</b>`:say(esc(c),c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const ex=(a,b,c)=>`<div class="exline">${say(esc(a),a)}<div class="en mute">${esc(b)}</div><div class="bn mute">${esc(c)}</div></div>`;
+  const chips=[['ez1','Artikel'],['ez2','Satzbau'],['ez3','nicht / kein'],['ez4','Modalverben'],['ez5','Trennbare Verben'],['ez6','Präpositionen'],['ez7','Fragen'],['ez8','Zahlen & Zeit'],['ez9','Verben'],['ez10','Fehler'],['ez11','Prüfung'],['ez12','Lernplan']];
+  let h=`<div class="pagehead"><div class="kicker">Extras</div><h1>Leicht erklärt</h1><p class="en">Everything you need to finish A1 – explained in the simplest way, with games to practise. Start at the top, one box a day.</p><p class="bn">A1 শেষ করার জন্য যা যা দরকার – একদম সহজ ভাষায়, অনুশীলনের গেমসহ। উপর থেকে শুরু করো, দিনে একটি বক্স।</p><div class="ezchips">${chips.map(c=>`<a href="javascript:void 0" data-act="ezgo" data-id="${c[0]}">${c[1]}</a>`).join('')}</div></div>`;
+  const done=store.get('ezc',{}),nDone=EZ_CAN.filter((_,i)=>done[i]).length;
+
+  h+=sec('ez1','1 · Artikel-Trainer',L('Game: der, die or das?','গেম: der, die নাকি das?'),`<div class="card"><div id="azBox"></div><p class="mute" style="margin-top:10px;font-size:13px">${L('Best score','সেরা স্কোর')}: ${store.get('azBest',0)} / 10 · ${L('Words come from all 30 lessons.','শব্দ ৩০টি পাঠ থেকে আসে।')}</p></div>
+  <div class="card"><p class="en"><b>3 easy rules to start:</b> (1) Look at the ending: -ung, -heit, -keit, -schaft, -ion → <span class="cf">die</span>; -chen, -lein, -ment → <span class="cn">das</span>; -ling, -ismus → <span class="cm">der</span>. (2) Men and male jobs → <span class="cm">der</span>; women and female jobs → <span class="cf">die</span>. (3) Plural is always <span class="cp">die</span>. For everything else: learn the article <b>together with</b> the word – use the colours! More in ${lnk('#secrets','Grammatik-Geheimnisse')}.</p><p class="bn"><b>শুরুতে ৩টি সহজ নিয়ম:</b> (১) শেষাংশ দেখো: -ung, -heit, -keit, -schaft, -ion → <span class="cf">die</span>; -chen, -lein, -ment → <span class="cn">das</span>; -ling, -ismus → <span class="cm">der</span>। (২) পুরুষ ও পুরুষের পেশা → <span class="cm">der</span>; নারী ও নারীর পেশা → <span class="cf">die</span>। (৩) বহুবচন সবসময় <span class="cp">die</span>। বাকিগুলো শব্দের <b>সঙ্গে একসাথে</b> শেখো – রং ব্যবহার করো! আরও আছে ${lnk('#secrets','Grammatik-Geheimnisse')} পাতায়।</p></div>`);
+
+  h+=sec('ez2','2 · Satzbau-Baukasten',L('Game: build the sentence','গেম: বাক্য সাজাও'),`<div class="card"><div id="sbBox"></div></div>
+  <div class="card"><p class="en"><b>The one rule:</b> the verb is always the <b>second block</b>. Question without a question word: verb first. Question word (wo, was, wie …) first, then the verb.</p><p class="bn"><b>একটাই নিয়ম:</b> ক্রিয়া সবসময় <b>২য় ব্লকে</b>। প্রশ্ন-শব্দ ছাড়া প্রশ্ন: ক্রিয়া আগে। প্রশ্ন-শব্দ (wo, was, wie …) আগে, তারপর ক্রিয়া।</p>${srows([['Statement','সাধারণ বাক্য',['Ich lerne Deutsch.','Heute lerne ich Deutsch.']],['Yes/No question','হ্যাঁ/না প্রশ্ন',['Lernst du Deutsch?']],['W-question','W-প্রশ্ন',['Was lernst du?','Wo wohnst du?']]])}</div>`);
+
+  h+=sec('ez3','3 · nicht oder kein?',L('Say “no” correctly','“না” সঠিকভাবে বলো'),`<div class="card">${srows([
+   ['<b>kein</b> = no + noun (when you would say <i>ein</i> or no article).','<b>kein</b> = বিশেষ্যের আগে “না” (যেখানে <i>ein</i> বা কোনো আর্টিকেল ছাড়া বলতে)।',['Das ist kein Auto.','Ich habe keine Zeit.','Ich habe keinen Bruder.']],
+   ['<b>nicht</b> = everything else: verbs, adjectives, der/die/das-nouns.','<b>nicht</b> = বাকি সব: ক্রিয়া, বিশেষণ, der/die/das-সহ বিশেষ্য।',['Ich komme nicht.','Das Auto ist nicht neu.','Ich kenne den Mann nicht.']],
+   ['kein has the same endings as <b>ein</b> (+ keine in plural).','kein-এর শেষাংশ <b>ein</b>-এর মতোই (বহুবচনে keine)।',['kein Tisch','keine Lampe','kein Buch','keine Bücher']],
+   ['<b>nicht</b> usually goes to the <b>end</b>, or before the word it negates.','<b>nicht</b> সাধারণত <b>শেষে</b> বসে, বা যে শব্দকে না করছে তার আগে।',['Ich gehe heute nicht.','Ich gehe nicht nach Hause.']]])}</div>`);
+
+  h+=sec('ez4','4 · Modalverben',L('can, must, want, may','পারা, হতে হবে, চাওয়া, অনুমতি'),`<div class="card"><p class="en">The modal verb is on <b>position 2</b>, the second verb goes to the <b>end</b> as an infinitive: a “bracket”.</p><p class="bn">মডাল ক্রিয়া <b>২য় স্থানে</b>, আর অন্য ক্রিয়া <b>শেষে</b> মূল রূপে যায় – যেন একটা “বন্ধনী”।</p>
+  ${mt(['','ich','du','er/sie/es','wir','ihr','sie/Sie'],[['können','kann','kannst','kann','können','könnt','können'],['müssen','muss','musst','muss','müssen','müsst','müssen'],['wollen','will','willst','will','wollen','wollt','wollen'],['möchten','möchte','möchtest','möchte','möchten','möchtet','möchten'],['dürfen','darf','darfst','darf','dürfen','dürft','dürfen'],['sollen','soll','sollst','soll','sollen','sollt','sollen']])}
+  ${ex('Ich kann gut schwimmen.','I can swim well.','আমি ভালো সাঁতার কাটতে পারি।')}${ex('Ich muss heute arbeiten.','I have to work today.','আজ আমাকে কাজ করতে হবে।')}${ex('Möchtest du einen Tee trinken?','Would you like to drink a tea?','তুমি কি চা খেতে চাও?')}${ex('Hier darf man nicht rauchen.','You may not smoke here.','এখানে ধূমপান করা যাবে না।')}</div>`);
+
+  h+=sec('ez5','5 · Trennbare Verben',L('Verbs that split in two','যে ক্রিয়া দুই ভাগ হয়'),`<div class="card"><p class="en">The small first part (<b>auf-, ein-, an-, mit-, fern-, aus-, ab-</b>) jumps to the <b>end</b> of the sentence.</p><p class="bn">ছোট প্রথম অংশ (<b>auf-, ein-, an-, mit-, fern-, aus-, ab-</b>) বাক্যের <b>শেষে</b> চলে যায়।</p>${srows([
+   ['aufstehen · to get up','aufstehen · ঘুম থেকে ওঠা',['Ich stehe um sieben Uhr auf.','Ich bin aufgestanden.']],
+   ['einkaufen · to shop','einkaufen · বাজার করা',['Wir kaufen heute ein.','Ich habe eingekauft.']],
+   ['anrufen · to call','anrufen · ফোন করা',['Er ruft mich an.','Ich habe ihn angerufen.']],
+   ['mitkommen · to come along','mitkommen · সঙ্গে আসা',['Kommst du mit?']],
+   ['fernsehen · to watch TV','fernsehen · টিভি দেখা',['Wir sehen abends fern.']],
+   ['ankommen · to arrive','ankommen · পৌঁছানো',['Der Zug kommt um acht Uhr an.']],
+   ['einsteigen / aussteigen','einsteigen / aussteigen · ওঠা / নামা',['Ich steige in den Bus ein.','Wir steigen aus.']]])}</div>`);
+
+  h+=sec('ez6','6 · Präpositionen',L('Little words, big help','ছোট শব্দ, বড় সাহায্য'),`<div class="card">${srows([
+   ['<b>für, ohne, durch, gegen, um</b> → always <b>Akkusativ</b>.','<b>für, ohne, durch, gegen, um</b> → সবসময় <b>Akkusativ</b>।',['Das Geschenk ist für dich.','Ich gehe ohne meinen Bruder.']],
+   ['<b>mit, nach, bei, aus, von, zu, seit</b> → always <b>Dativ</b>.','<b>mit, nach, bei, aus, von, zu, seit</b> → সবসময় <b>Dativ</b>।',['Ich fahre mit dem Bus.','Nach dem Essen trinke ich Tee.','Ich gehe zum Arzt.']],
+   ['<b>in, an, auf, neben, vor, hinter …</b>: <b>Wo?</b> → Dativ (no movement). <b>Wohin?</b> → Akkusativ (movement).','<b>in, an, auf, neben, vor, hinter …</b>: <b>Wo?</b> → Dativ (স্থির)। <b>Wohin?</b> → Akkusativ (গতি)।',['Ich bin in der Schule.','Ich gehe in die Schule.']],
+   ['Short forms: <b>zum, zur, im, am, vom, beim, ins</b>.','সংক্ষিপ্ত রূপ: <b>zum, zur, im, am, vom, beim, ins</b>।',['zum Bahnhof (zu dem)','zur Schule (zu der)','im Haus (in dem)','am Montag (an dem)']]])}</div>`);
+
+  h+=sec('ez7','7 · Fragewörter',L('The 10 question words','১০টি প্রশ্ন-শব্দ'),`<div class="card">${srows([
+   ['Wer? · who','Wer? · কে',['Wer ist das?']],['Was? · what','Was? · কী',['Was machst du?']],['Wo? · where','Wo? · কোথায়',['Wo wohnst du?']],
+   ['Woher? · from where','Woher? · কোথা থেকে',['Woher kommst du?']],['Wohin? · where to','Wohin? · কোথায় (যাওয়া)',['Wohin gehst du?']],['Wann? · when','Wann? · কখন',['Wann beginnt der Kurs?']],
+   ['Wie? · how','Wie? · কেমন / কীভাবে',['Wie heißt du?','Wie alt bist du?']],['Warum? · why','Warum? · কেন',['Warum lernst du Deutsch?']],
+   ['Wie viel? / Wie viele?','Wie viel? / Wie viele? · কত',['Wie viel kostet das?','Wie viele Kinder hast du?']],['Welche/r/s? · which','Welche/r/s? · কোন',['Welcher Tag ist heute?']]])}</div>`);
+
+  h+=sec('ez8','8 · Zahlen, Uhrzeit, Datum',L('Numbers, time, date','সংখ্যা, সময়, তারিখ'),`<div class="card">${srows([
+   ['0–12','০–১২',['null','eins','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf','zwölf']],
+   ['13–19: unit + <b>zehn</b>','১৩–১৯: একক + <b>zehn</b>',['dreizehn','vierzehn','fünfzehn','sechzehn','siebzehn','achtzehn','neunzehn']],
+   ['Tens','দশক',['zwanzig','dreißig','vierzig','fünfzig','sechzig','siebzig','achtzig','neunzig','hundert']],
+   ['21–99: <b>unit + und + ten</b> (backwards!)','২১–৯৯: <b>একক + und + দশক</b> (উল্টো ক্রমে!)',['einundzwanzig','vierunddreißig','achtundsiebzig']],
+   ['Time: <b>halb acht</b> = 7:30 (half <i>to</i> eight)','সময়: <b>halb acht</b> = ৭:৩০ (আটটার <i>আগে</i> অর্ধেক)',['Es ist halb acht.','Es ist Viertel nach drei.','Es ist Viertel vor zehn.']],
+   ['Official time: number + Uhr + number','সরকারি সময়: সংখ্যা + Uhr + সংখ্যা',['vierzehn Uhr dreißig','Der Zug fährt um 18:45 Uhr.']],
+   ['Days: <b>am</b> Montag · Months: <b>im</b> Mai','বার: <b>am</b> Montag · মাস: <b>im</b> Mai',['am Montag','am Wochenende','im Januar','im Mai']],
+   ['Date: <b>der</b> + number + <b>te</b>','তারিখ: <b>der</b> + সংখ্যা + <b>te</b>',['Heute ist der fünfte Mai.','Ich habe am 3. Juli Geburtstag.']]])}</div>`);
+
+  h+=sec('ez9','9 · Die 20 wichtigsten Verben',L('Cheat sheet: ich · du · er · Perfekt','চিটশিট: ich · du · er · Perfekt'),`<div class="card">${mt(['Infinitiv','ich','du','er/sie/es','Perfekt'],[
+   ['sein','bin','bist','ist','ist gewesen'],['haben','habe','hast','hat','hat gehabt'],['werden','werde','wirst','wird','ist geworden'],['machen','mache','machst','macht','hat gemacht'],['gehen','gehe','gehst','geht','ist gegangen'],['kommen','komme','kommst','kommt','ist gekommen'],['wohnen','wohne','wohnst','wohnt','hat gewohnt'],['lernen','lerne','lernst','lernt','hat gelernt'],['arbeiten','arbeite','arbeitest','arbeitet','hat gearbeitet'],['sprechen','spreche','sprichst','spricht','hat gesprochen'],['essen','esse','isst','isst','hat gegessen'],['trinken','trinke','trinkst','trinkt','hat getrunken'],['sehen','sehe','siehst','sieht','hat gesehen'],['lesen','lese','liest','liest','hat gelesen'],['schlafen','schlafe','schläfst','schläft','hat geschlafen'],['fahren','fahre','fährst','fährt','ist gefahren'],['nehmen','nehme','nimmst','nimmt','hat genommen'],['geben','gebe','gibst','gibt','hat gegeben'],['wissen','weiß','weißt','weiß','hat gewusst'],['heißen','heiße','heißt','heißt','hat geheißen']])}<p class="en mute" style="margin-top:8px;font-size:13px">Verbs like sprechen, essen, sehen, lesen, fahren, nehmen, geben change their vowel only with du and er/sie/es: sprechen → du sprichst.</p><p class="bn mute" style="margin-top:4px;font-size:13px">sprechen, essen, sehen, lesen, fahren, nehmen, geben-এর মতো ক্রিয়ার স্বর শুধু du ও er/sie/es-এ বদলায়: sprechen → du sprichst।</p></div>`);
+
+  h+=sec('ez10','10 · Typische Fehler',L('Common mistakes – and the fix','সাধারণ ভুল – আর সমাধান'),`<div class="card">${[
+   ['Ich bin 20 Jahre.','Ich bin 20 Jahre alt.','Don\'t forget <b>alt</b> with age.','বয়সের সঙ্গে <b>alt</b> ভুলো না।'],
+   ['Ich habe Hunger zu essen.','Ich habe Hunger.','“Hunger haben” – no extra verb.','“Hunger haben” – বাড়তি ক্রিয়া নয়।'],
+   ['Ich möchte gehen nach Hause.','Ich möchte nach Hause gehen.','Second verb goes to the <b>end</b>.','২য় ক্রিয়া <b>শেষে</b> যায়।'],
+   ['Heute ich lerne Deutsch.','Heute lerne ich Deutsch.','Verb stays on <b>position 2</b>.','ক্রিয়া থাকে <b>২য় স্থানে</b>।'],
+   ['Ich habe nicht Zeit.','Ich habe keine Zeit.','Noun without article → <b>kein</b>.','আর্টিকেলহীন বিশেষ্য → <b>kein</b>।'],
+   ['Ich gehe zu Schule.','Ich gehe zur Schule.','zu + der = <b>zur</b>.','zu + der = <b>zur</b>।'],
+   ['Ich bin nach Berlin gefahren haben.','Ich bin nach Berlin gefahren.','One auxiliary only; “fahren” uses <b>sein</b>.','একটাই সহায়ক ক্রিয়া; “fahren”-এ <b>sein</b>।'],
+   ['Wie heißen Sie? — Ich heißen Anna.','Ich heiße Anna.','Verb ending must match the person.','ক্রিয়ার শেষাংশ কর্তার সঙ্গে মিলবে।']
+  ].map(x=>`<div class="srow"><div class="k"><span class="en">${x[2]}</span><span class="bn">${x[3]}</span></div><div class="v"><span class="bad-s">✗ ${esc(x[0])}</span><br>✓ ${say(esc(x[1]),x[1])}</div></div>`).join('')}</div>`);
+
+  h+=sec('ez11','11 · Prüfung A1',L('Goethe-Zertifikat A1: Start Deutsch 1','Goethe-Zertifikat A1: Start Deutsch 1'),`<div class="card"><p class="en"><b>4 parts, 25 points each = 100 points. You pass with <b>60 points</b>.</b> (Other exams – telc Deutsch A1, ÖSD A1 – are very similar. Always check the current format on the website of the exam centre.)</p><p class="bn"><b>৪টি অংশ, প্রতিটি ২৫ পয়েন্ট = মোট ১০০। পাস করতে <b>৬০ পয়েন্ট</b> লাগে।</b> (অন্য পরীক্ষা – telc Deutsch A1, ÖSD A1 – প্রায় একই। বর্তমান ফরম্যাট সবসময় পরীক্ষাকেন্দ্রের ওয়েবসাইটে দেখে নিয়ো।)</p>
+  ${mt(['Teil','Lesen','Hören','Schreiben','Sprechen'],[['Time / সময়','≈ 25 min','≈ 20 min','≈ 20 min','≈ 15 min (2 people)'],['Task / কাজ','short texts, signs, e-mails','announcements, short dialogues','Teil 1: form · Teil 2: short message','vorstellen · Fragen & Antworten · Bitten']].map(r=>r.map(x=>x)))}</div>
+  <div class="card"><h3 style="margin:0 0 6px">${L('Sprechen – Teil 1: introduce yourself','Sprechen – ১ম অংশ: নিজের পরিচয়')}</h3>${ex('Mein Name ist Rahim Uddin. Ich buchstabiere: R-A-H-I-M.','My name is Rahim Uddin. I spell: R-A-H-I-M.','আমার নাম রহিম উদ্দিন। আমি বানান করছি: R-A-H-I-M।')}${ex('Ich bin 22 Jahre alt und komme aus Bangladesch.','I am 22 years old and come from Bangladesh.','আমি ২২ বছর বয়সী এবং বাংলাদেশ থেকে এসেছি।')}${ex('Ich wohne in Dhaka. Ich spreche Bengalisch und ein bisschen Deutsch.','I live in Dhaka. I speak Bengali and a little German.','আমি ঢাকায় থাকি। আমি বাংলা এবং একটু জার্মান বলি।')}${ex('Ich bin Student. Mein Hobby ist Fußball.','I am a student. My hobby is football.','আমি ছাত্র। আমার শখ ফুটবল।')}
+  <h3 style="margin:14px 0 6px">${L('Sprechen – Teil 3: ask politely','Sprechen – ৩য় অংশ: ভদ্রভাবে অনুরোধ')}</h3>${ex('Können Sie mir bitte helfen?','Can you help me, please?','আপনি কি আমাকে একটু সাহায্য করতে পারবেন?')}${ex('Kannst du bitte das Fenster aufmachen?','Can you open the window, please?','তুমি কি জানালাটা খুলে দিতে পারবে?')}${ex('Ja, gern. / Nein, tut mir leid.','Yes, gladly. / No, I am sorry.','হ্যাঁ, অবশ্যই। / না, দুঃখিত।')}
+  <h3 style="margin:14px 0 6px">${L('Schreiben – Teil 2: short message (3 points!)','Schreiben – ২য় অংশ: ছোট বার্তা (৩টি পয়েন্ট!)')}</h3><p class="en">Answer <b>all 3 points</b> in 20–30 words: greeting → 3 points → goodbye.</p><p class="bn">সব <b>৩টি পয়েন্টের</b> উত্তর দাও, ২০–৩০ শব্দে: সম্ভাষণ → ৩টি পয়েন্ট → বিদায়।</p>
+  <div class="ocrtxt" lang="de">Liebe Anna,<br>vielen Dank für deine Einladung. Ich komme gern am Samstag um 18 Uhr. Ich bringe einen Kuchen mit. Wo wohnst du genau?<br>Viele Grüße<br>Rahim</div>
+  <p class="en"><b>Exam tips:</b> in Hören you hear everything <b>twice</b> – read the questions first. In Lesen do not translate every word, look for the key word. In Schreiben spelling of simple words and the 3 points matter most. In Sprechen: speak slowly, use short sentences and say “Bitte noch einmal?” if you did not understand.</p><p class="bn"><b>পরীক্ষার টিপস:</b> Hören-এ সবকিছু <b>দুইবার</b> শোনানো হয় – আগে প্রশ্ন পড়ে নাও। Lesen-এ প্রতিটি শব্দ অনুবাদ করতে যেয়ো না, মূল শব্দ খোঁজো। Schreiben-এ সহজ শব্দের বানান আর ৩টি পয়েন্টই সবচেয়ে গুরুত্বপূর্ণ। Sprechen-এ ধীরে বলো, ছোট বাক্য ব্যবহার করো, না বুঝলে বলো “Bitte noch einmal?”।</p></div>`);
+
+  h+=sec('ez12','12 · Lernplan & Check',L('Your daily plan and A1 self-test','প্রতিদিনের পরিকল্পনা ও A1 স্ব-পরীক্ষা'),`<div class="card"><h3 style="margin:0 0 6px">${L('15 minutes a day','প্রতিদিন ১৫ মিনিট')}</h3>${srows([
+   ['<b>3 min</b> – review yesterday\'s words (flashcards)','<b>৩ মিনিট</b> – গতকালের শব্দ রিভিউ (ফ্ল্যাশকার্ড)',['Wörter wiederholen']],
+   ['<b>5 min</b> – today\'s lesson: words + grammar','<b>৫ মিনিট</b> – আজকের পাঠ: শব্দ + ব্যাকরণ',['Neue Wörter lernen']],
+   ['<b>4 min</b> – dialogue: listen, then repeat aloud 3×','<b>৪ মিনিট</b> – সংলাপ: শোনো, তারপর ৩ বার জোরে বলো',['Nachsprechen']],
+   ['<b>3 min</b> – exercises + one game from this page','<b>৩ মিনিট</b> – অনুশীলন + এই পাতার একটি গেম',['Üben']]])}
+  <p class="en mute" style="font-size:13px;margin-top:8px">Every 7th day: do the test, then repeat the weak days.</p><p class="bn mute" style="font-size:13px">প্রতি ৭ম দিনে: পরীক্ষা দাও, তারপর দুর্বল দিনগুলো আবার করো।</p></div>
+  <div class="card"><div style="display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px"><span>${L('A1 self-test: tick what you can do','A1 স্ব-পরীক্ষা: যা পারো তাতে টিক দাও')}</span><span id="ezCnt">${nDone} / ${EZ_CAN.length}</span></div><div class="pbar"><i id="ezBar" style="width:${Math.round(nDone/EZ_CAN.length*100)}%"></i></div>
+  <div class="ezcan">${EZ_CAN.map((c,i)=>`<button type="button" class="ezc ${done[i]?'on':''}" data-act="ezchk" data-k="${i}"><span class="bx">✓</span><span class="en">${esc(c[0])}</span><span class="bn">${esc(c[1])}</span></button>`).join('')}</div>
+  <p class="en mute" style="font-size:13px">10 or more ticks = you are ready for the exam. 🎓</p><p class="bn mute" style="font-size:13px">১০টি বা বেশি টিক = তুমি পরীক্ষার জন্য প্রস্তুত। 🎓</p></div>`);
+  main().innerHTML=h;
+  azRender();EZ.sb?sbRender():sbStart();
+}
+
 /* syllabus page */
 const GRAM_MAP=[
 ['Alphabet & Aussprache','বর্ণমালা ও উচ্চারণ',1],['du / Sie, Begrüßung','du / Sie, সম্ভাষণ',1],['Personalpronomen, sein, heißen','সর্বনাম, sein, heißen',2],['W-Fragen & Ja/Nein-Fragen','W-প্রশ্ন ও হ্যাঁ/না প্রশ্ন',2],['Zahlen, regelmäßige Verben','সংখ্যা, নিয়মিত ক্রিয়া',3],['Verben mit Vokalwechsel; aus, in, nach','স্বর-পরিবর্তনকারী ক্রিয়া; aus, in, nach',4],['haben, Possessivartikel','haben, অধিকারবাচক শব্দ',5],['Artikel, Plural, nicht / kein','আর্টিকেল, বহুবচন, nicht / kein',6],
@@ -4028,6 +4198,16 @@ function act(a,el,ev){
     case'testaudio':TTS.say('Hallo! Willkommen zum Deutschkurs. Viel Spaß beim Lernen!',el);break;
     case'stop':TTS.stop();break;
     case'chat':toggleChat();break;
+    case'azstart':azStart();break;
+    case'azmiss':azStart(EZ.az&&EZ.az.miss);break;
+    case'azpick':azPick(el.dataset.a);break;
+    case'aznext':azNext();break;
+    case'sbpick':{const s=EZ.sb,t=s.tiles.find(x=>x.k===+el.dataset.k);if(t){s.ans.push(t);s.res='';sbCheck();sbRender();}break;}
+    case'sbback':{const s=EZ.sb;s.ans.splice(+el.dataset.j,1);s.res='';sbRender();break;}
+    case'sbnew':sbNew((EZ.sb.i+1+Math.floor(Math.random()*(SB_LIST.length-1)))%SB_LIST.length);break;
+    case'sbclear':{EZ.sb.ans=[];EZ.sb.res='';sbRender();break;}
+    case'ezchk':ezChk(+el.dataset.k);break;
+    case'ezgo':{const t=document.getElementById('sec-'+el.dataset.id);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});break;}
     case'chatq':chatSend(el.dataset.q);break;
     case'chatclear':chatReset();break;
     case'chphoto':$('#chFile').click();break;
@@ -4635,8 +4815,8 @@ const KB=[
   bn:()=>`কোর্সটি একটি ওপেন GitHub প্রজেক্ট: ${lnk('https://github.com/MdBellalHosen/German-A1','github.com/MdBellalHosen/German-A1')}।`,
   c:[]},
  {k:/\ba to z\b|\ba-z\b|\beverything\b|\boverview\b|all info|\babout\b|what is this|what is it|who are you|tell me|ওয়েবসাইট|ওয়েবসাইটটি|এ টু জেড|সব তথ্য|সবকিছু|পরিচয়|সম্পর্কে|কী এটা|এটা কী|এটি কী|ei website|website er/i,
-  en:()=>`<b>Deutsch A1 in 30 Tagen</b> is a complete German A1 course for Bangla speakers: ${DAYS.length} daily lessons (4 learning weeks + exam week) with ${nW()} words in English and Bangla, grammar tables, dialogues, interactive exercises, weekly tests, flashcards and audio for every German word – plus an A–Z dictionary, a translator and this help chat.<br><br>Pages: ${lnk('#home','Start')} · ${lnk('#plan','Kursplan')} · ${lnk('#words','Alle Wörter')} · ${lnk('#dictionary','Wörterbuch A–Z')} · ${lnk('#translate','Übersetzer')} · ${lnk('#secrets','Grammatik-Geheimnisse')}. The ⚙️ button opens the audio settings.`,
-  bn:()=>`<b>Deutsch A1 in 30 Tagen</b> বাংলাভাষীদের জন্য একটি সম্পূর্ণ জার্মান A1 কোর্স: ${bnNum(DAYS.length)}টি দৈনিক পাঠ (৪টি শেখার সপ্তাহ + পরীক্ষার সপ্তাহ), ইংরেজি ও বাংলা অর্থসহ ${bnNum(nW())}টি শব্দ, ব্যাকরণ-টেবিল, সংলাপ, ইন্টারঅ্যাকটিভ অনুশীলন, সাপ্তাহিক পরীক্ষা, ফ্ল্যাশকার্ড এবং প্রতিটি জার্মান শব্দে অডিও – সঙ্গে A–Z অভিধান, অনুবাদক ও এই হেল্প চ্যাট।<br><br>পাতাসমূহ: ${lnk('#home','Start')} · ${lnk('#plan','Kursplan')} · ${lnk('#words','Alle Wörter')} · ${lnk('#dictionary','Wörterbuch A–Z')} · ${lnk('#translate','Übersetzer')} · ${lnk('#secrets','Grammatik-Geheimnisse')}। ⚙️ বোতামে অডিও সেটিংস খোলে।`,
+  en:()=>`<b>Deutsch A1 in 30 Tagen</b> is a complete German A1 course for Bangla speakers: ${DAYS.length} daily lessons (4 learning weeks + exam week) with ${nW()} words in English and Bangla, grammar tables, dialogues, interactive exercises, weekly tests, flashcards and audio for every German word – plus an A–Z dictionary, a translator and this help chat.<br><br>Pages: ${lnk('#home','Start')} · ${lnk('#plan','Kursplan')} · ${lnk('#words','Alle Wörter')} · ${lnk('#dictionary','Wörterbuch A–Z')} · ${lnk('#translate','Übersetzer')} · ${lnk('#easy','Leicht erklärt')} · ${lnk('#secrets','Grammatik-Geheimnisse')}. The ⚙️ button opens the audio settings.`,
+  bn:()=>`<b>Deutsch A1 in 30 Tagen</b> বাংলাভাষীদের জন্য একটি সম্পূর্ণ জার্মান A1 কোর্স: ${bnNum(DAYS.length)}টি দৈনিক পাঠ (৪টি শেখার সপ্তাহ + পরীক্ষার সপ্তাহ), ইংরেজি ও বাংলা অর্থসহ ${bnNum(nW())}টি শব্দ, ব্যাকরণ-টেবিল, সংলাপ, ইন্টারঅ্যাকটিভ অনুশীলন, সাপ্তাহিক পরীক্ষা, ফ্ল্যাশকার্ড এবং প্রতিটি জার্মান শব্দে অডিও – সঙ্গে A–Z অভিধান, অনুবাদক ও এই হেল্প চ্যাট।<br><br>পাতাসমূহ: ${lnk('#home','Start')} · ${lnk('#plan','Kursplan')} · ${lnk('#words','Alle Wörter')} · ${lnk('#dictionary','Wörterbuch A–Z')} · ${lnk('#translate','Übersetzer')} · ${lnk('#easy','Leicht erklärt')} · ${lnk('#secrets','Grammatik-Geheimnisse')}। ⚙️ বোতামে অডিও সেটিংস খোলে।`,
   c:[1,2,3]},
  {k:/^(thanks?|thank you|danke|ধন্যবাদ|শুকরিয়া|thx)\b|ধন্যবাদ/i,
   en:()=>`Gern geschehen! 😊 Ask me anything else about the course.`,bn:()=>`Gern geschehen! (আপনাকেও ধন্যবাদ) 😊 কোর্স নিয়ে আরও কিছু জানতে চাইলে জিজ্ঞাসা করো।`,c:[0]},
@@ -4810,7 +4990,7 @@ async function trAll(text,lang,from){
 const AI_ENDPOINT='';  /* e.g. 'https://german-a1.vercel.app/api/chat' – see README "Premium AI" */
 const aiUrl=()=>window.AI_ENDPOINT||AI_ENDPOINT;
 const aiOn=()=>!!aiUrl()&&navigator.onLine!==false&&Date.now()>CH.aiUntil;
-const ABOUT='Site: "Deutsch A1 in 30 Tagen" – free German A1 course for Bangla speakers, live at '+LIVE_URL+'. 30 daily lessons in 5 weeks (1 Basics, 2 Everyday life, 3 Living in Germany, 4 Past/work/travel, 5 Exam week). Each lesson: goals, vocabulary with article colours (der blue, die red, das green), grammar, dialogues with audio (browser text-to-speech), exercises, daily test. Pages: #translate (translator DE/EN/BN with article and example sentences), #dictionary (A1 dictionary A-Z), #words, #secrets (tips). Language switch: English / বাংলা / both. Progress is saved in the browser. Chat tools: photo/camera of a German book page, voice input.';
+const ABOUT='Site: "Deutsch A1 in 30 Tagen" – free German A1 course for Bangla speakers, live at '+LIVE_URL+'. 30 daily lessons in 5 weeks (1 Basics, 2 Everyday life, 3 Living in Germany, 4 Past/work/travel, 5 Exam week). Each lesson: goals, vocabulary with article colours (der blue, die red, das green), grammar, dialogues with audio (browser text-to-speech), exercises, daily test. Pages: #translate (translator DE/EN/BN with article and example sentences), #dictionary (A1 dictionary A-Z), #words, #easy (Leicht erklärt: article trainer game, sentence builder game, nicht/kein, modal verbs, separable verbs, prepositions, question words, numbers and time, 20 key verbs, common mistakes, A1 exam guide, daily plan and self-test), #secrets (grammar tips). Language switch: English / বাংলা / both. Progress is saved in the browser. Chat tools: photo/camera of a German book page, voice input.';
 async function aiAsk(msgs,imgs){
   const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),32000);
   try{
@@ -5049,6 +5229,7 @@ function route(){
   if((m=/^day-(\d+)$/.exec(h))){r=h;showDay(+m[1]);}
   else if(h==='words'){r=h;showWords();}
   else if(h==='secrets'){r=h;showSecrets();}
+  else if(h==='easy'){r=h;showEasy();}
   else if(h==='plan'){r=h;showPlan();}
   else if(h==='translate'){r=h;showTranslate();}
   else if(h==='dictionary'){r=h;showDictionary();}
