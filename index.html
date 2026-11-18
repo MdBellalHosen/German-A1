@@ -4130,7 +4130,7 @@ IC.dict=`<svg ${SV}><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d=
 let LEX=null;
 function buildLex(){
   if(LEX)return LEX;
-  const X=LEX={ph:Object.create(null),wd:Object.create(null),m:{en:Object.create(null),bn:Object.create(null)},sent:[],seen:Object.create(null)};
+  const X=LEX={ph:Object.create(null),wd:Object.create(null),wdN:Object.create(null),wdO:Object.create(null),m:{en:Object.create(null),bn:Object.create(null)},sent:[],seen:Object.create(null)};
   const putPh=(lang,txt,obj)=>{const k=nrm(txt);if(k&&!X.ph[lang+':'+k])X.ph[lang+':'+k]=obj;};
   const addSent=(de,en,bn)=>{
     if(!de||!en||/_{2}/.test(de))return;
@@ -4143,7 +4143,7 @@ function buildLex(){
       const e={de:v[0],pl:v[1],en:v[2],bn:v[3],n:d.n};
       const clean=NOPAR(v[0]);
       putPh('de',clean,e);
-      clean.split(/\s\/\s/).forEach(a=>{const b=NOART(a.trim());const k=nrm(b);if(k&&!X.wd[k])X.wd[k]=e;putPh('de',b,e);});
+      clean.split(/\s\/\s/).forEach(a=>{const b=NOART(a.trim());const k=nrm(b);if(k&&!X.wd[k])X.wd[k]=e;const mp=/^(der|die|das)\s/.test(v[0])?X.wdN:X.wdO;if(k&&!mp[k])mp[k]=e;putPh('de',b,e);});
       if(/^(der|die|das)\s/.test(v[0])){const par=/\(([^)]+)\)/.exec(v[0]);if(par){const k=nrm(par[1]);if(k&&k.indexOf(' ')<0&&!X.wd[k])X.wd[k]=e;}}
       putPh('en',v[2],e);putPh('bn',v[3],e);
       splitM(v[2]).forEach(m=>{(X.m.en[m]=X.m.en[m]||[]).push(e);});
@@ -4157,35 +4157,155 @@ function buildLex(){
   X.sent.forEach(s=>{s.t=nrm(s.de).split(' ');});
   return X;
 }
-const entryFor=t=>{const X=buildLex();return X.wd[nrm(NOART(NOPAR(String(t||'').trim())))]||null;};
+/* noun (der/die/das …) and non-noun (verb, adjective …) can share one spelling: essen / das Essen – a capital letter or an article decides */
+const entryFor=(t,strict)=>{
+  const X=buildLex(),s=NOPAR(String(t||'').trim()),had=/^(der|die|das|ein|eine)\s/i.test(s),k=nrm(NOART(s));
+  if(!k)return null;
+  if(had)return X.wdN[k]||X.wd[k]||null;
+  if(/^[A-ZÄÖÜ]/.test(s))return X.wdN[k]||X.wdO[k]||null;
+  return X.wdO[k]||(strict?null:X.wdN[k])||null;
+};
 
-/* ---- example sentences: real ones from the lessons, else a model sentence ---- */
-function exampleFor(e,max){
-  const X=buildLex();max=max||3;
-  const isNoun=/^(der|die|das)\s/.test(e.de);
-  const base=NOART(NOPAR(e.de)).split(/\s\/\s/)[0].trim();
-  const forms=[nrm(base)];
-  if(isNoun&&e.pl&&e.pl!=='-'&&e.pl!=='Pl.'&&e.pl!=='–')forms.push(nrm(e.pl));
-  const single=base.indexOf(' ')<0;
-  const stem=(!isNoun&&single&&/en$/.test(base)&&base.length>=5)?nrm(base).slice(0,-2):'';
-  let hit=[];
-  if(single||forms[0]){
-    X.sent.forEach(s=>{
-      if(s.t.length<2)return;
-      let ok=false;
-      if(single){for(let i=0;i<s.t.length&&!ok;i++){const t=s.t[i];if(forms.indexOf(t)>=0||(stem&&t.indexOf(stem)===0&&t.length<=stem.length+3))ok=true;}}
-      else ok=nrm(s.de).indexOf(forms[0])>=0;
-      if(ok)hit.push(s);
-    });
+/* ---- word info: word class + article (course → Wiktionary → ending guess) ---- */
+const WK=Object.create(null);
+const WKCLS=[[/pronomen/i,'pron'],[/^(substantiv|eigenname|toponym|vorname|nachname)/i,'noun'],[/verb/i,'verb'],[/adjektiv|partizip/i,'adj'],[/adverb/i,'adv']];
+const cap1=s=>s?s.charAt(0).toUpperCase()+s.slice(1):s;
+const low1=s=>s?s.charAt(0).toLowerCase()+s.slice(1):s;
+function wkClean(s){return String(s||'').replace(/<ref[^>]*>[\s\S]*?<\/ref>/g,'').replace(/<[^>]+>/g,'').replace(/\{\{[^}]*\}\}/g,'').replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g,'$1').replace(/'{2,}/g,'').replace(/\s+/g,' ').trim();}
+function parseWikt(wt){
+  const m=/^==[^=\n]*\{\{Sprache\|Deutsch\}\}[^=\n]*==\s*$/m.exec(wt);if(!m)return null;
+  let sec=wt.slice(m.index+m[0].length);const nx=/^==[^=]/m.exec(sec);if(nx)sec=sec.slice(0,nx.index);
+  const w=/\{\{Wortart\|([^|}]+)\|Deutsch\}\}/.exec(sec);if(!w)return null;
+  let cls='other';for(const p of WKCLS)if(p[0].test(w[1])){cls=p[1];break;}
+  const o={cls:cls,wc:w[1],art:'',pl:'',examples:[]};
+  if(cls==='noun'){
+    const g=/\|Genus(?: 1)?\s*=\s*([mfn])/.exec(sec);if(g)o.art={m:'der',f:'die',n:'das'}[g[1]];
+    const p=/\|Nominativ Plural(?: 1)?\s*=\s*([^\n|}]*)/.exec(sec);if(p){const v=wkClean(p[1]);if(v&&!/^[—–-]+$/.test(v))o.pl=v;}
   }
+  const b=/\{\{Beispiele\}\}([\s\S]*?)(?=\n\{\{[A-Z]|\n=+|$)/.exec(sec);
+  if(b)b[1].split('\n').forEach(l=>{const mm=/^:\[[^\]]*\]\s*(.+)$/.exec(l.trim());if(!mm)return;const t=wkClean(mm[1]),n=t.split(' ').length;if(n>=3&&n<=14&&/[.!?]$/.test(t)&&!/[\[\]{}|]/.test(t))o.examples.push(t);});
+  o.examples.sort((a,b)=>a.length-b.length);o.examples=o.examples.slice(0,6);
+  return o;
+}
+async function wikt(word){
+  if(WK[word])return WK[word];
+  if(navigator.onLine===false||!/^[A-Za-zÄÖÜäöüß-]+$/.test(word))return null;
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),9000);
+  try{
+    for(const c of Array.from(new Set([cap1(word),word,word.toLowerCase()]))){
+      try{
+        const r=await fetch('https://de.wiktionary.org/w/api.php?action=parse&page='+encodeURIComponent(c)+'&prop=wikitext&format=json&redirects=1&origin=*',{signal:ctl.signal});
+        if(!r.ok)continue;
+        const j=await r.json(),wt=j&&j.parse&&j.parse.wikitext&&j.parse.wikitext['*'];
+        const o=wt&&parseWikt(wt);
+        if(o){WK[word]=o;return o;}
+      }catch(e){if(ctl.signal.aborted)break;}
+    }
+  }finally{clearTimeout(tm);}
+  return null;
+}
+async function deInfo(bare,entry){
+  const info={de:bare,cls:'',art:'',pl:'',plOnly:false,uncount:false,src:'',entry:entry||null,wk:null};
+  if(entry){
+    const m=/^(der|die|das)\s+(.+)$/.exec(NOPAR(entry.de));
+    if(m){
+      info.cls='noun';info.art=m[1];info.de=m[2].split(/\s\/\s/)[0].trim();info.src='course';
+      info.pl=(entry.pl&&['-','–','Pl.'].indexOf(entry.pl)<0)?entry.pl:'';
+      info.plOnly=entry.pl==='Pl.';info.uncount=entry.pl==='-'||entry.pl==='–';
+      return info;
+    }
+    info.de=NOPAR(entry.de).split(/\s\/\s/)[0].trim();
+  }
+  const wk=await wikt(info.de);
+  if(wk){
+    info.wk=wk;info.cls=wk.cls;info.src='wiktionary';
+    if(wk.cls==='noun'){info.art=wk.art;info.pl=wk.pl;info.uncount=!wk.pl;info.de=cap1(info.de);}else info.de=low1(info.de);
+    return info;
+  }
+  if(!entry&&isNounLike(info.de)){const g=guessArticle(info.de);if(g){info.cls='noun';info.art=g.art;info.src='guess';info.why=g.why;info.uncount=true;}}
+  return info;
+}
+/* ---- example sentences: 1) real sentences of the lessons 2) safe model sentences 3) Wiktionary examples ---- */
+function localSents(info){
+  const X=buildLex(),base=info.de,forms=[nrm(base)];
+  if(info.pl)forms.push(nrm(info.pl));
+  const single=base.indexOf(' ')<0;
+  const stem=(single&&(info.cls==='verb'||(!info.cls&&!info.art))&&/en$/.test(base)&&base.length>=5&&base.charAt(0)===base.charAt(0).toLowerCase())?nrm(base).slice(0,-2):'';
+  const hit=[];
+  X.sent.forEach(s=>{
+    if(s.t.length<2)return;
+    let ok=false;
+    if(single){for(let i=0;i<s.t.length&&!ok;i++){const t=s.t[i];if(forms.indexOf(t)>=0)ok=true;else if(stem&&t.indexOf(stem)===0&&['e','st','t','en','et','te'].indexOf(t.slice(stem.length))>=0)ok=true;}}
+    else ok=nrm(s.de).indexOf(forms[0])>=0;
+    if(ok)hit.push(s);
+  });
   hit.sort((a,b)=>a.de.length-b.de.length);
-  const out=hit.slice(0,max).map(s=>({de:s.de,en:s.en,bn:s.bn}));
-  if(!out.length&&isNoun&&e.pl!=='Pl.'){
-    const art=/^(der|die|das)/.exec(e.de)[1],en1=firstM(e.en),bn1=firstM(e.bn),ind={der:'ein',die:'eine',das:'ein'}[art];
-    if(e.pl!=='-'&&e.pl!=='–')out.push({de:`Das ist ${ind} ${base}.`,en:`This is ${/^[aeiou]/i.test(en1)?'an':'a'} ${en1}.`,bn:`এটা একটি ${bn1}।`,auto:1});
-    out.push({de:`Hier ist ${art} ${base}.`,en:`Here is the ${en1}.`,bn:`এই যে ${bn1}।`,auto:1});
+  return hit.map(s=>({de:s.de,en:s.en,bn:s.bn}));
+}
+function tmplSents(info){
+  const w=info.de,out=[];
+  const T=(de,en,bn)=>out.push({de:de,en:en||'',bn:bn||'',note:'tm'});
+  if(info.cls==='noun'&&info.art){
+    const a=info.art,acc={der:'den',die:'die',das:'das'}[a],ind={der:'ein',die:'eine',das:'ein'}[a],indAcc={der:'einen',die:'eine',das:'ein'}[a];
+    const e=info.entry,en1=e?firstM(e.en):'',bn1=e?firstM(e.bn):'',an=/^[aeiou]/i.test(en1)?'an':'a';
+    if(info.plOnly){T(`Das sind die ${w}.`);T(`Wo sind die ${w}?`);T(`Ich sehe die ${w}.`);T(`Wir brauchen die ${w}.`);}
+    else if(info.uncount){
+      T(`Hier ist ${a} ${w}.`,e&&`Here is the ${en1}.`,e&&`এই যে ${bn1}।`);
+      T(`Wo ist ${a} ${w}?`,e&&`Where is the ${en1}?`,e&&`${bn1} কোথায়?`);
+      T(`Ich mag ${acc} ${w}.`,e&&`I like the ${en1}.`,e&&`আমার ${bn1} পছন্দ।`);
+      T(`Ich nehme ${acc} ${w}.`,e&&`I'll take the ${en1}.`,e&&`আমি ${bn1} নেব।`);
+    }else{
+      T(`Das ist ${ind} ${w}.`,e&&`This is ${an} ${en1}.`,e&&`এটা একটি ${bn1}।`);
+      T(`Wo ist ${a} ${w}?`,e&&`Where is the ${en1}?`,e&&`${bn1} কোথায়?`);
+      T(`Ich brauche ${indAcc} ${w}.`,e&&`I need ${an} ${en1}.`,e&&`আমার একটা ${bn1} দরকার।`);
+      if(info.pl)T(`Wir haben zwei ${info.pl}.`);else T(`Ich sehe ${acc} ${w}.`,e&&`I see the ${en1}.`,e&&`আমি ${bn1} দেখছি।`);
+    }
+  }else if(info.cls==='verb'){
+    T(`Ich möchte ${w}.`);T(`Wir wollen ${w}.`);T(`Kannst du ${w}?`);T(`Du musst ${w}.`);
+  }else if(info.cls==='adj'){
+    T(`Das ist ${w}.`);T(`Es ist ${w}.`);T(`Ist das ${w}?`);T(`Das Buch ist ${w}.`);
   }
   return out;
+}
+async function examplesFor(info,max){
+  const out=[],seen={};
+  const add=s=>{if(s&&out.length<max&&!seen[s.de]){seen[s.de]=1;out.push(s);}};
+  localSents(info).forEach(add);
+  if(out.length<max&&!info.wk&&!info.cls&&!info.art){const wk=await wikt(info.de);if(wk){info.wk=wk;info.cls=wk.cls;if(wk.cls!=='noun')info.de=low1(info.de);}}
+  if(out.length<max)tmplSents(info).forEach(add);
+  if(out.length<max&&info.wk)info.wk.examples.forEach(t=>add({de:t,en:'',bn:'',note:'wk'}));
+  return out;
+}
+const EXQ=[];
+function exBox(item,n){EXQ.push({item:item,n:n});return `<div class="wc-exbox" data-q="${EXQ.length-1}"></div>`;}
+function exHtml(s){
+  const note=s.note==='tm'?L('model sentence','নমুনা বাক্য'):(s.note==='wk'?'Wiktionary':'');
+  return `<div class="wc-s" data-de="${esc(s.de)}"${s.en?'':' data-ne="1"'}${s.bn?'':' data-nb="1"'}>${say(esc(s.de),s.de)}<div class="en tr">${esc(s.en)}</div><div class="bn tr">${esc(s.bn)}</div>${note?`<small class="mute">${note}</small>`:''}</div>`;
+}
+async function hydrateTr(root){
+  await Promise.all($$('.wc-s[data-ne],.wc-s[data-nb]',root).map(async el=>{
+    const need=[];if(el.hasAttribute('data-ne'))need.push('en');if(el.hasAttribute('data-nb'))need.push('bn');
+    const rs=await Promise.all(need.map(l=>netTr(el.dataset.de,'de',l)));
+    need.forEach((l,i)=>{const d=$('.'+l+'.tr',el);if(d){d.textContent=rs[i]?rs[i].text:'—';if(!rs[i])d.title='needs internet';}});
+    el.removeAttribute('data-ne');el.removeAttribute('data-nb');
+  }));
+}
+function fillExBoxes(root){
+  $$('.wc-exbox:not([data-done])',root||document).forEach(b=>{
+    b.dataset.done='1';
+    const q=EXQ[+b.dataset.q];if(!q)return;
+    const head=`<div class="wc-h">${L('Example sentences','উদাহরণ বাক্য')}</div>`;
+    b.innerHTML=head+`<div class="trwait" style="margin:4px 0 0"><span class="dots"><i></i><i></i><i></i></span></div>`;
+    (async()=>{
+      try{
+        const info=q.item.info||await deInfo('',q.item.entry);
+        const list=await examplesFor(info,q.n);
+        if(!b.isConnected)return;
+        b.innerHTML=list.length?head+list.map(exHtml).join(''):'';
+        hydrateTr(b);
+      }catch(e){b.innerHTML='';}
+    })();
+  });
 }
 
 /* ---- article guess for words that are NOT in the course (by ending) ---- */
@@ -4199,6 +4319,7 @@ function plHtml(e){
   if(e.pl&&e.pl!=='-'&&e.pl!=='–')return `Plural: ${say(`<span class="cp">die</span> ${esc(e.pl)}`,'die '+e.pl)}`;
   return '';
 }
+const CLSN={noun:['noun','Nomen','বিশেষ্য'],verb:['verb','Verb','ক্রিয়া'],adj:['adjective','Adjektiv','বিশেষণ'],adv:['adverb','Adverb','ক্রিয়া-বিশেষণ'],pron:['pronoun','Pronomen','সর্বনাম'],other:['other word','Wort','শব্দ']};
 function wordCard(e,o){
   o=o||{};
   const m=/^(der|die|das)\s/.exec(e.de),c=artClass(e.de,e.pl);
@@ -4206,15 +4327,28 @@ function wordCard(e,o){
   if(m){art=`<div class="wc-art">${L('Article','আর্টিকেল')}: <span class="${c}">${m[1]}</span> <span class="mute">· ${e.pl==='Pl.'?L('plural','বহুবচন'):L(GEN[m[1]][0],GEN[m[1]][1])}</span></div>`;}
   const top=o.bare?'':`<div class="wc-top">${say(wordHtml(e.de,e.pl),e.de)}<span class="wpl">${plHtml(e)}</span></div>`;
   const mean=o.bare?'':`<div class="wc-m"><span><b>EN</b> ${esc(e.en)}</span><span class="bnf"><b>বাংলা</b> ${esc(e.bn)}</span>${e.n?`<a class="dpill" href="#day-${e.n}" data-close="1">Tag ${e.n}</a>`:''}</div>`;
-  const ex=exampleFor(e,o.n||3);
-  const exh=ex.length?`<div class="wc-h">${L('Example sentences','উদাহরণ বাক্য')}</div>`+ex.map(s=>`<div class="wc-s">${say(esc(s.de),s.de)}<div class="en tr">${esc(s.en)}</div><div class="bn tr">${esc(s.bn)}</div>${s.auto?`<small class="mute">${L('auto-made model sentence','স্বয়ংক্রিয় নমুনা বাক্য')}</small>`:''}</div>`).join(''):'';
-  return `<div class="wcard ${c?'b-'+c:''}">${top}${o.bare&&plHtml(e)?`<div class="wc-art">${plHtml(e)}</div>`:''}${art}${mean}${exh}</div>`;
+  return `<div class="wcard ${c?'b-'+c:''}">${top}${o.bare&&plHtml(e)?`<div class="wc-art">${plHtml(e)}</div>`:''}${art}${mean}${exBox({entry:e},o.n||4)}</div>`;
 }
-function guessCard(g){
-  const c={der:'cm',die:'cf',das:'cn'}[g.art];
-  return `<div class="wcard guess"><div class="wc-top"><span class="${c}">${g.art}</span> ${say(esc(g.w),g.art+' '+g.w)}</div><div class="mute" style="font-size:14px;margin-top:4px">${L(`Not in the A1 course. By its ending (${g.why}) the article is probably “${g.art}” – this is only a guess, please check in a dictionary.`,`এটি A1 কোর্সে নেই। শেষাংশ (${g.why}) দেখে আর্টিকেল সম্ভবত “${g.art}” – এটি শুধু অনুমান, অভিধানে মিলিয়ে নিও।`)}</div></div>`;
+/* card for any German word that is not in the course word list (article from Wiktionary, else a guess) */
+function infoCard(info,o){
+  o=o||{};
+  const c=info.art?{der:'cm',die:'cf',das:'cn'}[info.art]:'',cn=CLSN[info.cls];
+  const word=info.art?`<span class="${c}">${info.art}</span> ${say(esc(info.de),info.art+' '+info.de)}`:say(esc(info.de),info.de);
+  let lines='';
+  if(info.cls==='noun'&&info.art){
+    const srcT=info.src==='course'?L('from the course ✓','কোর্স থেকে ✓'):(info.src==='wiktionary'?L('checked in Wiktionary ✓','Wiktionary থেকে ✓'):L('guess from the ending','শেষাংশ থেকে অনুমান'));
+    lines+=`<div class="wc-art">${L('Article','আর্টিকেল')}: <span class="${c}">${info.art}</span> <span class="mute">· ${L(GEN[info.art][0],GEN[info.art][1])} · ${srcT}</span></div>`;
+    if(info.src==='guess')lines+=`<div class="mute" style="font-size:13.5px">${L(`⚠ Not in the A1 course. By its ending (${info.why}) the article is probably “${info.art}” – only a guess, please check in a dictionary.`,`⚠ এটি A1 কোর্সে নেই। শেষাংশ (${info.why}) দেখে আর্টিকেল সম্ভবত “${info.art}” – শুধু অনুমান, অভিধানে মিলিয়ে নিও।`)}</div>`;
+    if(info.pl)lines+=`<div class="wc-art">Plural: ${say(`<span class="cp">die</span> ${esc(info.pl)}`,'die '+info.pl)}</div>`;
+  }else if(info.cls==='noun'){
+    lines+=`<div class="wc-art">${L('Noun – the article could not be found.','বিশেষ্য – আর্টিকেল খুঁজে পাওয়া যায়নি।')}</div>`;
+  }else if(cn){
+    lines+=`<div class="wc-art">${L('Word type','শব্দের ধরন')}: ${cn[1]} <span class="mute">(${L(cn[0],cn[2])}) · ${L('only nouns have an article (der / die / das)','শুধু noun-এর আর্টিকেল (der / die / das) থাকে')}</span></div>`;
+  }else{
+    lines+=`<div class="mute" style="font-size:14px">${L('Word type could not be checked (no internet).','শব্দের ধরন দেখা গেল না (ইন্টারনেট নেই)।')}</div>`;
+  }
+  return `<div class="wcard ${c?'b-'+c:''}"><div class="wc-top">${word}</div>${lines}${exBox({info:info},o.n||4)}</div>`;
 }
-
 /* ---- online translation (only used when the course has no answer) ---- */
 function decodeEnt(t){try{return new DOMParser().parseFromString(String(t),'text/html').documentElement.textContent||t;}catch(e){return t;}}
 function chunkTxt(t,n){const res=[];let cur='';(t.match(/[^.!?।\n]+[.!?।\n]*/g)||[t]).forEach(s=>{if(cur&&(cur+s).length>n){res.push(cur);cur='';}if(s.length>n){for(let i=0;i<s.length;i+=n)res.push(s.slice(i,i+n));}else cur+=s;});if(cur.trim())res.push(cur);return res;}
@@ -4245,6 +4379,7 @@ async function netTr(text,from,to){
 }
 function localTr(text,from,to){
   const X=buildLex(),k=nrm(text);if(!k)return null;
+  if(from==='de'&&k.indexOf(' ')<0||from==='de'&&/^(der|die|das)\s/i.test(String(text).trim())&&nrm(NOART(text)).indexOf(' ')<0){const e0=entryFor(text);if(e0&&e0[to])return{text:e0[to],entries:[e0]};}
   const e=X.ph[from+':'+k];
   if(e&&e[to])return{text:e[to],entries:e.pl!==undefined?[e]:[]};
   if(from!=='de'){
@@ -4254,7 +4389,7 @@ function localTr(text,from,to){
   return null;
 }
 async function trCore(text,from,to){
-  const r={text:'',src:'',entries:[],guess:null,err:''};
+  const r={text:'',src:'',entries:[],info:null,err:''};
   const loc=localTr(text,from,to);
   if(loc){r.text=loc.text;r.src='course';r.entries=loc.entries;}
   else{
@@ -4264,12 +4399,12 @@ async function trCore(text,from,to){
     r.text=n.text;r.src=n.src;
   }
   if(!r.entries.length){
-    const e=from==='de'?entryFor(text):(to==='de'?entryFor(r.text):null);
+    const e=from==='de'?entryFor(text):(to==='de'?entryFor(r.text,true):null);
     if(e&&nrm(text).split(' ').length<=3)r.entries=[e];
   }
   if(!r.entries.length){
-    const w=(from==='de'?text:(to==='de'?r.text:'')).trim();
-    if(isNounLike(w)){const g=guessArticle(w);if(g)r.guess={w:w,art:g.art,why:g.why};}
+    const gw=(from==='de'?text:(to==='de'?r.text:'')).trim(),bare=NOART(gw).trim();
+    if(gw&&/^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß-]*$/.test(bare)&&gw.split(/\s+/).length<=(bare!==gw?2:1))r.info=await deInfo(bare,null);
   }
   return r;
 }
@@ -4319,16 +4454,18 @@ async function trGo(){
   const r=await trCore(text,from,to);
   if(my!==trBusy)return;
   if(r.err){out.innerHTML=`<div class="trerr">${r.err==='offline'?L('You are offline. Only words and sentences from the course can be translated without internet.','তুমি অফলাইনে আছ। ইন্টারনেট ছাড়া শুধু কোর্সের শব্দ ও বাক্য অনুবাদ করা যায়।'):L('The online translator could not be reached. Please check your internet and try again.','অনলাইন অনুবাদক পাওয়া যায়নি। ইন্টারনেট দেখে আবার চেষ্টা করো।')}</div>`;return;}
-  TR.last=r.text;
+  const shown=(r.info&&r.info.cls==='noun'&&r.info.art&&to==='de')?r.info.art+' '+r.info.de:r.text;
+  TR.last=shown;
   const src=r.src==='course'?L('From the course','কোর্স থেকে'):esc(r.src);
-  let h=`<div class="trres"><div class="trlbl">${TLN[from][0]} → ${TLN[to][0]} · ${src}</div><div class="trtext" lang="${to}">${esc(r.text)}</div><div class="trbtns">${to==='de'?sayBtn(r.text):''}<button type="button" class="btn xs" data-act="trcopy" data-t="${esc(r.text)}">${L('Copy','কপি')}</button></div></div>`;
-  h+=r.entries.map(e=>wordCard(e,{n:3})).join('');
-  if(r.guess)h+=guessCard(r.guess);
-  if(from==='de'&&!r.entries.length){
+  let h=`<div class="trres"><div class="trlbl">${TLN[from][0]} → ${TLN[to][0]} · ${src}</div><div class="trtext" lang="${to}">${esc(shown)}</div><div class="trbtns">${to==='de'?sayBtn(shown):''}<button type="button" class="btn xs" data-act="trcopy" data-t="${esc(shown)}">${L('Copy','কপি')}</button></div></div>`;
+  h+=r.entries.map(e=>wordCard(e,{n:4})).join('');
+  if(r.info)h+=infoCard(r.info,{n:4});
+  if(from==='de'&&!r.entries.length&&!r.info){
     const hp=wordHelp(text);
     if(hp.length)h+=`<div class="trhelp"><div class="wc-h">${L('Words from your text (with article)','তোমার লেখার শব্দ (আর্টিকেলসহ)')}</div>${hp.map(w=>`<span class="chipw">${say(wordHtml(w.de,w.pl),w.de)} <span class="en">${esc(w.en)}</span><span class="bn">${esc(w.bn)}</span></span>`).join('')}</div>`;
   }
   out.innerHTML=h;
+  fillExBoxes(out);
 }
 function copyTxt(t,el){
   const done=()=>toast(L('Copied ✓','কপি হয়েছে ✓'),1400);
@@ -4385,7 +4522,7 @@ function renderDict(){
 }
 function dictEx(el){
   const row=el.closest('.drow'),box=$('.dxx',row),d=dictList()[+el.dataset.i];
-  if(box.hidden){if(!box.innerHTML)box.innerHTML=wordCard(d.e,{bare:true,n:3});box.hidden=false;}else box.hidden=true;
+  if(box.hidden){if(!box.innerHTML)box.innerHTML=wordCard(d.e,{bare:true,n:4});fillExBoxes(box);box.hidden=false;}else box.hidden=true;
 }
 
 /* ---- help chat ---- */
@@ -4563,8 +4700,8 @@ async function chatTranslate(p,lang){
   const r=await trCore(p.text,from,to);
   if(r.err)return{h:A(lang,'Sorry, I could not translate that right now (no internet or the online translator is busy). Words from the course work offline.','দুঃখিত, এখন অনুবাদ করা গেল না (ইন্টারনেট নেই বা অনলাইন অনুবাদক ব্যস্ত)। কোর্সের শব্দ অফলাইনে কাজ করে।'),c:[3]};
   let h=`<small>${TLN[from][0]} → ${TLN[to][0]}</small><br><b style="font-size:16px" lang="${to}">${esc(r.text)}</b> ${to==='de'?sayBtn(r.text):''}`;
-  h+=r.entries.slice(0,2).map(e=>wordCard(e,{n:2})).join('');
-  if(r.guess)h+=guessCard(r.guess);
+  h+=r.entries.slice(0,1).map(e=>wordCard(e,{n:3})).join('');
+  if(r.info)h+=infoCard(r.info,{n:3});
   h+=`<br><small>${lnk('#translate','Open full translator →')}</small>`;
   return{h:h,c:[3,4]};
 }
@@ -4589,22 +4726,16 @@ async function botReply(q){
     const cw=(q.match(/[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]{2,}/g)||[]).filter(x=>!/^(Article|Artikel|Der|Die|Das|Ein|Eine|What|Which|How)$/.test(x))[0];
     if(cw){
       const ce=entryFor(cw);
-      if(ce)return{h:A(lang,'Here is the match from the course:','কোর্স থেকে মিলে যাওয়া শব্দ:')+wordCard(ce,{n:2}),c:[4]};
-      const g=guessArticle(cw);
-      if(g)return{h:guessCard({w:cw,art:g.art,why:g.why}),c:[4]};
-      return{h:A(lang,`“${esc(cw)}” is not in the course word list, so I cannot say its article for sure. Try the translator or a dictionary.`,`“${esc(cw)}” কোর্সের শব্দতালিকায় নেই, তাই আর্টিকেল নিশ্চিত করে বলতে পারছি না। অনুবাদক বা অভিধানে দেখো।`),c:[3]};
+      if(ce)return{h:A(lang,'Here is the match from the course:','কোর্স থেকে মিলে যাওয়া শব্দ:')+wordCard(ce,{n:3}),c:[4]};
+      const wi=await deInfo(cw,null);
+      return{h:infoCard(wi,{n:3}),c:[4]};
     }
   }
   if(!kb){
     const hits=vocabFind(q);
     if(hits.length&&(wc<=4||cue)){
-      return{h:A(lang,`Here ${hits.length>1?'are the matches':'is the match'} from the course:`,`কোর্স থেকে ${hits.length>1?'মিলে যাওয়া শব্দগুলো':'মিলে যাওয়া শব্দটি'}:`)+hits.map(e=>wordCard(e,{n:2})).join('')+`<small>${lnk('#dictionary','Dictionary A–Z →')}</small>`,c:[3,4]};
+      return{h:A(lang,`Here ${hits.length>1?'are the matches':'is the match'} from the course:`,`কোর্স থেকে ${hits.length>1?'মিলে যাওয়া শব্দগুলো':'মিলে যাওয়া শব্দটি'}:`)+hits.map(e=>wordCard(e,{n:3})).join('')+`<small>${lnk('#dictionary','Dictionary A–Z →')}</small>`,c:[3,4]};
     }
-  }
-  if(!kb&&ART_Q.test(q)){
-    const w=(q.match(/[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]{2,}/g)||[]).filter(x=>!/^(Article|Artikel|Der|Die|Das)$/.test(x))[0];
-    if(w){const g=guessArticle(w);if(g)return{h:guessCard({w:w,art:g.art,why:g.why}),c:[4]};
-      return{h:A(lang,`“${esc(w)}” is not in the course word list, so I cannot say its article for sure. Try the translator or a dictionary.`,`“${esc(w)}” কোর্সের শব্দতালিকায় নেই, তাই আর্টিকেল নিশ্চিত করে বলতে পারছি না। অনুবাদক বা অভিধানে দেখো।`),c:[3]};}
   }
   const k2=kb||kbHit();
   if(k2)return{h:A(lang,k2.en(),k2.bn()),c:k2.c};
@@ -4626,7 +4757,7 @@ function chatSend(q){
   chatAdd('me',esc(q));
   const bub=chatAdd('bot','<span class="dots"><i></i><i></i><i></i></span>');
   Promise.resolve(botReply(q)).then(r=>{
-    setTimeout(()=>{bub.innerHTML=r.h;chatChips(r.c);$('#chBody').scrollTop=$('#chBody').scrollHeight;},250);
+    setTimeout(()=>{bub.innerHTML=r.h;fillExBoxes(bub);chatChips(r.c);$('#chBody').scrollTop=$('#chBody').scrollHeight;},250);
   }).catch(()=>{bub.innerHTML=L('Sorry, something went wrong.','দুঃখিত, কিছু একটা সমস্যা হয়েছে।');});
 }
 function chatReset(){
@@ -4676,7 +4807,7 @@ async function prepImage(file){
 }
 function cleanOcr(t){return String(t||'').replace(/\r/g,'').replace(/-\n(?=[a-zäöüß])/g,'').replace(/[ \t]+/g,' ').replace(/\n{2,}/g,'\u0001').replace(/\n/g,' ').replace(/\u0001/g,'\n\n').replace(/ *\n */g,'\n').trim();}
 async function ocrOne(file,bub,i,total){
-  const set=h=>{bub.innerHTML=h;chScroll();};
+  const set=h=>{bub.innerHTML=h;fillExBoxes(bub);chScroll();};
   const tag=total>1?`${L('Photo','ছবি')} ${i}/${total} · `:'';
   let prep=null;
   try{
@@ -4700,8 +4831,8 @@ async function ocrOne(file,bub,i,total){
     if(r.err)h+=`<div class="trerr" style="margin-top:10px">${r.err==='offline'?L('You are offline – the translation needs internet.','তুমি অফলাইনে – অনুবাদের জন্য ইন্টারনেট লাগবে।'):L('The online translator could not be reached. Please try again.','অনলাইন অনুবাদক পাওয়া যায়নি। আবার চেষ্টা করো।')}</div>`;
     else{
       h+=`<div class="wc-h">বাংলা</div><div class="ocrtxt" lang="bn">${esc(r.text)}</div><div class="trbtns"><button type="button" class="btn xs" data-act="trcopy" data-t="${esc(r.text)}">${L('Copy','কপি')}</button><button type="button" class="btn xs" data-act="ocren" data-t="${esc(de)}">English</button></div><div class="ocren"></div>`;
-      h+=r.entries.slice(0,1).map(e=>wordCard(e,{n:2})).join('');
-      if(r.guess)h+=guessCard(r.guess);
+      h+=r.entries.slice(0,1).map(e=>wordCard(e,{n:3})).join('');
+      if(r.info)h+=infoCard(r.info,{n:3});
     }
     if(!r.entries.length){const hp=wordHelp(de);if(hp.length)h+=`<div class="trhelp"><div class="wc-h">${L('Words with article','আর্টিকেলসহ শব্দ')}</div>${hp.map(x=>`<span class="chipw">${say(wordHtml(x.de,x.pl),x.de)} <span class="en">${esc(x.en)}</span><span class="bn">${esc(x.bn)}</span></span>`).join('')}</div>`;}
     if(low)h+=`<small class="mute">${L('The text may contain reading errors (blurry or dark photo). Use “Edit in translator” to correct it.','লেখায় ভুল থাকতে পারে (ছবি ঝাপসা বা অন্ধকার)। ঠিক করতে “অনুবাদকে নাও” ব্যবহার করো।')}</small>`;
