@@ -8,6 +8,14 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 
 🔗 **Live website:** **[mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/)**
 
+| Live pages | Link |
+|---|---|
+| 🏠 Course (start here) | [mdbellalhosen.github.io/German-A1](https://mdbellalhosen.github.io/German-A1/) |
+| 🌐 Translator (DE · EN · বাংলা) | [#translate](https://mdbellalhosen.github.io/German-A1/#translate) |
+| 📖 A1 Dictionary A–Z | [#dictionary](https://mdbellalhosen.github.io/German-A1/#dictionary) |
+| 📚 All words | [#words](https://mdbellalhosen.github.io/German-A1/#words) |
+| 🔑 Grammar secrets | [#secrets](https://mdbellalhosen.github.io/German-A1/#secrets) |
+
 ---
 
 ## ✨ Features
@@ -27,7 +35,12 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 - **Progress tracking** – completed days and best scores are saved in your browser
 - **Umlaut keyboard** (ä ö ü ß) for typing answers on any phone
 - **Mobile friendly** – works on phone, tablet and computer
-- **One single file** – no installation, no server, works offline
+- **🌐 Translator** – German → Bangla, German → English, English → German, Bangla → German (also English ↔ Bangla). For every word you get the **article (der / die / das)**, gender, plural and **example sentences**
+- **📖 A1 Dictionary A–Z** – all course words and phrases in alphabetical order with article, plural, Bangla and English meaning (German → Bangla / German → English / both), search in any language, filter by der / die / das, example sentences on tap
+- **💬 Help chat** – ask anything about the website (plan, days, tests, audio, features, how to host …), look up a word with its article, or translate. Bangla, English and Banglish questions are understood
+- **📷 Photo translation** – send **as many pictures as you like** (camera or gallery, several at once, paste or drag & drop). The German text in each picture is read (OCR) and translated into **Bangla** (English with one tap)
+- **🎙 Voice input** – speak your question to the chat in বাংলা, English or Deutsch
+- **One single file** – no installation, no server, works offline (the translator, photo reading and voice input need internet)
 
 ## 📚 Course plan
 
@@ -118,6 +131,35 @@ The audio uses the **Web Speech API** – the text-to-speech engine that is buil
 - Tap ⚙️ (top right) → **Test** – the line under the button shows which German voice is used
 - You can change the voice and the speed (0.75× is great for beginners) in ⚙️
 
+## 🌐 Translator & 📖 Dictionary
+
+Open **Übersetzer** (top right 🌐 icon, or `#translate`).
+
+- Choose a direction with one tap: **Deutsch → বাংলা**, **Deutsch → English**, **English → Deutsch**, **বাংলা → Deutsch** (or pick any pair with the two menus, ⇄ swaps them)
+- Type a word and you get the translation **plus the article** (coloured der = blue, die = red, das = green), gender, plural, English + Bangla meaning, the lesson (Tag) it comes from and **example sentences** (real sentences from the lessons; if there is none, a model sentence is made)
+- Type a sentence and you get the translation and, for German text, the course words in it with their articles
+- Words and sentences from the course are answered **instantly and offline**. Everything else is translated online ([Google Translate](https://translate.google.com) web endpoint, with [MyMemory](https://mymemory.translated.net) as a fallback)
+- Nouns that are **not** in the A1 word list get an article **guess** from the word ending (-ung → die, -chen → das …). It is clearly marked as a guess – always check in a dictionary
+
+**Wörterbuch A–Z** (`#dictionary`) lists every word and phrase of the course (663 entries, 363 of them nouns with article) from A to Z. Switch **Deutsch → বাংলা**, **Deutsch → English** or both, search in German, English or Bangla, filter by **der / die / das / Plural**, jump with the letter bar and tap **Examples** for sentences.
+
+## 💬 Help chat, photos & voice
+
+Tap the round chat button (bottom right).
+
+| What | How |
+|---|---|
+| **Ask about the website** | “What is this site?”, “Day 8”, “Week 3”, “How do I start?”, “Audio not working”, “How do I host it?” … (English, বাংলা or Banglish) |
+| **Look up a word** | “article of Tisch”, “টেবিল মানে কী”, “Haus” → article, plural, meanings, examples |
+| **Translate** | “translate ich bin müde to bangla”, “how do you say apple in German” |
+| **📷 Camera** | Phone: opens the camera app. Computer: live camera window – snap one page after another |
+| **🖼 Photos** | Choose many pictures at once, or paste (Ctrl+V) / drag & drop them into the chat. **There is no limit** – pictures are processed one after another |
+| **🎙 Voice** | Tap the microphone, speak, the question is sent automatically. Tap the language button next to the ä ö ü ß keys to choose বাংলা / English / Deutsch (Chrome or Safari) |
+
+**How photo translation works:** the picture is shrunk and cleaned up in your browser, the German text is read with [Tesseract.js](https://github.com/naptha/tesseract.js) (OCR, runs **on your device** – the first time it downloads about 15 MB, afterwards it is cached), and only the recognised **text** is sent to the online translator. The picture itself never leaves your device. You see the German text, the Bangla translation, a listen button, a copy button and **“Edit in translator”** to fix reading errors.
+
+Tips for good results: good light, hold the page straight, fill the frame with the text, avoid shadows and blur. Printed books work best; handwriting does not.
+
 ## 🗂 Project structure
 
 Everything is inside **one file**: `index.html`
@@ -126,10 +168,11 @@ Everything is inside **one file**: `index.html`
 index.html
 ├── <style>    Design: colours, layout, mobile view
 ├── <script>   Course content: DAYS.push({ … }) – one block per day (Days 1–30)
-└── <script>   App logic: audio engine, router, exercises, flashcards, word list, syllabus
+└── <script>   App logic: audio engine, router, exercises, flashcards, word list, syllabus,
+               translator, A–Z dictionary, help chat (photo OCR, voice, camera)
 ```
 
-Pages (hash routes): `#home` · `#plan` · `#day-1` … `#day-30` · `#words` · `#secrets`
+Pages (hash routes): `#home` · `#plan` · `#day-1` … `#day-30` · `#words` · `#secrets` · `#translate` · `#dictionary`
 
 ## ✏️ Edit or add content
 
@@ -163,7 +206,9 @@ DAYS.push({n:31, w:5, s:"Short title",
 ## 🛠 Built with
 
 - HTML, CSS and vanilla JavaScript – no frameworks, no build step
-- Web Speech API for audio
+- Web Speech API for audio (text-to-speech) and voice input (speech recognition)
+- [Tesseract.js](https://github.com/naptha/tesseract.js) (loaded from a CDN only when you send a photo) for reading German text in pictures
+- Google Translate web endpoint / MyMemory API for online translation (only used when the course has no answer)
 - Google Fonts: Inter, Fraunces, Hind Siliguri
 - `localStorage` for progress (stays in your own browser only)
 
