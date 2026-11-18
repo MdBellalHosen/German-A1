@@ -15,6 +15,7 @@ Vocabulary, grammar, dialogues, exercises, weekly tests and audio for every Germ
 | 📖 A1 Dictionary A–Z | [#dictionary](https://mdbellalhosen.github.io/German-A1/#dictionary) |
 | 📚 All words | [#words](https://mdbellalhosen.github.io/German-A1/#words) |
 | 🧩 Easy guide & games | [#easy](https://mdbellalhosen.github.io/German-A1/#easy) |
+| ✨ Premium AI API (Vercel) | [german-a1-eight.vercel.app/api/chat](https://german-a1-eight.vercel.app/api/chat) – shows `"configured": true` when the Gemini key is set |
 | 🔑 Grammar secrets | [#secrets](https://mdbellalhosen.github.io/German-A1/#secrets) |
 
 ---
@@ -173,7 +174,7 @@ The chat works on its own (course data + free online translators). For a smarter
 1. Get a free key: <https://aistudio.google.com/apikey> (no credit card).
 2. Import this repository at <https://vercel.com/new> (free Hobby plan). Vercel detects `api/chat.ts` automatically.
 3. In Vercel → *Settings → Environment Variables* add `GEMINI_API_KEY` (your key). Optional: `GEMINI_MODEL` (default `gemini-2.5-flash`), `ALLOWED_ORIGINS` (default `https://mdbellalhosen.github.io`). Redeploy.
-4. In `index.html` set `const AI_ENDPOINT='https://YOUR-PROJECT.vercel.app/api/chat';` and commit. (If you open the site from the Vercel URL itself, it works the same.)
+4. In `index.html` set `const AI_ENDPOINT=…` to your function URL (this repo already uses `https://german-a1-eight.vercel.app/api/chat`).
 5. Check `https://YOUR-PROJECT.vercel.app/api/chat` in the browser – it shows `"configured": true`.
 
 Good to know: the free Gemini tier has rate limits, so AI photo reading is not unlimited – when the limit is reached the chat uses the offline reader (Tesseract) automatically, which has no limit. On Google's free tier, messages may be used by Google to improve its products, so do not send private information. The function allows only your site, caps the size of messages/pictures and limits requests per visitor.

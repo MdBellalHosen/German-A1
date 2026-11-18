@@ -4987,7 +4987,7 @@ async function trAll(text,lang,from){
 }
 
 /* ---- free "premium" AI (Google Gemini through api/chat.ts) – optional, the chat works without it ---- */
-const AI_ENDPOINT='';  /* e.g. 'https://german-a1.vercel.app/api/chat' – see README "Premium AI" */
+const AI_ENDPOINT='https://german-a1-eight.vercel.app/api/chat';  /* free Gemini proxy on Vercel – see README "Premium AI" */
 const aiUrl=()=>window.AI_ENDPOINT||AI_ENDPOINT;
 const aiOn=()=>!!aiUrl()&&navigator.onLine!==false&&Date.now()>CH.aiUntil;
 const ABOUT='Site: "Deutsch A1 in 30 Tagen" – free German A1 course for Bangla speakers, live at '+LIVE_URL+'. 30 daily lessons in 5 weeks (1 Basics, 2 Everyday life, 3 Living in Germany, 4 Past/work/travel, 5 Exam week). Each lesson: goals, vocabulary with article colours (der blue, die red, das green), grammar, dialogues with audio (browser text-to-speech), exercises, daily test. Pages: #translate (translator DE/EN/BN with article and example sentences), #dictionary (A1 dictionary A-Z), #words, #easy (Leicht erklärt: article trainer game, sentence builder game, nicht/kein, modal verbs, separable verbs, prepositions, question words, numbers and time, 20 key verbs, common mistakes, A1 exam guide, daily plan and self-test), #secrets (grammar tips). Language switch: English / বাংলা / both. Progress is saved in the browser. Chat tools: photo/camera of a German book page, voice input.';
